@@ -1,1 +1,50 @@
-/* You can add global styles to this file, and also import other style files */
+/* ************************************************************************************************ */
+/*                                       !!! GLOBALS !!!                                           */
+/* ********************************************************************************************** */
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+*,
+::after,
+::before {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  box-sizing: content-box;
+}
+
+body {
+  font-family: Montserrat, sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.6rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+li {
+  list-style: none;
+}
+
+h1 {
+  font-size: 3.6rem;
+  font-weight: 600;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
