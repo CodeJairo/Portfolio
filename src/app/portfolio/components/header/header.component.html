@@ -1,13 +1,13 @@
 <header class="main-header" [ngClass]="{ hidden: isHidden }">
   <nav class="main-nav">
     <ul class="main-nav-list">
-      <li class="main-nav-item">
+      <li [ngClass]="{ active: currentSection === 'about-me' }" class="main-nav-item">
         <a href="#about-me">Sobre mí</a>
       </li>
-      <li class="main-nav-item">
+      <li [ngClass]="{ active: currentSection === 'portfolio' }" class="main-nav-item">
         <a href="#portfolio">Portfolio</a>
       </li>
-      <li class="main-nav-item">
+      <li [ngClass]="{ active: currentSection === 'stack' }" class="main-nav-item">
         <a href="#stack">Stack</a>
       </li>
     </ul>
