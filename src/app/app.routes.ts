@@ -4,7 +4,7 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./portfolio/pages/portfolio-page/portfolio-page.component').then(
+      import('./pages/portfolio-page/portfolio-page.component').then(
         (m) => m.PortfolioPageComponent
       ),
   },
