@@ -2,13 +2,11 @@
 /*                                       !!! GLOBALS !!!                                           */
 /* ********************************************************************************************** */
 
-html {
-  box-sizing: border-box;
-  font-size: 62.5%;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/*
 *,
 ::after,
 ::before {
@@ -47,4 +45,4 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
