@@ -1,33 +1,57 @@
 <header>
   <app-header />
 </header>
-
-<section class="w-full h-screen bg-blackPrimary flex justify-center items-center max-sm:items-end max-sm:pb-14">
-  <div class="flex flex-row max-lg:flex-col-reverse gap-5 w-[80%] justify-center items-center">
-    <div class="py-[10%]">
-      <!-- texto -->
-      <h1 class="text-whiteSecondary font-bold text-nowrap text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl">
+<section
+  class="w-full h-screen bg-whitePrimary dark:bg-blackPrimary flex max-sm:items-end max-sm:pb-14 justify-center items-center max-md:pt-20"
+>
+  <div
+    id="container"
+    class="flex flex-row max-lg:flex-col-reverse gap-5 w-[80%] my-auto"
+  >
+    <!-- texto -->
+    <div id="texto" class="py-[10%]">
+      <h1
+        class="font-satoshiBold text-nowrap text-2xl max-[320px]:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl"
+      >
         <span>Hola, Soy Jairo,</span><br />
         Desarrollador FullStack,<br />
         Ingeniero de Software.
       </h1>
-      <h2 class="text-whitePrimary py-5">
+      <h2 class="py-5">
         Desarrollador Full Stack y estudiante de Ingeniería en Software, amante
         de JavaScript y la creación de aplicaciones web robustas.
       </h2>
-      <div class="flex flex-row gap-3 text-whitePrimary font-medium text-nowrap">
-        <a class="border border-transparent py-3 px-5 rounded-full gradient hover:scale-105 transition-all"
-          href="#">Codigo Fuente</a>
-        <a class="border py-3 px-5 rounded-full hover:scale-105 transition-all" href="#">Contactar</a>
+      <div class="flex flex-row gap-3 text-nowrap">
+        <a
+          class="py-3 px-5 rounded-full gradient hover:scale-105 transition-all"
+          href="#"
+          >Codigo Fuente</a
+        >
+        <a
+          class="outline outline-[1.5px] outline-black dark:outline-whiteSecondary py-3 px-5 rounded-full hover:scale-105 hover:outline-[2.5px] transition-all"
+          href="#"
+          >Contactar</a
+        >
       </div>
     </div>
-    <div
-      class="rounded-md xl:w-[500px] xl:h-[500px] flex justify-center items-center max-sm:w-[200px] max-sm:h-[200px] max-[320px]:hidden">
-      <!-- imagen -->
-      <img class=" w-full h-full object-cover"
-        src="https://images.unsplash.com/photo-1718963892337-b6729c302b8f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        alt="Foto de Perfil - Jairo Herrera" />
+
+    <!-- imagen -->
+    <div class="flex justify-center items-center">
+      <div
+        class="rounded-md xl:w-[500px] xl:h-[500px] flex justify-center items-center max-sm:w-[200px] max-sm:h-[200px] max-[320px]:hidden max-lg:w-[425px] max-lg:h-[425px] phone"
+      >
+        <img
+          class="w-full h-full object-cover"
+          src="https://www.creativefabrica.com/wp-content/uploads/2022/11/29/4k-HD-Wallpaper-Art-Planets-Landscape-Universe-Stars-Background-Image-49273141-1.png"
+          alt="Foto de Perfil - Jairo Herrera"
+        />
+      </div>
     </div>
   </div>
 </section>
-<section class="h-screen"></section>
+<section
+  id="proyectos"
+  class="h-screen flex justify-center items-center font-satoshiBold"
+>
+  <!-- <span class="">TE QUIERO MUCHO JULI</span> -->
+</section>
