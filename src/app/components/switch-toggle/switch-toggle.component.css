@@ -1,0 +1,79 @@
+/* Estilo para el componente de interruptor de alternancia */
+
+.l {
+  display: block; /* Mostrar como bloque */
+  margin-bottom: 1.5em; /* Margen inferior */
+  font-size: 1em; /* Tamaño de fuente */
+}
+
+.l {
+  background-color: rgba(0, 0, 0, 0.7); /* Color de fondo */
+  border-radius: 0.75em; /* Radio de borde */
+  box-shadow: 0.125em 0.125em 0 0.125em rgba(0, 0, 0, 0.3) inset; /* Sombra */
+  color: #fdea7b; /* Color de texto */
+  display: inline-flex; /* Mostrar como flex en línea */
+  align-items: center; /* Alinear elementos verticalmente */
+  margin: auto; /* Margen automático */
+  padding: 0.15em; /* Relleno */
+  width: 3em; /* Ancho */
+  height: 1.5em; /* Altura */
+  transition: background-color 0.1s 0.3s ease-out, box-shadow 0.1s 0.3s ease-out; /* Transiciones */
+  -webkit-appearance: none; /* Apariencia en WebKit */
+  -moz-appearance: none; /* Apariencia en Mozilla */
+  appearance: none; /* Apariencia */
+}
+
+.l:before,
+.l:after {
+  content: ""; /* Contenido vacío */
+  display: block; /* Mostrar como bloque */
+}
+
+.l:before {
+  background-color: #d7d7d7; /* Color de fondo */
+  border-radius: 50%; /* Radio de borde */
+  width: 1.2em; /* Ancho */
+  height: 1.2em; /* Altura */
+  transition: background-color 0.1s 0.3s ease-out, transform 0.3s ease-out; /* Transiciones */
+  z-index: 1; /* Índice Z */
+}
+
+.l:after {
+  background: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.15) 0) 0 50% /
+      50% 100%,
+    repeating-linear-gradient(90deg, #bbb 0, #bbb, #bbb 20%, #999 20%, #999 40%)
+      0 50% / 50% 100%,
+    radial-gradient(circle at 50% 50%, #888 25%, transparent 26%); /* Gradientes */
+  background-repeat: no-repeat; /* No repetir fondo */
+  border: 0.25em solid transparent; /* Borde transparente */
+  border-left: 0.4em solid #d8d8d8; /* Borde izquierdo */
+  border-right: 0 solid transparent; /* Borde derecho transparente */
+  transition: border-left-color 0.1s 0.3s ease-out, transform 0.3s ease-out; /* Transiciones */
+  transform: translateX(-22.5%); /* Transformación de traslación */
+  transform-origin: 25% 50%; /* Origen de la transformación */
+  width: 1.2em; /* Ancho */
+  height: 1em; /* Altura */
+  box-sizing: border-box; /* Modelo de caja */
+}
+
+/* Seleccionado */
+.l:checked {
+  background-color: rgba(0, 0, 0, 0.45); /* Color de fondo */
+  box-shadow: 0.125em 0.125em 0 0.125em rgba(0, 0, 0, 0.1) inset; /* Sombra */
+}
+
+.l:checked:before {
+  background-color: currentColor; /* Color de fondo actual */
+  transform: translateX(125%); /* Transformación de traslación */
+}
+
+.l:checked:after {
+  border-left-color: currentColor; /* Color de borde izquierdo actual */
+  transform: translateX(-2.5%) rotateY(180deg); /* Transformación de traslación y rotación */
+}
+
+/* Otros estados */
+.l:focus {
+  /* Por lo general, una práctica anti-A11Y, pero se establece para eliminar una molestia solo para esta demostración */
+  outline: 0; /* Sin contorno */
+}
