@@ -1,7 +1,10 @@
 h1 {
   line-height: 1.35 !important;
 }
-
+#proyectos{
+  background: rgb(255,170,0);
+  background: radial-gradient(circle, rgba(255,170,0,1) 0%, rgba(0,0,0,1) 13%);
+}
 span {
   background: rgb(177, 108, 234);
   background: linear-gradient(
