@@ -1,0 +1,71 @@
+---
+import Header from "../components/header.astro";
+import Section1 from "../components/sections/section1.astro";
+import Section2 from "../components/sections/section2.astro";
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <meta name="author" content="Jairo Herrera" />
+    <meta
+      name="description"
+      content="Portfolio programador FullStack de Jairo Herrera"
+    />
+    <meta
+      name="keywords"
+      content="portfolio, programador, fullStack, jairo herrera, codejairo"
+    />
+
+    <title>CodeJairo - Portfolio</title>
+  </head>
+  <body class="font-satoshi">
+    <header>
+      <Header />
+    </header>
+    <main>
+      <Section1 />
+      <Section2 />
+    </main>
+    <footer></footer>
+  </body>
+</html>
+
+<style>
+  @font-face {
+    font-family: "Satoshi-Regular";
+    src:
+      url("/fonts/Satoshi-Regular.woff2") format("woff2"),
+      url("/fonts/Satoshi-Regular.woff") format("woff"),
+      url("/fonts/Satoshi-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-display: swap;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Satoshi-Bold";
+    src:
+      url("/fonts/Satoshi-Bold.woff2") format("woff2"),
+      url("/fonts/Satoshi-Bold.woff") format("woff"),
+      url("/fonts/Satoshi-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-display: swap;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Satoshi-Variable";
+    src:
+      url("/fonts/Satoshi-Variable.woff2") format("woff2"),
+      url("/fonts/Satoshi-Variable.woff") format("woff"),
+      url("/fonts/Satoshi-Variable.ttf") format("truetype");
+    font-weight: 300 900;
+    font-display: swap;
+    font-style: normal;
+  }
+</style>
