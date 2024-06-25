@@ -1,12 +1,9 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ["./src/**/*.{html,ts}"],
-  darkMode: "class", // or 'media' or 'class
+export default {
+  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+  darkMode: "class",
   theme: {
     extend: {
-      screens:{
-
-      },
       fontFamily: {
         satoshi: ["Satoshi-Regular", "sans-serif"],
         satoshiBold: ["Satoshi-Bold", "sans-serif"],
@@ -19,5 +16,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animated")],
+  plugins: [],
 };

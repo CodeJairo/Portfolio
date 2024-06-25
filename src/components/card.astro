@@ -1,0 +1,47 @@
+---
+interface techs {
+  name: string;
+  url: string;
+}
+
+interface Props {
+  img: string;
+  alt: string;
+  title: string;
+  techs: techs[];
+}
+
+const { img, alt, title, techs } = Astro.props;
+---
+
+<div class="bg-blackSecondary rounded-sm p-5 text-white">
+  <div class="rounded-md overflow-hidden border-red-600 w-[300px] h-[300px]">
+    <img src={"img/" + img} alt={alt} />
+  </div>
+  <div>
+    <h3 class="text-center text-xl p-2 font-satoshiBold">{title}</h3>
+    <div class="flex flex-row justify-around">
+      <a
+        href={techs[0].url}
+        rel="noopener noreferrer"
+        target="_blank"
+        class="bg-[#B16CEA] bg-gradient-to-r from-[#B16CEA] to-[#FF5E69] px-3 border rounded-full hover:scale-90 transition"
+        >{techs[0].name}</a
+      >
+      <a
+        href={techs[1].url}
+        rel="noopener noreferrer"
+        target="_blank"
+        class="bg-[#FF5E69] bg-gradient-to-r from-[#FF5E69] to-[#FF8A56] px-3 border rounded-full hover:scale-90 transition"
+        >{techs[1].name}</a
+      >
+      <a
+        href={techs[2].url}
+        rel="noopener noreferrer"
+        target="_blank"
+        class="bg-[#FF8A56] bg-gradient-to-r from-[#FF8A56] to-[#FFA84B] px-3 border rounded-full hover:scale-90 transition"
+        >{techs[2].name}</a
+      >
+    </div>
+  </div>
+</div>
