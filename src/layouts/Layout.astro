@@ -11,10 +11,38 @@ import ModalButton from "../components/modal-button.astro";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content="index, follow" />
     <title>Codejairo - Portfolio</title>
+    <meta
+      name="google-site-verification"
+      content="Gin_eIJSFyOSLv5TZp5qdr5fdvFeuFHK86kMImsSkOY"
+    />
+    <meta
+      name="description"
+      content="Portafolio profesional de Jairo Herrera, ingeniero de software y desarrollador web especializado en Astro, Angular, Node.js y más."
+    />
+    <meta
+      name="keywords"
+      content="Jairo Herrera, codejairo, ingeniero, software,desarrollador web, portafolio, Astro, Medellín"
+    />
+    <meta name="author" content="Jairo Herrera" />
     <script
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
       defer></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Jairo Herrera",
+        "url": "https://codejairo.netlify.app",
+        "sameAs": [
+          "https://github.com/codejairo",
+          "https://www.linkedin.com/in/codejairo/"
+        ],
+        "jobTitle": "Ingeniero de Software",
+        "description": "Portafolio de Jairo Herrera, ingeniero de software, experto en desarrollo web con tecnologías como Astro, Angular y Node.js."
+      }
+    </script>
   </head>
   <body>
     <Navbar />
