@@ -2,27 +2,35 @@
 import Toggle from "./toggle.astro";
 ---
 
-<div class="absolute w-full py-5 px-[10%] flex flex-row justify-between">
-  <div class="flex flex-row gap-5 text-nowrap">
-    <a
-      href="#proyectos"
-      class="hover:scale-110 hover:text-black dark:text-whitePrimary transition-all"
-      >Proyectos</a
+<header
+  class="absolute top-0 left-0 w-full z-50 px-6 md:px-[10%] py-4 flex flex-wrap justify-between items-center backdrop-blur-md bg-white/50 dark:bg-black/30 shadow-sm"
+>
+  <!-- Contenedor flexible para navegación y toggle -->
+  <div class="w-full flex justify-between items-center gap-4 flex-wrap">
+    <!-- Navegación -->
+    <nav
+      class="flex flex-row gap-6 text-sm md:text-base font-medium text-black dark:text-white"
     >
-    <a
-      href="#sobre-mi"
-      class="hover:scale-110 hover:text-black dark:text-whitePrimary transition-all"
-      >Sobre mí</a
-    >
-    <a
-      href="#contacto"
-      class="hover:scale-110 hover:text-black dark:text-whitePrimary transition-all"
-      >Contacto</a
-    >
-  </div>
-  <div>
-    <div>
+      <a
+        href="#proyectos"
+        class="hover:scale-110 hover:text-primary dark:hover:text-white transition-all duration-300"
+        >Proyectos</a
+      >
+      <a
+        href="#sobre-mi"
+        class="hover:scale-110 hover:text-primary dark:hover:text-white transition-all duration-300"
+        >Sobre mí</a
+      >
+      <a
+        href="#contacto"
+        class="hover:scale-110 hover:text-primary dark:hover:text-white transition-all duration-300"
+        >Contacto</a
+      >
+    </nav>
+
+    <!-- Toggle -->
+    <div class="flex items-center justify-center">
       <Toggle />
     </div>
   </div>
-</div>
+</header>
