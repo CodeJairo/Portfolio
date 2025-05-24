@@ -1,47 +1,47 @@
 ---
-interface techs {
+// ProjectCard.astro
+import { Image } from "astro:assets";
+
+interface Tech {
   name: string;
   url: string;
 }
 
 interface Props {
-  img: string;
+  img: any; // puedes usar StaticImageMetadata si prefieres
   alt: string;
   title: string;
-  techs: techs[];
+  description: string;
+  techs: Tech[];
 }
 
-const { img, alt, title, techs } = Astro.props;
+const { img, alt, title, techs, description } = Astro.props;
 ---
 
-<div class="bg-blackSecondary rounded-sm p-5 text-white">
-  <div class="rounded-md overflow-hidden border-red-600 w-[300px] h-[300px]">
-    <img src={"img/" + img} alt={alt} />
+<div
+  class="bg-zinc-900 text-white rounded-lg overflow-hidden shadow-lg flex flex-col h-full"
+>
+  <div class="w-full h-48 md:h-56 overflow-hidden">
+    <Image src={img} alt={alt} class="object-cover w-full h-full" />
   </div>
-  <div>
-    <h3 class="text-center text-xl p-2 font-satoshiBold">{title}</h3>
-    <div class="flex flex-row justify-around">
-      <a
-        href={techs[0].url}
-        rel="noopener noreferrer"
-        target="_blank"
-        class="bg-[#B16CEA] bg-gradient-to-r from-[#B16CEA] to-[#FF5E69] px-3 border rounded-full hover:scale-90 transition"
-        >{techs[0].name}</a
-      >
-      <a
-        href={techs[1].url}
-        rel="noopener noreferrer"
-        target="_blank"
-        class="bg-[#FF5E69] bg-gradient-to-r from-[#FF5E69] to-[#FF8A56] px-3 border rounded-full hover:scale-90 transition"
-        >{techs[1].name}</a
-      >
-      <a
-        href={techs[2].url}
-        rel="noopener noreferrer"
-        target="_blank"
-        class="bg-[#FF8A56] bg-gradient-to-r from-[#FF8A56] to-[#FFA84B] px-3 border rounded-full hover:scale-90 transition"
-        >{techs[2].name}</a
-      >
+  <div class="p-4 flex flex-col justify-between grow">
+    <div>
+      <h3 class="text-xl font-semibold mb-1">{title}</h3>
+      <p class="text-sm text-zinc-300 mb-4">{description}</p>
+    </div>
+    <div class="flex flex-wrap gap-2 mt-auto">
+      {
+        techs.map((tech) => (
+          <a
+            href={tech.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-xs bg-gradient-to-r from-purple-500 to-pink-500 hover:scale-95 transition px-3 py-1 rounded-full font-medium"
+          >
+            {tech.name}
+          </a>
+        ))
+      }
     </div>
   </div>
 </div>

@@ -1,0 +1,93 @@
+---
+import Card from "../components/card.astro";
+import gato from "../assets/gato.png";
+---
+
+<!-- bg-white dark:bg-zinc-900 -->
+<section
+  id="proyectos"
+  class="bg-gradient-to-b from-black to-zinc-900 py-20 px-4 sm:px-6 lg:px-16"
+>
+  <div class="max-w-7xl mx-auto space-y-24">
+    <!-- Proyecto 1 -->
+    <div class="flex flex-col lg:flex-row items-center gap-12">
+      <div class="w-full lg:w-1/2">
+        <Card
+          img={gato}
+          alt="Imagen de Vanishat"
+          title="Vanishat"
+          description="Plataforma de mensajería instantánea cifrada punto a punto."
+          techs={[
+            { name: "Angular", url: "https://angular.dev/" },
+            { name: "Nest.js", url: "https://nestjs.com/" },
+            { name: "MongoDB", url: "https://www.mongodb.com/" },
+          ]}
+        />
+      </div>
+      <div class="w-full lg:w-1/2 text-left">
+        <h3 class="text-3xl font-bold text-zinc-900 dark:text-white mb-4">
+          Vanishat
+        </h3>
+        <p class="text-zinc-600 dark:text-zinc-300 text-lg leading-relaxed">
+          Vanishat es una aplicación de mensajería segura que prioriza la
+          privacidad del usuario. Usa un sistema de cifrado punto a punto y
+          funciones efímeras para mantener tus conversaciones siempre privadas.
+        </p>
+      </div>
+    </div>
+
+    <!-- Proyecto 2 -->
+    <div class="flex flex-col lg:flex-row-reverse items-center gap-12">
+      <div class="w-full lg:w-1/2">
+        <Card
+          img={gato}
+          alt="Imagen de TaskFlow"
+          title="TaskFlow"
+          description="Gestor de tareas colaborativas con autenticación OAuth y notificaciones."
+          techs={[
+            { name: "React", url: "https://reactjs.org/" },
+            { name: "Express.js", url: "https://expressjs.com/" },
+            { name: "PostgreSQL", url: "https://www.postgresql.org/" },
+          ]}
+        />
+      </div>
+      <div class="w-full lg:w-1/2 text-left">
+        <h3 class="text-3xl font-bold text-zinc-900 dark:text-white mb-4">
+          TaskFlow
+        </h3>
+        <p class="text-zinc-600 dark:text-zinc-300 text-lg leading-relaxed">
+          TaskFlow permite a equipos organizar y visualizar sus tareas en tiempo
+          real. Su sistema de notificaciones y autenticación con OAuth lo hace
+          ideal para ambientes colaborativos profesionales.
+        </p>
+      </div>
+    </div>
+
+    <!-- Proyecto 3 -->
+    <div class="flex flex-col lg:flex-row items-center gap-12">
+      <div class="w-full lg:w-1/2">
+        <Card
+          img={gato}
+          alt="Imagen de FinSync"
+          title="FinSync"
+          description="App para sincronizar y analizar gastos personales entre dispositivos."
+          techs={[
+            { name: "Vue.js", url: "https://vuejs.org/" },
+            { name: "Adonis.js", url: "https://adonisjs.com/" },
+            { name: "MySQL", url: "https://www.mysql.com/" },
+          ]}
+        />
+      </div>
+      <div class="w-full lg:w-1/2 text-left">
+        <h3 class="text-3xl font-bold text-zinc-900 dark:text-white mb-4">
+          FinSync
+        </h3>
+        <p class="text-zinc-600 dark:text-zinc-300 text-lg leading-relaxed">
+          FinSync es tu asistente financiero digital. Sincroniza automáticamente
+          tus cuentas y te ofrece visualizaciones detalladas para entender mejor
+          tus hábitos de gasto.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

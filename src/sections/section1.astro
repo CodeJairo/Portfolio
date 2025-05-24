@@ -1,0 +1,66 @@
+---
+import { Image } from "astro:assets";
+import gato from "../assets/gato.png";
+---
+
+<section
+  class="w-full min-h-screen place-content-center bg-white dark:bg-black text-black dark:text-white px-6 sm:px-12 xl:px-24 py-20 transition-colors"
+>
+  <div
+    class="max-w-7xl mx-auto flex flex-col xl:flex-row-reverse items-center justify-between gap-16"
+  >
+    <!-- Imagen primero en móviles -->
+    <div class="w-full xl:w-1/2 flex justify-center">
+      <div
+        class="w-full max-w-[280px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-[450px] xl:max-w-[500px] aspect-square overflow-hidden rounded-xl shadow-xl"
+      >
+        <!-- <img
+          class="w-full h-full object-cover"
+          src="/img/gato.png"
+          alt="Foto de Perfil - Jairo Herrera"
+        /> -->
+        <Image
+          src={gato}
+          alt="Imagen Principal, gato en el espacio"
+          loading="eager"
+        />
+      </div>
+    </div>
+
+    <!-- Texto -->
+    <div class="w-full xl:w-1/2 text-center xl:text-left space-y-6">
+      <h1
+        class="text-3xl sm:text-4xl md:text-5xl 2xl:text-6xl font-bold leading-tight"
+      >
+        <span
+          class="bg-gradient-to-r from-purple-400 via-pink-500 to-orange-400 bg-clip-text text-transparent inline-block text-nowrap"
+        >
+          Hola, Soy Jairo,
+        </span><br />
+        <span class="inline-block text-nowrap">Desarrollador FullStack,</span
+        ><br />
+        <span class="inline-block text-nowrap">Ingeniero de Software.</span>
+      </h1>
+      <h2 class="text-base sm:text-xl text-gray-700 dark:text-gray-300">
+        Desarrollador Full Stack y estudiante de Ingeniería en Software, amante
+        de JavaScript y la creación de aplicaciones web robustas.
+      </h2>
+      <div class="flex flex-wrap justify-center xl:justify-start gap-4">
+        <a
+          class="px-6 py-3 rounded-full bg-gradient-to-r from-purple-400 via-pink-500 to-orange-400 text-white font-medium hover:scale-105 transition-transform"
+          href="https://github.com/CodeJairo/Portfolio"
+          rel="noopener noreferrer"
+        >
+          Código Fuente
+        </a>
+        <a
+          class="px-6 py-3 rounded-full border border-black dark:border-white text-black dark:text-white hover:scale-105 transition-transform"
+          href="mailto:jairoehr@gmail.com"
+          rel="noopener noreferrer"
+        >
+          Contactar
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
