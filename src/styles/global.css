@@ -5,14 +5,14 @@
 @font-face {
   font-family: "Satoshi";
   font-style: normal;
-  font-display: swap;
   font-weight: 400;
+  font-display: swap;
   src: url("/fonts/Satoshi-Regular.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "Satoshi";
-  font-style: normal;
+  font-style: bold;
   font-weight: 700;
   font-display: swap;
   src: url("/fonts/Satoshi-Bold.woff2") format("woff2");
@@ -20,6 +20,7 @@
 
 body {
   font-family: "Satoshi", monospace;
+  font-style: normal;
 }
 
 html {
