@@ -1,104 +1,83 @@
 <input type="checkbox" class="l" />
 
 <script>
-  /**
-   ** Este código se ejecuta cuando el evento "DOMContentLoaded" se dispara,
-   ** lo que significa que el documento HTML ha sido completamente cargado
-   ** sin esperar a que hojas de estilo, imágenes y subtramas terminen de cargar,
-   ** con esto he disminuido el tiempo que tarda el aplicar el tema definido en localStorage,
-   ** estoy tratando de simular el onInit de Angular para no tener que usar componentes de React.
-   */
-
-  document.addEventListener("DOMContentLoaded", (event) => {
+  // Aplica el tema guardado en localStorage al cargar el documento
+  document.addEventListener("DOMContentLoaded", () => {
     const theme = localStorage.getItem("theme");
-    if (!theme) localStorage.setItem("theme", "dark");
-    if (theme !== "dark" && theme !== "light")
+    if (!theme || (theme !== "dark" && theme !== "light")) {
       localStorage.setItem("theme", "dark");
+    }
     applyTheme();
   });
 
+  // Referencia al interruptor de tema
   const themeToggle = document.querySelector("input");
   themeToggle?.addEventListener("change", changeTheme);
 
+  // Aplica el tema correspondiente al body y al interruptor
   function applyTheme() {
-    console.log("Funcionando");
     const theme = localStorage.getItem("theme");
-    console.log(theme);
-
     if (theme === "dark") {
       document.querySelector("input")!.checked = false;
-      document.querySelector("body")!.classList.add("dark");
-      return;
-    }
-
-    if (theme === "light") {
+      document.body.classList.add("dark");
+    } else if (theme === "light") {
       document.querySelector("input")!.checked = true;
-      document.querySelector("body")!.classList.remove("dark");
-      return;
+      document.body.classList.remove("dark");
     }
-    return;
   }
 
+  // Cambia el tema y lo guarda en localStorage
   function changeTheme() {
     const theme = localStorage.getItem("theme");
     if (theme === "dark") {
       localStorage.setItem("theme", "light");
-      applyTheme();
-      return;
-    }
-
-    if (theme === "light") {
+    } else {
       localStorage.setItem("theme", "dark");
-      applyTheme();
-      return;
     }
-    return;
+    applyTheme();
   }
 </script>
 
 <style>
-  /* Estilo para el componente de interruptor de alternancia */
-
+  /* Estilo para el interruptor de tema */
   .l {
-    display: block; /* Mostrar como bloque */
-    margin-bottom: 1.5em; /* Margen inferior */
-    font-size: 1em; /* Tamaño de fuente */
-  }
-
-  .l {
-    background-color: rgba(0, 0, 0, 0.7); /* Color de fondo */
-    border-radius: 0.75em; /* Radio de borde */
-    box-shadow: 0.125em 0.125em 0 0.125em rgba(0, 0, 0, 0.3) inset; /* Sombra */
-    color: #fdea7b; /* Color de texto */
-    display: inline-flex; /* Mostrar como flex en línea */
-    align-items: center; /* Alinear elementos verticalmente */
-    margin: auto; /* Margen automático */
-    padding: 0.15em; /* Relleno */
-    width: 3em; /* Ancho */
-    height: 1.5em; /* Altura */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    display: block;
+    margin-bottom: 1.5em;
+    font-size: 1em;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 0.75em;
+    box-shadow: 0.125em 0.125em 0 0.125em rgba(0, 0, 0, 0.3) inset;
+    color: #fdea7b;
+    display: inline-flex;
+    align-items: center;
+    margin: auto;
+    padding: 0.15em;
+    width: 3em;
+    height: 1.5em;
     transition:
       background-color 0.1s 0.3s ease-out,
-      box-shadow 0.1s 0.3s ease-out; /* Transiciones */
-    -webkit-appearance: none; /* Apariencia en WebKit */
-    -moz-appearance: none; /* Apariencia en Mozilla */
-    appearance: none; /* Apariencia */
+      box-shadow 0.1s 0.3s ease-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }
 
   .l:before,
   .l:after {
-    content: ""; /* Contenido vacío */
-    display: block; /* Mostrar como bloque */
+    content: "";
+    display: block;
   }
 
   .l:before {
-    background-color: #d7d7d7; /* Color de fondo */
-    border-radius: 50%; /* Radio de borde */
-    width: 1.2em; /* Ancho */
-    height: 1.2em; /* Altura */
+    background-color: #d7d7d7;
+    border-radius: 50%;
+    width: 1.2em;
+    height: 1.2em;
     transition:
       background-color 0.1s 0.3s ease-out,
-      transform 0.3s ease-out; /* Transiciones */
-    z-index: 1; /* Índice Z */
+      transform 0.3s ease-out;
+    z-index: 1;
   }
 
   .l:after {
@@ -113,44 +92,37 @@
           #999 40%
         )
         0 50% / 50% 100%,
-      radial-gradient(
-        circle at 50% 50%,
-        #888 25%,
-        transparent 26%
-      ); /* Gradientes */
-    background-repeat: no-repeat; /* No repetir fondo */
-    border: 0.25em solid transparent; /* Borde transparente */
-    border-left: 0.4em solid #d8d8d8; /* Borde izquierdo */
-    border-right: 0 solid transparent; /* Borde derecho transparente */
+      radial-gradient(circle at 50% 50%, #888 25%, transparent 26%);
+    background-repeat: no-repeat;
+    border: 0.25em solid transparent;
+    border-left: 0.4em solid #d8d8d8;
+    border-right: 0 solid transparent;
     transition:
       border-left-color 0.1s 0.3s ease-out,
-      transform 0.3s ease-out; /* Transiciones */
-    transform: translateX(-22.5%); /* Transformación de traslación */
-    transform-origin: 25% 50%; /* Origen de la transformación */
-    width: 1.2em; /* Ancho */
-    height: 1em; /* Altura */
-    box-sizing: border-box; /* Modelo de caja */
+      transform 0.3s ease-out;
+    transform: translateX(-22.5%);
+    transform-origin: 25% 50%;
+    width: 1.2em;
+    height: 1em;
+    box-sizing: border-box;
   }
 
-  /* Seleccionado */
   .l:checked {
-    background-color: rgba(0, 0, 0, 0.45); /* Color de fondo */
-    box-shadow: 0.125em 0.125em 0 0.125em rgba(0, 0, 0, 0.1) inset; /* Sombra */
+    background-color: rgba(0, 0, 0, 0.45);
+    box-shadow: 0.125em 0.125em 0 0.125em rgba(0, 0, 0, 0.1) inset;
   }
 
   .l:checked:before {
-    background-color: currentColor; /* Color de fondo actual */
-    transform: translateX(125%); /* Transformación de traslación */
+    background-color: currentColor;
+    transform: translateX(125%);
   }
 
   .l:checked:after {
-    border-left-color: currentColor; /* Color de borde izquierdo actual */
-    transform: translateX(-2.5%) rotateY(180deg); /* Transformación de traslación y rotación */
+    border-left-color: currentColor;
+    transform: translateX(-2.5%) rotateY(180deg);
   }
 
-  /* Otros estados */
   .l:focus {
-    /* Por lo general, una práctica anti-A11Y, pero se establece para eliminar una molestia solo para esta demostración */
-    outline: 0; /* Sin contorno */
+    outline: 0;
   }
 </style>
