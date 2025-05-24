@@ -15,11 +15,6 @@ import gato from "../assets/gato.png";
       <div
         class="w-full max-w-[280px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-[450px] xl:max-w-[500px] aspect-square overflow-hidden rounded-xl shadow-xl"
       >
-        <!-- <img
-          class="w-full h-full object-cover"
-          src="/img/gato.png"
-          alt="Foto de Perfil - Jairo Herrera"
-        /> -->
         <Image
           src={gato}
           alt="Imagen Principal, gato en el espacio"
@@ -29,7 +24,7 @@ import gato from "../assets/gato.png";
     </div>
 
     <!-- Texto -->
-    <div class="w-full xl:w-1/2 text-center xl:text-left space-y-6">
+    <div class="w-full xl:w-1/2 text-center xl:text-left space-y-6 min-w-xl">
       <h1
         class="text-3xl sm:text-4xl md:text-5xl 2xl:text-6xl font-bold leading-tight"
       >
@@ -38,9 +33,12 @@ import gato from "../assets/gato.png";
         >
           Hola, Soy Jairo,
         </span><br />
-        <span class="inline-block text-nowrap">Desarrollador FullStack,</span
-        ><br />
-        <span class="inline-block text-nowrap">Ingeniero de Software.</span>
+        <span class="inline-block text-nowrap">Ingeniero de Software,</span>
+        <br />
+        <div class="text-nowrap">
+          <span id="typed-text" class="inline-block text-nowrap"></span>
+          <span class="blinking-cursor text-indigo-500">|</span>
+        </div>
       </h1>
       <h2 class="text-base sm:text-xl text-gray-700 dark:text-gray-300">
         Desarrollador Full Stack y estudiante de Ingeniería en Software, amante
@@ -66,3 +64,49 @@ import gato from "../assets/gato.png";
     </div>
   </div>
 </section>
+
+<script>
+  const textArray = [
+    "Desarrollador Fullstack.",
+    "Arquitecto Backend.",
+    "UI Developer.",
+    "Cloud Ready.",
+  ];
+  const typingDelay = 100;
+  const erasingDelay = 50;
+  const newTextDelay = 1500; // tiempo antes de empezar a borrar
+  let textIndex = 0;
+  let charIndex = 0;
+  const typedTextSpan = document.getElementById("typed-text");
+
+  function type() {
+    if (!typedTextSpan) return; // Guard clause
+    if (charIndex < textArray[textIndex].length) {
+      typedTextSpan.textContent += textArray[textIndex].charAt(charIndex);
+      charIndex++;
+      setTimeout(type, typingDelay);
+    } else {
+      setTimeout(erase, newTextDelay);
+    }
+  }
+
+  function erase() {
+    if (!typedTextSpan) return; // Guard clause
+    if (charIndex > 0) {
+      typedTextSpan.textContent = textArray[textIndex].substring(
+        0,
+        charIndex - 1
+      );
+      charIndex--;
+      setTimeout(erase, erasingDelay);
+    } else {
+      textIndex++;
+      if (textIndex >= textArray.length) textIndex = 0;
+      setTimeout(type, typingDelay + 300);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    if (textArray.length) setTimeout(type, 500);
+  });
+</script>
