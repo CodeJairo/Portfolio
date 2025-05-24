@@ -1,6 +1,7 @@
 ---
 import Navbar from "../components/navbar.astro";
 import Footer from "../components/footer.astro";
+import ModalButton from "../components/modal-button.astro";
 ---
 
 <!doctype html>
@@ -11,10 +12,14 @@ import Footer from "../components/footer.astro";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>Codejairo - Portfolio</title>
+    <script
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+      defer></script>
   </head>
   <body class="font-satoshi">
     <Navbar />
     <slot />
+    <ModalButton />
     <Footer />
   </body>
 </html>
