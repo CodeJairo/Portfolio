@@ -1,35 +1,25 @@
-/* @import "tailwindcss/preflight"; */
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 @tailwind utilities;
+
 @font-face {
-  font-family: "Satoshi-Regular";
-  src: url("/fonts/Satoshi-Regular.woff2") format("woff2"),
-    url("/fonts/Satoshi-Regular.woff") format("woff"),
-    url("/fonts/Satoshi-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-display: swap;
+  font-family: "Satoshi";
   font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("/fonts/Satoshi-Regular.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Satoshi-Bold";
-  src: url("/fonts/Satoshi-Bold.woff2") format("woff2"),
-    url("/fonts/Satoshi-Bold.woff") format("woff"),
-    url("/fonts/Satoshi-Bold.ttf") format("truetype");
+  font-family: "Satoshi";
+  font-style: normal;
   font-weight: 700;
   font-display: swap;
-  font-style: normal;
+  src: url("/fonts/Satoshi-Bold.woff2") format("woff2");
 }
 
-@font-face {
-  font-family: "Satoshi-Variable";
-  src: url("/fonts/Satoshi-Variable.woff2") format("woff2"),
-    url("/fonts/Satoshi-Variable.woff") format("woff"),
-    url("/fonts/Satoshi-Variable.ttf") format("truetype");
-  font-weight: 300 900;
-  font-display: swap;
-  font-style: normal;
+body {
+  font-family: "Satoshi", monospace;
 }
 
 html {
