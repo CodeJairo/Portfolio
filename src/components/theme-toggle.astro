@@ -19,10 +19,10 @@
     const theme = localStorage.getItem("theme");
     if (theme === "dark") {
       document.querySelector("input")!.checked = false;
-      document.body.classList.add("dark");
+      document.documentElement.classList.add("dark"); // <html>
     } else if (theme === "light") {
       document.querySelector("input")!.checked = true;
-      document.body.classList.remove("dark");
+      document.documentElement.classList.remove("dark");
     }
   }
 
