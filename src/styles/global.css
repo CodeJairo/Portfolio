@@ -27,6 +27,31 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #555;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
 .blinking-cursor {
   animation: blink 1s step-end infinite;
 }
@@ -35,4 +60,61 @@ html {
   50% {
     opacity: 0;
   }
+}
+
+/* Entry Animations */
+.animate-fade-up {
+  animation: fadeUp 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Delay Utilities */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-500 { animation-delay: 500ms; }
+
+.fill-mode-backwards { animation-fill-mode: backwards; }
+.fill-mode-forwards { animation-fill-mode: forwards; }
+.fill-mode-both { animation-fill-mode: both; }
+
+/* Bloquea transiciones de Tailwind mientras dure el círculo */
+:root[data-is-animating] * {
+  transition: none !important;
+  animation-play-state: paused !important;
+}
+
+/* Configuramos las capas de la View Transition */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* La 'foto' del tema nuevo debe estar arriba para ser revelada */
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
 }

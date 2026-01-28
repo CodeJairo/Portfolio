@@ -11,9 +11,9 @@ import gato from "../assets/gato.png";
     class="max-w-7xl mx-auto flex flex-col xl:flex-row-reverse items-center justify-between gap-16"
   >
     <!-- Imagen primero en móviles -->
-    <div class="w-full xl:w-1/2 flex justify-center">
+    <div class="w-full xl:w-1/2 flex justify-center animate-fade-in delay-200">
       <div
-        class="w-full max-w-[280px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-[450px] xl:max-w-[500px] aspect-square overflow-hidden rounded-xl shadow-xl"
+        class="w-full max-w-[280px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-[450px] xl:max-w-[500px] aspect-square overflow-hidden rounded-xl shadow-xl hover:scale-105 transition-transform duration-500"
       >
         <Image
           src={gato}
@@ -24,36 +24,42 @@ import gato from "../assets/gato.png";
     </div>
 
     <!-- Texto -->
-    <div class="w-full xl:w-1/2 text-center xl:text-left space-y-6 xl:min-w-xl">
+    <div
+      class="w-full xl:w-1/2 text-center xl:text-left space-y-6 xl:min-w-xl animate-fade-up"
+    >
       <h1
         class="text-3xl sm:text-4xl md:text-5xl 2xl:text-6xl font-bold leading-tight"
       >
         <span
-          class="bg-gradient-to-r from-purple-400 via-pink-500 to-orange-400 bg-clip-text text-transparent inline-block text-nowrap"
+          class="bg-gradient-to-r from-purple-400 via-pink-500 to-orange-400 bg-clip-text text-transparent inline-block"
         >
           Hola, Soy Jairo,
         </span><br />
-        <span class="inline-block text-nowrap">Ingeniero de Software,</span>
+        <span class="text-nowrap inline-block">Ingeniero de Software,</span>
         <br />
         <div class="text-nowrap">
           <span id="typed-text" class="inline-block text-nowrap"></span>
           <span class="blinking-cursor text-indigo-500">|</span>
         </div>
       </h1>
-      <h2 class="text-base sm:text-xl text-gray-700 dark:text-gray-300">
+      <h2
+        class="text-base sm:text-xl text-gray-700 dark:text-gray-300 text-balance delay-100 animate-fade-up fill-mode-both"
+      >
         Desarrollador Full Stack y estudiante de Ingeniería en Software, amante
         de JavaScript y la creación de aplicaciones web robustas.
       </h2>
-      <div class="flex flex-wrap justify-center xl:justify-start gap-4">
+      <div
+        class="flex flex-wrap justify-center xl:justify-start gap-4 delay-300 animate-fade-up fill-mode-both"
+      >
         <a
-          class="px-6 py-3 rounded-full bg-gradient-to-r from-purple-400 via-pink-500 to-orange-400 text-white font-bold hover:scale-105 transition-transform"
+          class="relative px-6 py-3 rounded-full bg-gradient-to-r from-purple-400 via-pink-500 to-orange-400 text-white font-bold hover:scale-105 transition-transform shadow-lg hover:shadow-[0_0_20px_rgba(168,85,247,0.5)]"
           href="https://github.com/CodeJairo/Portfolio"
           rel="noopener noreferrer"
         >
           Código Fuente
         </a>
         <a
-          class="px-6 py-3 rounded-full border border-black dark:border-white text-black dark:text-white hover:scale-105 font-bold transition-transform"
+          class="px-6 py-3 rounded-full border border-black dark:border-white text-black dark:text-white hover:scale-105 font-bold transition-transform hover:bg-black/5 dark:hover:bg-white/10"
           href="https://www.linkedin.com/in/codejairo/"
           rel="noopener noreferrer"
           target="_blank"
@@ -78,31 +84,42 @@ import gato from "../assets/gato.png";
   let textIndex = 0;
   let charIndex = 0;
   const typedTextSpan = document.getElementById("typed-text");
+  const cursorSpan = document.querySelector(".blinking-cursor");
 
   function type() {
-    if (!typedTextSpan) return; // Guard clause
+    if (!typedTextSpan || !cursorSpan) return;
+
     if (charIndex < textArray[textIndex].length) {
+      if (cursorSpan.classList.contains("blinking-cursor")) {
+        cursorSpan.classList.remove("blinking-cursor");
+      }
       typedTextSpan.textContent += textArray[textIndex].charAt(charIndex);
       charIndex++;
       setTimeout(type, typingDelay);
     } else {
+      cursorSpan.classList.add("blinking-cursor");
       setTimeout(erase, newTextDelay);
     }
   }
 
   function erase() {
-    if (!typedTextSpan) return; // Guard clause
+    if (!typedTextSpan || !cursorSpan) return;
+
     if (charIndex > 0) {
+      if (cursorSpan.classList.contains("blinking-cursor")) {
+        cursorSpan.classList.remove("blinking-cursor");
+      }
       typedTextSpan.textContent = textArray[textIndex].substring(
         0,
-        charIndex - 1
+        charIndex - 1,
       );
       charIndex--;
       setTimeout(erase, erasingDelay);
     } else {
+      cursorSpan.classList.add("blinking-cursor");
       textIndex++;
       if (textIndex >= textArray.length) textIndex = 0;
-      setTimeout(type, typingDelay + 300);
+      setTimeout(type, typingDelay + 1100);
     }
   }
 
