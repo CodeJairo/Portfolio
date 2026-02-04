@@ -12,6 +12,9 @@ import documentPreviewImage from "../../assets/pleroma/document-preview.png";
 import adminPanelImage from "../../assets/pleroma/admin-panel.png";
 import userProfileImage from "../../assets/pleroma/user-profile.png";
 
+// TODO: Reemplazar con la URL real de despliegue
+const DEPLOYMENT_URL = "https://pleroma-demo.example.com";
+
 const techStack = [
   { name: "Angular 20", category: "Frontend", description: "Standalone Components, Signals" },
   { name: "TanStack Query", category: "Frontend", description: "Cache y estado del servidor" },
@@ -149,7 +152,7 @@ const skills = [
         <!-- Action Buttons -->
         <div class="flex flex-wrap justify-center gap-4">
           <a
-            href="https://pleroma-demo.example.com"
+            href={DEPLOYMENT_URL}
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2 px-8 py-4 bg-white text-emerald-600 font-bold rounded-full hover:scale-105 transition-transform shadow-xl"
@@ -429,7 +432,7 @@ const skills = [
         
         <div class="flex flex-wrap justify-center gap-4 mb-12">
           <a
-            href="https://pleroma-demo.example.com"
+            href={DEPLOYMENT_URL}
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold rounded-full hover:scale-105 transition-transform shadow-xl"
