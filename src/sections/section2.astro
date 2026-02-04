@@ -1,6 +1,7 @@
 ---
 import Card from "../components/card.astro";
 import gato from "../assets/gato.png";
+import higinexPreview from "../assets/higinex-preview.svg";
 ---
 
 <!-- bg-white dark:bg-zinc-900 -->
@@ -9,30 +10,38 @@ import gato from "../assets/gato.png";
   class="bg-gradient-to-b from-white to-gray-100 dark:from-black dark:to-zinc-900 py-20 px-4 sm:px-6 lg:px-16 border-t not-lg:border-b border-dashed"
 >
   <div class="max-w-7xl mx-auto space-y-24">
-    <!-- Proyecto 1 -->
+    <!-- Proyecto 1: Higinex -->
     <div class="flex flex-col lg:flex-row items-center gap-12">
       <div class="w-full lg:w-1/2">
         <Card
-          img={gato}
-          alt="Imagen de Vanishat"
-          title="Vanishat"
-          description="Plataforma de mensajería instantánea cifrada punto a punto."
+          img={higinexPreview}
+          alt="Higinex - Plataforma B2B de comercio electrónico"
+          title="Higinex"
+          description="Plataforma B2B que digitaliza el ciclo completo de ventas: catálogo con precios personalizados, carrito, checkout, gestión de pedidos y panel de administración."
           techs={[
-            { name: "Angular", url: "https://angular.dev/" },
-            { name: "Nest.js", url: "https://nestjs.com/" },
-            { name: "MongoDB", url: "https://www.mongodb.com/" },
+            { name: "Angular 19", url: "https://angular.dev/" },
+            { name: "NestJS", url: "https://nestjs.com/" },
+            { name: "PostgreSQL", url: "https://www.postgresql.org/" },
+            { name: "TailwindCSS", url: "https://tailwindcss.com/" },
           ]}
+          href="/projects/higinex"
         />
       </div>
       <div class="w-full lg:w-1/2 text-left">
         <h3 class="text-3xl font-bold text-zinc-900 dark:text-white mb-4">
-          Vanishat
+          Higinex - Plataforma B2B de E-commerce
         </h3>
         <p class="text-zinc-600 dark:text-zinc-300 text-lg leading-relaxed">
-          Vanishat es una aplicación de mensajería segura que prioriza la
-          privacidad del usuario. Usa un sistema de cifrado punto a punto y
-          funciones efímeras para mantener tus conversaciones siempre privadas.
+          Sistema completo de ventas B2B para distribuidora de productos de higiene industrial y personal.
+          Permite a clientes autorizados realizar pedidos 24/7 con catálogo, precios personalizados,
+          carrito persistente, checkout y panel de administración completo.
         </p>
+        <a
+          href="/projects/higinex"
+          class="inline-block mt-6 px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold hover:scale-105 transition-transform shadow-lg"
+        >
+          Ver proyecto →
+        </a>
       </div>
     </div>
 
