@@ -191,6 +191,7 @@ const skills = [
         </div>
         
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Alpine.js is loaded globally in Layout.astro for lightbox functionality */}
           {screenshots.map((screenshot) => (
             <div 
               class="group relative overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-800 aspect-video cursor-pointer"
