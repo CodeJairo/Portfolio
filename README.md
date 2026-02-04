@@ -1,6 +1,6 @@
 # Portfolio - Jairo Herrera
 
-🚀 **Live Demo:** [codejairo.me](https://www.google.com/search?q=https://codejairo.me/)
+🚀 **Live Demo:** [codejairo.me](https://codejairo.me/)
 
 ## Stack Tecnológico
 
