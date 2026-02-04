@@ -64,7 +64,23 @@ const skills = [
   title="Higinex - Plataforma B2B de E-commerce | CodeJairo"
   description="Sistema completo de ventas B2B para distribuidora de productos de higiene. Angular, NestJS, PostgreSQL."
 >
-  <main>
+  <main x-data="{ 
+    openModal: false, 
+    currentImage: null,
+    currentTitle: '',
+    currentDesc: '',
+    openLightbox(img, title, desc) {
+      this.currentImage = img;
+      this.currentTitle = title;
+      this.currentDesc = desc;
+      this.openModal = true;
+      document.body.style.overflow = 'hidden';
+    },
+    closeLightbox() {
+      this.openModal = false;
+      document.body.style.overflow = '';
+    }
+  }">
     <!-- Header del Proyecto -->
     <section class="relative py-20 px-6 sm:px-12 lg:px-24 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500">
       <div class="absolute inset-0 bg-black/20"></div>
@@ -200,32 +216,16 @@ const skills = [
         </div>
         
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Alpine.js is loaded globally in Layout.astro for lightbox functionality */}
           {screenshots.map((screenshot) => (
             <div 
               class="group relative overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-800 aspect-video cursor-pointer"
-              x-data="{ open: false }"
-              @click="open = true"
+              @click={`openLightbox('${screenshot.image.src}', '${screenshot.title}', '${screenshot.description}')`}
             >
-              {screenshot.image ? (
-                <Image 
-                  src={screenshot.image} 
-                  alt={screenshot.title} 
-                  class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              ) : (
-                <!-- Placeholder con gradiente -->
-                <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/20 via-purple-500/20 to-pink-500/20 flex items-center justify-center">
-                  <div class="text-center p-4">
-                    <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center">
-                      <svg class="w-8 h-8 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <p class="text-sm font-medium text-white/80">{screenshot.title}</p>
-                  </div>
-                </div>
-              )}
+              <Image 
+                src={screenshot.image} 
+                alt={screenshot.title} 
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
               
               <!-- Hover overlay -->
               <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -241,57 +241,6 @@ const skills = [
               <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
                 <p class="text-white font-medium text-sm">{screenshot.title}</p>
                 <p class="text-white/70 text-xs">{screenshot.description}</p>
-              </div>
-
-              <!-- Modal/Lightbox (Alpine.js) -->
-              <div 
-                x-show="open"
-                x-transition:enter="transition ease-out duration-300"
-                x-transition:enter-start="opacity-0"
-                x-transition:enter-end="opacity-100"
-                x-transition:leave="transition ease-in duration-200"
-                x-transition:leave-start="opacity-100"
-                x-transition:leave-end="opacity-0"
-                @click.stop="open = false"
-                class="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
-                style="display: none;"
-              >
-                <div class="relative max-w-5xl w-full" @click.stop>
-                  <button 
-                    @click="open = false"
-                    class="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
-                  >
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                  <div class="bg-zinc-800 rounded-2xl overflow-hidden aspect-video flex items-center justify-center relative">
-                    {screenshot.image ? (
-                      <div class="w-full h-full">
-                         <Image 
-                          src={screenshot.image} 
-                          alt={screenshot.title} 
-                          class="w-full h-full object-contain"
-                        />
-                        <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 via-black/50 to-transparent">
-                          <p class="text-xl font-bold text-white mb-2">{screenshot.title}</p>
-                          <p class="text-white/80">{screenshot.description}</p>
-                        </div>
-                      </div>
-                    ) : (
-                      <div class="text-center p-8">
-                        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-white/10 flex items-center justify-center">
-                          <svg class="w-12 h-12 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                          </svg>
-                        </div>
-                        <p class="text-xl font-bold text-white mb-2">{screenshot.title}</p>
-                        <p class="text-white/70">{screenshot.description}</p>
-                        <p class="text-white/50 text-sm mt-4">Imagen no disponible</p>
-                      </div>
-                    )}
-                  </div>
-                </div>
               </div>
             </div>
           ))}
@@ -468,6 +417,59 @@ const skills = [
         </div>
       </div>
     </section>
+
+    <!-- Modal/Lightbox Global -->
+    <div 
+      x-show="openModal"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="opacity-0"
+      x-transition:enter-end="opacity-100"
+      x-transition:leave="transition ease-in duration-200"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      @click="closeLightbox()"
+      @keydown.escape.window="closeLightbox()"
+      class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 p-4"
+      style="display: none;"
+    >
+      <div class="relative max-w-5xl w-full max-h-[90vh]" @click.stop>
+        <button 
+          @click="closeLightbox()"
+          class="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors z-10"
+        >
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <div class="bg-zinc-800 rounded-2xl overflow-hidden flex items-center justify-center relative">
+          <template x-if="currentImage">
+            <div class="w-full">
+              <img 
+                :src="currentImage" 
+                :alt="currentTitle" 
+                class="w-full h-auto max-h-[70vh] object-contain"
+              />
+              <div class="p-6 bg-gradient-to-t from-black/90 via-black/50 to-transparent absolute bottom-0 left-0 right-0">
+                <p class="text-xl font-bold text-white mb-2" x-text="currentTitle"></p>
+                <p class="text-white/80" x-text="currentDesc"></p>
+              </div>
+            </div>
+          </template>
+          <template x-if="!currentImage">
+            <div class="text-center p-8">
+              <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-white/10 flex items-center justify-center">
+                <svg class="w-12 h-12 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <p class="text-xl font-bold text-white mb-2" x-text="currentTitle"></p>
+              <p class="text-white/70" x-text="currentDesc"></p>
+              <p class="text-white/50 text-sm mt-4">Imagen no disponible</p>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
   </main>
 </Layout>
 
