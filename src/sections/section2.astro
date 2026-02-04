@@ -2,6 +2,7 @@
 import Card from "../components/card.astro";
 import gato from "../assets/gato.png";
 import higinexPreview from "../assets/higinex/higinex-preview.png";
+import pleromaPreview from "../assets/pleroma/pleroma-preview.png";
 ---
 
 <!-- bg-white dark:bg-zinc-900 -->
@@ -46,8 +47,44 @@ import higinexPreview from "../assets/higinex/higinex-preview.png";
       </div>
     </div>
 
-    <!-- Proyecto 2 -->
+    <!-- Proyecto 2: Pleroma -->
     <div class="flex flex-col lg:flex-row-reverse items-center gap-12">
+      <div class="w-full lg:w-1/2">
+        <Card
+          img={pleromaPreview}
+          alt="Pleroma - Sistema de Gestión de Contratación Pública"
+          title="Pleroma"
+          description="Sistema integral para digitalizar y automatizar el ciclo de vida completo de la contratación pública. Generación automática de documentos contractuales."
+          techs={[
+            { name: "Angular 21", url: "https://angular.dev/" },
+            { name: "NestJS", url: "https://nestjs.com/" },
+            { name: "PostgreSQL", url: "https://www.postgresql.org/" },
+            { name: "Amazon S3", url: "https://aws.amazon.com/s3/" },
+          ]}
+          href="/projects/pleroma"
+        />
+      </div>
+      <div class="w-full lg:w-1/2 text-left">
+        <h3 class="text-3xl font-bold text-zinc-900 dark:text-white mb-4">
+          Pleroma - Gestión de Contratación Pública
+        </h3>
+        <p class="text-zinc-600 dark:text-zinc-300 text-lg leading-relaxed">
+          Sistema que digitaliza y automatiza el ciclo de vida de la
+          contratación pública para entidades prestadoras de servicios públicos
+          domiciliarios en Colombia. Genera documentos con datos inyectados
+          automáticamente, gestiona CDPs, contratistas y resoluciones.
+        </p>
+        <a
+          href="/projects/pleroma"
+          class="inline-block mt-6 px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold hover:scale-105 transition-transform shadow-lg"
+        >
+          Ver proyecto →
+        </a>
+      </div>
+    </div>
+
+    <!-- Proyecto 3 -->
+    <div class="flex flex-col lg:flex-row items-center gap-12">
       <div class="w-full lg:w-1/2">
         <Card
           img={gato}
@@ -73,8 +110,8 @@ import higinexPreview from "../assets/higinex/higinex-preview.png";
       </div>
     </div>
 
-    <!-- Proyecto 3 -->
-    <div class="flex flex-col lg:flex-row items-center gap-12">
+    <!-- Proyecto 4 -->
+    <div class="flex flex-col lg:flex-row-reverse items-center gap-12">
       <div class="w-full lg:w-1/2">
         <Card
           img={gato}

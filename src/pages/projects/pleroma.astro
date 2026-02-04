@@ -1,0 +1,487 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import "../../styles/global.css";
+import { Image } from "astro:assets";
+import loginImage from "../../assets/pleroma/login.png";
+import dashboardImage from "../../assets/pleroma/dashboard.png";
+import contractorFormImage from "../../assets/pleroma/contractor-form.png";
+import cdpCreationImage from "../../assets/pleroma/cdp-creation.png";
+import masterInfoImage from "../../assets/pleroma/master-info.png";
+import documentGenerationImage from "../../assets/pleroma/document-generation.png";
+import documentPreviewImage from "../../assets/pleroma/document-preview.png";
+import adminPanelImage from "../../assets/pleroma/admin-panel.png";
+import userProfileImage from "../../assets/pleroma/user-profile.png";
+
+// TODO: Reemplazar con la URL real de despliegue
+const DEPLOYMENT_URL = "https://pleroma-demo.example.com";
+
+const techStack = [
+  { name: "Angular 21", category: "Frontend", description: "Standalone Components, Signals" },
+  { name: "TanStack Query", category: "Frontend", description: "Cache y estado del servidor" },
+  { name: "TailwindCSS", category: "Frontend", description: "Estilos utilitarios" },
+  { name: "DaisyUI", category: "Frontend", description: "Componentes UI con temas" },
+  { name: "NestJS 10", category: "Backend", description: "Arquitectura modular" },
+  { name: "Express 5", category: "Backend", description: "Servidor HTTP (migración)" },
+  { name: "Prisma ORM", category: "Backend", description: "ORM con tipado fuerte" },
+  { name: "PostgreSQL", category: "Database", description: "Base de datos relacional" },
+  { name: "Redis", category: "Cache", description: "Sesiones y blacklist" },
+  { name: "JWT + 2FA", category: "Auth", description: "TOTP con Speakeasy" },
+  { name: "DocxTemplater", category: "Docs", description: "Generación dinámica" },
+  { name: "Docker", category: "DevOps", description: "Contenedores" },
+];
+
+const challenges = [
+  { icon: "📄", title: "Documentos manuales", description: "Creación manual de contratos, resoluciones y adendas propensa a errores humanos" },
+  { icon: "💰", title: "Control presupuestal fragmentado", description: "CDPs en hojas de cálculo sin trazabilidad con contratos" },
+  { icon: "👥", title: "Información dispersa", description: "Datos de contratistas en archivos físicos o digitales sin estructura" },
+  { icon: "📊", title: "Sin trazabilidad", description: "Falta de historial de versiones y auditoría de documentos" },
+  { icon: "🔒", title: "Seguridad limitada", description: "Documentos sensibles sin control de acceso adecuado" },
+];
+
+const processSteps = [
+  {
+    step: 1,
+    title: "Autenticación Segura",
+    description: "El sistema implementa autenticación en dos pasos con JWT. Los usuarios pueden habilitar 2FA mediante apps TOTP como Google Authenticator. El login muestra el branding de la entidad pública y maneja intentos fallidos con bloqueo automático.",
+    image: loginImage,
+    features: ["Login con branding institucional", "Autenticación de dos factores (2FA)", "Protección contra intentos fallidos", "Tokens JWT con refresh automático"]
+  },
+  {
+    step: 2,
+    title: "Dashboard Principal",
+    description: "Tras iniciar sesión, el usuario accede a un dashboard con estadísticas clave del sistema. Incluye visualizaciones con Chart.js mostrando métricas de contratos, presupuesto ejecutado y documentos generados.",
+    image: dashboardImage,
+    features: ["Estadísticas en tiempo real", "Gráficos interactivos con Chart.js", "Accesos rápidos a módulos", "Resumen de actividad reciente"]
+  },
+  {
+    step: 3,
+    title: "Registro de Contratistas",
+    description: "El sistema diferencia entre personas naturales y jurídicas. Cada tipo tiene formularios específicos con validación de documentos de identidad, datos bancarios y toda la información requerida para la contratación pública colombiana.",
+    image: contractorFormImage,
+    features: ["Formularios para persona natural", "Formularios para persona jurídica", "Validación automática de documentos", "Gestión de datos bancarios"]
+  },
+  {
+    step: 4,
+    title: "Creación de CDP",
+    description: "El Certificado de Disponibilidad Presupuestal (CDP) permite asignar rubros presupuestales con montos específicos. El sistema calcula automáticamente el total y valida que los montos sean consistentes antes de vincularlos a contratos.",
+    image: cdpCreationImage,
+    features: ["Múltiples rubros presupuestales", "Cálculo automático del total", "Servicios públicos cubiertos", "Actividades complementarias"]
+  },
+  {
+    step: 5,
+    title: "Información Maestra del Contrato",
+    description: "Este es el formulario más completo del sistema. Vincula el CDP con el contratista, define modalidad, fechas, valores, forma de pago, supervisor asignado y configuración de garantías requeridas según la normativa colombiana.",
+    image: masterInfoImage,
+    features: ["Vinculación CDP + Contratista", "Definición de modalidad y fechas", "Configuración de garantías", "Asignación de supervisor"]
+  },
+  {
+    step: 6,
+    title: "Generación de Documentos",
+    description: "El módulo de generación permite seleccionar contratos o resoluciones y generar documentos Word (.docx) con todos los datos inyectados automáticamente. Incluye conversión de cifras a letras y empaquetado en ZIP para descargas múltiples.",
+    image: documentGenerationImage,
+    features: ["Selección múltiple de documentos", "Plantillas personalizables", "Conversión de cifras a letras", "Descarga individual o en lote"]
+  },
+  {
+    step: 7,
+    title: "Documento Final Generado",
+    description: "Los documentos generados mantienen el formato profesional de las plantillas institucionales con todos los datos del contrato inyectados correctamente. El historial de documentos permite acceder a versiones anteriores.",
+    image: documentPreviewImage,
+    features: ["Formato institucional preservado", "Datos inyectados correctamente", "Historial de versiones (3 días)", "Trazabilidad por usuario y fecha"]
+  },
+  {
+    step: 8,
+    title: "Panel de Administración",
+    description: "Los usuarios con rol ADMIN acceden a funcionalidades adicionales: gestión de usuarios del sistema, gestión de plantillas de documentos, y configuración general de la plataforma.",
+    image: adminPanelImage,
+    features: ["Gestión de usuarios", "Control de roles y permisos", "Administración de plantillas", "Configuración del sistema"]
+  },
+  {
+    step: 9,
+    title: "Perfil de Usuario y 2FA",
+    description: "Cada usuario puede configurar su perfil, cambiar contraseña y habilitar la autenticación de dos factores escaneando un código QR con su app de autenticación preferida.",
+    image: userProfileImage,
+    features: ["Configuración de perfil", "Habilitación de 2FA con QR", "Cambio de contraseña seguro", "Gestión de sesiones activas"]
+  }
+];
+
+const skills = [
+  "Arquitectura fullstack con Angular y NestJS",
+  "Generación dinámica de documentos Word",
+  "Autenticación empresarial con JWT y 2FA",
+  "Diseño de bases de datos relacionales con Prisma",
+  "Gestión de caché con Redis",
+  "Migración gradual de Express a NestJS",
+];
+---
+
+<Layout
+  title="Pleroma - Sistema de Gestión de Contratación Pública | CodeJairo"
+  description="Sistema integral para la gestión de contratación pública. Angular, NestJS, PostgreSQL, Redis. Generación automática de documentos contractuales."
+>
+  <main>
+    <!-- Header del Proyecto -->
+    <section class="relative py-20 px-6 sm:px-12 lg:px-24 bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600">
+      <div class="absolute inset-0 bg-black/20"></div>
+      <div class="relative max-w-6xl mx-auto text-center text-white">
+        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+          <span class="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></span>
+          <span class="text-sm font-medium">En desarrollo activo</span>
+        </div>
+        
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
+          Pleroma
+        </h1>
+        <p class="text-xl sm:text-2xl text-white/90 mb-6">
+          Sistema de Gestión de Contratación Pública
+        </p>
+        <p class="text-lg text-white/80 max-w-3xl mx-auto mb-8">
+          Plataforma integral para digitalizar y automatizar el ciclo de vida completo de la contratación pública 
+          en entidades prestadoras de servicios públicos domiciliarios de Colombia
+        </p>
+        
+        <!-- Tech Badges -->
+        <div class="flex flex-wrap justify-center gap-3 mb-10">
+          {["Angular 21", "NestJS", "PostgreSQL", "Redis", "Prisma ORM", "JWT + 2FA"].map((tech) => (
+            <span class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium border border-white/20">
+              {tech}
+            </span>
+          ))}
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href={DEPLOYMENT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-8 py-4 bg-white text-emerald-600 font-bold rounded-full hover:scale-105 transition-transform shadow-xl"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+            Ver Aplicación
+          </a>
+          <a
+            href="mailto:jairoehr@gmail.com?subject=Acceso al código de Pleroma"
+            class="inline-flex items-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-bold rounded-full border border-white/30 hover:bg-white/20 transition-colors"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            Solicitar acceso al código
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- El Problema -->
+    <section class="py-20 px-6 sm:px-12 lg:px-24 bg-white dark:bg-zinc-900">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="text-sm font-bold text-emerald-500 uppercase tracking-wider">Contexto</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-white mt-2">
+            El Problema
+          </h2>
+        </div>
+        
+        <div class="grid lg:grid-cols-2 gap-12 items-start">
+          <div class="space-y-6">
+            <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+              En Colombia, las entidades públicas como <strong>EICE</strong> (Empresas Industriales y Comerciales del Estado) 
+              y <strong>EEM</strong> (Empresas de Economía Mixta) que prestan servicios públicos domiciliarios enfrentan 
+              un problema crítico de gestión documental en sus procesos de contratación.
+            </p>
+            <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+              El nombre <strong>"Pleroma"</strong> proviene del griego <em>πλήρωμα</em>, que significa "plenitud" o "completitud", 
+              reflejando la visión de un sistema integral que abarca todas las necesidades del proceso contractual.
+            </p>
+            <div class="p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl border border-emerald-200 dark:border-emerald-800">
+              <p class="text-emerald-800 dark:text-emerald-300 font-medium">
+                💡 Pleroma automatiza la generación de documentos legales, elimina errores humanos y 
+                garantiza la trazabilidad completa del proceso de contratación.
+              </p>
+            </div>
+          </div>
+          
+          <div class="space-y-4">
+            <h3 class="text-xl font-bold text-zinc-900 dark:text-white mb-6">Desafíos que resuelve:</h3>
+            <div class="grid gap-3">
+              {challenges.map((item) => (
+                <div class="flex items-start gap-4 p-4 bg-zinc-50 dark:bg-zinc-800 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors">
+                  <span class="text-2xl flex-shrink-0">{item.icon}</span>
+                  <div>
+                    <p class="font-semibold text-zinc-900 dark:text-white">{item.title}</p>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400">{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recorrido por el Sistema -->
+    <section class="py-20 px-6 sm:px-12 lg:px-24 bg-zinc-50 dark:bg-black">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="text-sm font-bold text-emerald-500 uppercase tracking-wider">Funcionalidades</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-white mt-2">
+            Recorrido por el Sistema
+          </h2>
+          <p class="text-xl text-zinc-600 dark:text-zinc-400 mt-4 max-w-3xl mx-auto">
+            Explora paso a paso cómo Pleroma digitaliza el proceso de contratación pública
+          </p>
+        </div>
+
+        <div class="space-y-24">
+          {processSteps.map((step, index) => (
+            <div class={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-12 items-center`}>
+              <!-- Image Section -->
+              <div class="w-full lg:w-1/2">
+                <div class="relative group">
+                  <div class="absolute -inset-2 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
+                  <div class="relative overflow-hidden rounded-xl shadow-2xl bg-zinc-800">
+                    <div class="absolute top-4 left-4 z-10">
+                      <span class="inline-flex items-center justify-center w-10 h-10 bg-emerald-500 text-white font-bold rounded-full shadow-lg">
+                        {step.step}
+                      </span>
+                    </div>
+                    <Image 
+                      src={step.image} 
+                      alt={step.title}
+                      class="w-full h-auto object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Content Section -->
+              <div class="w-full lg:w-1/2 space-y-6">
+                <div>
+                  <span class="text-sm font-bold text-emerald-500 uppercase tracking-wider">Paso {step.step}</span>
+                  <h3 class="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white mt-2">
+                    {step.title}
+                  </h3>
+                </div>
+                
+                <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                  {step.description}
+                </p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {step.features.map((feature) => (
+                    <div class="flex items-center gap-3 p-3 bg-white dark:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-700">
+                      <svg class="w-5 h-5 text-emerald-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span class="text-sm text-zinc-700 dark:text-zinc-300">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Arquitectura -->
+    <section class="py-20 px-6 sm:px-12 lg:px-24 bg-white dark:bg-zinc-900">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="text-sm font-bold text-emerald-500 uppercase tracking-wider">Diseño del Sistema</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-white mt-2">
+            Arquitectura
+          </h2>
+        </div>
+        
+        <!-- Diagrama de Arquitectura -->
+        <div class="bg-zinc-50 dark:bg-zinc-800 rounded-3xl p-8 lg:p-12">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <!-- Frontend -->
+            <div class="text-center p-6 bg-white dark:bg-zinc-700 rounded-2xl shadow-lg">
+              <div class="w-20 h-20 mx-auto bg-gradient-to-br from-red-500 to-orange-500 rounded-2xl flex items-center justify-center shadow-xl mb-4">
+                <span class="text-white text-2xl font-bold">A</span>
+              </div>
+              <h3 class="font-bold text-zinc-900 dark:text-white">Frontend</h3>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400">Angular 20</p>
+              <p class="text-xs text-zinc-500">Standalone + Signals</p>
+            </div>
+            
+            <!-- Backend -->
+            <div class="text-center p-6 bg-white dark:bg-zinc-700 rounded-2xl shadow-lg">
+              <div class="w-20 h-20 mx-auto bg-gradient-to-br from-red-600 to-red-700 rounded-2xl flex items-center justify-center shadow-xl mb-4">
+                <span class="text-white text-xl font-bold">Nest</span>
+              </div>
+              <h3 class="font-bold text-zinc-900 dark:text-white">API REST</h3>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400">NestJS 11 + Express 5</p>
+              <p class="text-xs text-zinc-500">Migración gradual</p>
+            </div>
+            
+            <!-- Database -->
+            <div class="text-center p-6 bg-white dark:bg-zinc-700 rounded-2xl shadow-lg">
+              <div class="w-20 h-20 mx-auto bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center shadow-xl mb-4">
+                <span class="text-white text-xl font-bold">PG</span>
+              </div>
+              <h3 class="font-bold text-zinc-900 dark:text-white">Database</h3>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400">PostgreSQL + Redis</p>
+              <p class="text-xs text-zinc-500">Prisma ORM</p>
+            </div>
+          </div>
+          
+          <!-- Características adicionales -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8 border-t border-zinc-200 dark:border-zinc-600">
+            <div class="text-center p-4">
+              <span class="text-2xl">📄</span>
+              <p class="text-sm font-medium text-zinc-700 dark:text-zinc-300 mt-2">DocxTemplater</p>
+              <p class="text-xs text-zinc-500">Generación de documentos</p>
+            </div>
+            <div class="text-center p-4">
+              <span class="text-2xl">🔐</span>
+              <p class="text-sm font-medium text-zinc-700 dark:text-zinc-300 mt-2">Speakeasy</p>
+              <p class="text-xs text-zinc-500">2FA con TOTP</p>
+            </div>
+            <div class="text-center p-4">
+              <span class="text-2xl">🗜️</span>
+              <p class="text-sm font-medium text-zinc-700 dark:text-zinc-300 mt-2">PizZip</p>
+              <p class="text-xs text-zinc-500">Empaquetado de documentos</p>
+            </div>
+            <div class="text-center p-4">
+              <span class="text-2xl">📊</span>
+              <p class="text-sm font-medium text-zinc-700 dark:text-zinc-300 mt-2">Chart.js</p>
+              <p class="text-xs text-zinc-500">Visualizaciones</p>
+            </div>
+          </div>
+          
+          <div class="mt-8 text-center">
+            <p class="text-zinc-600 dark:text-zinc-400 max-w-3xl mx-auto">
+              Arquitectura modular con separación clara de responsabilidades. El sistema está en proceso de 
+              migración gradual de Express a NestJS para aprovechar la arquitectura modular y la inyección de dependencias.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stack Técnico -->
+    <section class="py-20 px-6 sm:px-12 lg:px-24 bg-zinc-50 dark:bg-black">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="text-sm font-bold text-emerald-500 uppercase tracking-wider">Tecnologías</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-white mt-2">
+            Stack Técnico
+          </h2>
+        </div>
+        
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {techStack.map((tech) => (
+            <div class="p-4 bg-white dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700 hover:border-emerald-500 transition-colors group">
+              <span class="text-xs font-bold text-emerald-500 uppercase tracking-wider">{tech.category}</span>
+              <h3 class="font-bold text-zinc-900 dark:text-white mt-1 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">{tech.name}</h3>
+              <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-1">{tech.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Aprendizajes / Highlights -->
+    <section class="py-20 px-6 sm:px-12 lg:px-24 bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="text-sm font-bold text-white/80 uppercase tracking-wider">Lo que demuestro</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">
+            Skills Demostradas
+          </h2>
+        </div>
+        
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {skills.map((skill) => (
+            <div class="flex items-center gap-4 p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 hover:bg-white/20 transition-colors">
+              <div class="w-10 h-10 flex-shrink-0 bg-white/20 rounded-full flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <p class="text-white font-medium">{skill}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer del Proyecto -->
+    <section class="py-20 px-6 sm:px-12 lg:px-24 bg-white dark:bg-zinc-900">
+      <div class="max-w-6xl mx-auto text-center">
+        <div class="mb-8">
+          <span class="inline-flex items-center gap-2 px-4 py-2 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 rounded-full text-sm font-medium">
+            <span class="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></span>
+            Proyecto en desarrollo activo
+          </span>
+        </div>
+        
+        <h2 class="text-3xl font-bold text-zinc-900 dark:text-white mb-6">
+          ¿Te interesa conocer más?
+        </h2>
+        <p class="text-lg text-zinc-600 dark:text-zinc-400 mb-8 max-w-2xl mx-auto">
+          Pleroma es un proyecto privado en desarrollo activo. Si eres reclutador o estás interesado 
+          en conocer el código fuente, contáctame y con gusto te lo presento en una demo personalizada.
+        </p>
+        
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+          <a
+            href={DEPLOYMENT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold rounded-full hover:scale-105 transition-transform shadow-xl"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+            Ver Aplicación
+          </a>
+          <a
+            href="mailto:jairoehr@gmail.com?subject=Me interesa conocer más sobre Pleroma"
+            class="inline-flex items-center gap-2 px-8 py-4 border-2 border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white font-bold rounded-full hover:border-emerald-500 transition-colors"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            Contactar para ver código
+          </a>
+        </div>
+        
+        <div class="pt-8 border-t border-zinc-200 dark:border-zinc-700">
+          <a
+            href="/#proyectos"
+            class="inline-flex items-center gap-2 text-emerald-500 hover:text-emerald-600 font-medium transition-colors"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Volver a todos los proyectos
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  /* Fade-in animation on scroll */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  section {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+</style>
