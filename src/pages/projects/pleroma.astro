@@ -16,16 +16,15 @@ import userProfileImage from "../../assets/pleroma/user-profile.png";
 const DEPLOYMENT_URL = "https://pleroma-demo.example.com";
 
 const techStack = [
-  { name: "Angular 21", category: "Frontend", description: "Standalone Components, Signals" },
+  { name: "Angular 21+", category: "Frontend", description: "Standalone Components, Signals" },
   { name: "TanStack Query", category: "Frontend", description: "Cache y estado del servidor" },
   { name: "TailwindCSS", category: "Frontend", description: "Estilos utilitarios" },
   { name: "DaisyUI", category: "Frontend", description: "Componentes UI con temas" },
-  { name: "NestJS 10", category: "Backend", description: "Arquitectura modular" },
-  { name: "Express 5", category: "Backend", description: "Servidor HTTP (migración)" },
+  { name: "NestJS 11+", category: "Backend", description: "Arquitectura modular SOLID" },
   { name: "Prisma ORM", category: "Backend", description: "ORM con tipado fuerte" },
   { name: "PostgreSQL", category: "Database", description: "Base de datos relacional" },
-  { name: "Redis", category: "Cache", description: "Sesiones y blacklist" },
-  { name: "JWT + 2FA", category: "Auth", description: "TOTP con Speakeasy" },
+  { name: "AWS S3 / MinIO", category: "Storage", description: "Almacenamiento de archivos" },
+  { name: "JWT", category: "Auth", description: "Access + Refresh Tokens" },
   { name: "DocxTemplater", category: "Docs", description: "Generación dinámica" },
   { name: "Docker", category: "DevOps", description: "Contenedores" },
 ];
@@ -42,9 +41,9 @@ const processSteps = [
   {
     step: 1,
     title: "Autenticación Segura",
-    description: "El sistema implementa autenticación en dos pasos con JWT. Los usuarios pueden habilitar 2FA mediante apps TOTP como Google Authenticator. El login muestra el branding de la entidad pública y maneja intentos fallidos con bloqueo automático.",
+    description: "El sistema implementa autenticación robusta con JWT usando Access y Refresh Tokens. El login muestra el branding de la entidad pública y gestiona las sesiones de forma segura con rotación automática de tokens.",
     image: loginImage,
-    features: ["Login con branding institucional", "Autenticación de dos factores (2FA)", "Protección contra intentos fallidos", "Tokens JWT con refresh automático"]
+    features: ["Login con branding institucional", "JWT con Access + Refresh Tokens", "Rotación automática de tokens", "Arquitectura multi-tenant aislada"]
   },
   {
     step: 2,
@@ -86,7 +85,7 @@ const processSteps = [
     title: "Documento Final Generado",
     description: "Los documentos generados mantienen el formato profesional de las plantillas institucionales con todos los datos del contrato inyectados correctamente. El historial de documentos permite acceder a versiones anteriores.",
     image: documentPreviewImage,
-    features: ["Formato institucional preservado", "Datos inyectados correctamente", "Historial de versiones (3 días)", "Trazabilidad por usuario y fecha"]
+    features: ["Formato institucional preservado", "Envio por correo electrónico", "Historial de versiones", "Trazabilidad por usuario y fecha"]
   },
   {
     step: 8,
@@ -97,26 +96,26 @@ const processSteps = [
   },
   {
     step: 9,
-    title: "Perfil de Usuario y 2FA",
-    description: "Cada usuario puede configurar su perfil, cambiar contraseña y habilitar la autenticación de dos factores escaneando un código QR con su app de autenticación preferida.",
+    title: "Perfil de Usuario",
+    description: "Cada usuario puede configurar su perfil y gestionar su cuenta. El sistema incluye roles diferenciados (MANAGER/WORKER) con permisos específicos para cada función.",
     image: userProfileImage,
-    features: ["Configuración de perfil", "Habilitación de 2FA con QR", "Cambio de contraseña seguro", "Gestión de sesiones activas"]
+    features: ["Configuración de perfil", "Roles MANAGER y WORKER", "Cambio de contraseña seguro", "Control de acceso por tenant"]
   }
 ];
 
 const skills = [
   "Arquitectura fullstack con Angular y NestJS",
   "Generación dinámica de documentos Word",
-  "Autenticación empresarial con JWT y 2FA",
+  "Autenticación empresarial con JWT (Access + Refresh)",
   "Diseño de bases de datos relacionales con Prisma",
-  "Gestión de caché con Redis",
-  "Migración gradual de Express a NestJS",
+  "Arquitectura multi-tenant con aislamiento de datos",
+  "Almacenamiento de archivos con AWS S3 / MinIO",
 ];
 ---
 
 <Layout
   title="Pleroma - Sistema de Gestión de Contratación Pública | CodeJairo"
-  description="Sistema integral para la gestión de contratación pública. Angular, NestJS, PostgreSQL, Redis. Generación automática de documentos contractuales."
+  description="Sistema integral para la gestión de contratación pública. Angular, NestJS, PostgreSQL, AWS S3. Generación automática de documentos contractuales."
 >
   <main>
     <!-- Header del Proyecto -->
@@ -141,7 +140,7 @@ const skills = [
         
         <!-- Tech Badges -->
         <div class="flex flex-wrap justify-center gap-3 mb-10">
-          {["Angular 21", "NestJS", "PostgreSQL", "Redis", "Prisma ORM", "JWT + 2FA"].map((tech) => (
+          {["Angular 21+", "NestJS 11+", "PostgreSQL", "Prisma ORM", "AWS S3", "JWT"].map((tech) => (
             <span class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium border border-white/20">
               {tech}
             </span>
@@ -184,7 +183,7 @@ const skills = [
           </h2>
         </div>
         
-        <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
           <div class="space-y-6">
             <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
               En Colombia, las entidades públicas como <strong>EICE</strong> (Empresas Industriales y Comerciales del Estado) 
@@ -305,7 +304,7 @@ const skills = [
                 <span class="text-white text-2xl font-bold">A</span>
               </div>
               <h3 class="font-bold text-zinc-900 dark:text-white">Frontend</h3>
-              <p class="text-sm text-zinc-600 dark:text-zinc-400">Angular 20</p>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400">Angular 21+</p>
               <p class="text-xs text-zinc-500">Standalone + Signals</p>
             </div>
             
@@ -315,8 +314,8 @@ const skills = [
                 <span class="text-white text-xl font-bold">Nest</span>
               </div>
               <h3 class="font-bold text-zinc-900 dark:text-white">API REST</h3>
-              <p class="text-sm text-zinc-600 dark:text-zinc-400">NestJS 11 + Express 5</p>
-              <p class="text-xs text-zinc-500">Migración gradual</p>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400">NestJS 11+</p>
+              <p class="text-xs text-zinc-500">Arquitectura modular SOLID</p>
             </div>
             
             <!-- Database -->
@@ -325,7 +324,7 @@ const skills = [
                 <span class="text-white text-xl font-bold">PG</span>
               </div>
               <h3 class="font-bold text-zinc-900 dark:text-white">Database</h3>
-              <p class="text-sm text-zinc-600 dark:text-zinc-400">PostgreSQL + Redis</p>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400">PostgreSQL</p>
               <p class="text-xs text-zinc-500">Prisma ORM</p>
             </div>
           </div>
@@ -338,9 +337,9 @@ const skills = [
               <p class="text-xs text-zinc-500">Generación de documentos</p>
             </div>
             <div class="text-center p-4">
-              <span class="text-2xl">🔐</span>
-              <p class="text-sm font-medium text-zinc-700 dark:text-zinc-300 mt-2">Speakeasy</p>
-              <p class="text-xs text-zinc-500">2FA con TOTP</p>
+              <span class="text-2xl">☁️</span>
+              <p class="text-sm font-medium text-zinc-700 dark:text-zinc-300 mt-2">AWS S3 / MinIO</p>
+              <p class="text-xs text-zinc-500">Almacenamiento de archivos</p>
             </div>
             <div class="text-center p-4">
               <span class="text-2xl">🗜️</span>
@@ -348,16 +347,16 @@ const skills = [
               <p class="text-xs text-zinc-500">Empaquetado de documentos</p>
             </div>
             <div class="text-center p-4">
-              <span class="text-2xl">📊</span>
-              <p class="text-sm font-medium text-zinc-700 dark:text-zinc-300 mt-2">Chart.js</p>
-              <p class="text-xs text-zinc-500">Visualizaciones</p>
+              <span class="text-2xl">🔐</span>
+              <p class="text-sm font-medium text-zinc-700 dark:text-zinc-300 mt-2">JWT Auth</p>
+              <p class="text-xs text-zinc-500">Access + Refresh Tokens</p>
             </div>
           </div>
           
           <div class="mt-8 text-center">
             <p class="text-zinc-600 dark:text-zinc-400 max-w-3xl mx-auto">
-              Arquitectura modular con separación clara de responsabilidades. El sistema está en proceso de 
-              migración gradual de Express a NestJS para aprovechar la arquitectura modular y la inyección de dependencias.
+              Arquitectura modular con principios SOLID y separación clara de responsabilidades. 
+              El backend utiliza NestJS con inyección de dependencias y arquitectura multi-tenant para aislar los datos de cada empresa.
             </p>
           </div>
         </div>
