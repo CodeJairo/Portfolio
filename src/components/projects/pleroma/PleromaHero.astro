@@ -1,0 +1,85 @@
+---
+interface Props {
+  deploymentUrl: string;
+}
+
+const { deploymentUrl } = Astro.props;
+---
+
+<section
+  class="relative min-h-[100svh] md:min-h-0 flex items-center pt-24 pb-12 md:py-16 lg:py-20 px-6 sm:px-12 lg:px-24 bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-500"
+  data-aos="fade-up"
+  data-aos-duration="420"
+>
+  <div class="absolute inset-0 bg-black/20"></div>
+  <div class="relative max-w-6xl mx-auto text-center text-white">
+    <div
+      class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6"
+    >
+      <span class="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></span>
+      <span class="text-sm font-medium">En desarrollo activo</span>
+    </div>
+
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">Pleroma</h1>
+    <p class="text-xl sm:text-2xl text-white/90 mb-6">
+      Sistema de Gestión de Contratación Pública
+    </p>
+    <p class="text-lg text-white/80 max-w-3xl mx-auto mb-8">
+      Proyecto orientado a entidades de servicios públicos en Colombia, enfocado
+      en ordenar el proceso contractual y reducir tareas manuales.
+    </p>
+
+    <div class="flex flex-wrap justify-center gap-3 mb-10">
+      {
+        ["Angular 21", "Node.js", "Prisma", "AWS S3"].map((tech) => (
+          <span class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium border border-white/20">
+            {tech}
+          </span>
+        ))
+      }
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-4">
+      <a
+        href={deploymentUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-8 py-4 bg-white text-indigo-600 font-bold rounded-full hover:scale-105 transition-transform shadow-xl"
+      >
+        <svg
+          class="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+          ></path>
+        </svg>
+        Ver Aplicación
+      </a>
+      <a
+        href="mailto:jairoehr@gmail.com?subject=Acceso al código de Pleroma"
+        class="inline-flex items-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-bold rounded-full border border-white/30 hover:bg-white/20 transition-colors"
+      >
+        <svg
+          class="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+          ></path>
+        </svg>
+        Solicitar acceso al código
+      </a>
+    </div>
+  </div>
+</section>

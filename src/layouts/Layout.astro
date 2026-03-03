@@ -1,0 +1,147 @@
+---
+import Navbar from "../components/navbar.astro";
+import Footer from "../components/footer.astro";
+import ModalButton from "../components/modal-button.astro";
+import "aos/dist/aos.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Codejairo - Portfolio",
+  description = "Portafolio profesional de Jairo Herrera, ingeniero de software y desarrollador web especializado en Astro, Angular, Node.js y más.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content="index, follow" />
+    <title>{title}</title>
+    <meta
+      name="google-site-verification"
+      content="Gin_eIJSFyOSLv5TZp5qdr5fdvFeuFHK86kMImsSkOY"
+    />
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="Jairo Herrera, codejairo, ingeniero, software,desarrollador web, portafolio, Astro, Medellín"
+    />
+    <meta name="author" content="Jairo Herrera" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+      defer></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Jairo Herrera",
+        "url": "https://codejairo.netlify.app",
+        "sameAs": [
+          "https://github.com/codejairo",
+          "https://www.linkedin.com/in/codejairo/"
+        ],
+        "jobTitle": "Ingeniero de Software",
+        "description": "Portafolio de Jairo Herrera, ingeniero de software, experto en desarrollo web con tecnologías como Astro, Angular y Node.js."
+      }
+    </script>
+    <script is:inline>
+      const theme = (() => {
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme");
+        }
+        return "dark";
+      })();
+      document.documentElement.classList.toggle("dark", theme === "dark");
+    </script>
+  </head>
+  <body
+    class="bg-white dark:bg-black text-black dark:text-gray-100 overflow-x-hidden"
+  >
+    <!-- Background Gradient & Noise -->
+    <div class="fixed inset-0 z-[-1] pointer-events-none">
+      <div
+        class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-400/30 dark:bg-purple-900/20 rounded-full blur-[120px] animate-pulse"
+      >
+      </div>
+      <div
+        class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-400/30 dark:bg-blue-900/20 rounded-full blur-[120px] animate-pulse delay-1000"
+      >
+      </div>
+      <div
+        class="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
+        style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"
+      >
+      </div>
+    </div>
+
+    <Navbar />
+    <main>
+      <slot />
+    </main>
+    <ModalButton />
+    <Footer />
+    <script>
+      import AOS from "aos";
+
+      const prefersReducedMotion = () =>
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      const initAOS = () => {
+        if (prefersReducedMotion()) {
+          document.documentElement.setAttribute("data-reduced-motion", "true");
+          document.querySelectorAll("[data-aos]").forEach((element) => {
+            element.classList.add("aos-animate");
+          });
+          return;
+        }
+
+        document.documentElement.removeAttribute("data-reduced-motion");
+
+        const isProjectPage = window.location.pathname.startsWith("/projects/");
+
+        const profile = isProjectPage
+          ? {
+              duration: 460,
+              easing: "ease-out-sine",
+              offset: 40,
+            }
+          : {
+              duration: 700,
+              easing: "ease-out-cubic",
+              offset: 80,
+            };
+
+        AOS.init({
+          ...profile,
+          once: true,
+          mirror: false,
+          disable: false,
+        });
+
+        AOS.refreshHard();
+      };
+
+      document.addEventListener("astro:page-load", initAOS);
+      initAOS();
+    </script>
+  </body>
+</html>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>

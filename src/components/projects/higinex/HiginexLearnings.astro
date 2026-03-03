@@ -1,0 +1,70 @@
+---
+interface Props {
+  skills: string[];
+}
+
+const { skills } = Astro.props;
+---
+
+<section
+  class="relative z-10 py-12 md:py-16 lg:py-20 px-6 sm:px-12 lg:px-24 bg-gradient-to-br from-emerald-600 via-teal-600 to-emerald-500"
+  data-aos="fade-up"
+  data-aos-duration="420"
+>
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14">
+      <span class="text-sm font-bold text-white/80 uppercase tracking-wider"
+        >Lo que aprendí</span
+      >
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">
+        Aprendizajes del proyecto
+      </h2>
+    </div>
+
+    <div
+      class="rounded-3xl border border-white/20 bg-white/10 backdrop-blur-sm p-6 sm:p-8"
+    >
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {
+          skills.map((skill, index) => {
+            const track =
+              index < 2 ? "Producto" : index < 4 ? "Proceso" : "Plataforma";
+            return (
+              <article class="rounded-xl border border-white/20 bg-black/10 px-4 py-3 hover:bg-black/20 transition-colors">
+                <div class="flex items-center justify-between gap-3">
+                  <span class="text-[11px] font-bold uppercase tracking-wider text-white/70">
+                    {track}
+                  </span>
+                  <span class="text-[11px] font-bold text-white/60">
+                    0{index + 1}
+                  </span>
+                </div>
+                <p class="text-white font-medium mt-2 leading-relaxed">
+                  {skill}
+                </p>
+              </article>
+            );
+          })
+        }
+      </div>
+
+      <div
+        class="mt-6 pt-5 border-t border-white/20 flex flex-wrap items-center gap-2"
+      >
+        <span
+          class="text-xs font-semibold uppercase tracking-wider text-white/70"
+          >Capacidades clave</span
+        >
+        <span class="px-2.5 py-1 rounded-full text-xs bg-white/15 text-white"
+          >Flujo B2B</span
+        >
+        <span class="px-2.5 py-1 rounded-full text-xs bg-white/15 text-white"
+          >Operación comercial</span
+        >
+        <span class="px-2.5 py-1 rounded-full text-xs bg-white/15 text-white"
+          >Automatización</span
+        >
+      </div>
+    </div>
+  </div>
+</section>

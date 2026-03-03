@@ -1,0 +1,100 @@
+---
+import Card from "../components/card.astro";
+import higinexPreview from "../assets/higinex/higinex-preview.png";
+import pleromaPreview from "../assets/pleroma/pleroma-preview.png";
+---
+
+<!-- bg-white dark:bg-zinc-900 -->
+<section
+  id="proyectos"
+  class="bg-gradient-to-b from-white to-gray-100 dark:from-black dark:to-zinc-900 py-20 px-4 sm:px-6 lg:px-16 border-t not-lg:border-b border-dashed"
+>
+  <div class="max-w-7xl mx-auto space-y-24">
+    <!-- Proyecto 1: Higinex -->
+    <div
+      class="flex flex-col lg:flex-row items-center gap-12"
+      data-aos="fade-up"
+      data-aos-delay="60"
+    >
+      <div class="w-full lg:w-1/2" data-aos="fade-right" data-aos-delay="100">
+        <Card
+          img={higinexPreview}
+          alt="Higinex - Plataforma B2B de comercio electrónico"
+          title="Higinex"
+          description="Plataforma B2B para gestionar catálogo, precios por cliente, carrito, checkout y pedidos desde un panel administrativo."
+          techs={[
+            { name: "Angular 21", url: "https://angular.dev/" },
+            { name: "NestJS", url: "https://nestjs.com/" },
+            { name: "PostgreSQL", url: "https://www.postgresql.org/" },
+            { name: "TailwindCSS", url: "https://tailwindcss.com/" },
+          ]}
+          href="/projects/higinex"
+        />
+      </div>
+      <div
+        class="w-full lg:w-1/2 text-left"
+        data-aos="fade-left"
+        data-aos-delay="140"
+      >
+        <h3 class="text-3xl font-bold text-zinc-900 dark:text-white mb-4">
+          Higinex - Plataforma B2B de E-commerce
+        </h3>
+        <p class="text-zinc-600 dark:text-zinc-300 text-lg leading-relaxed">
+          Proyecto para ordenar el proceso comercial de una distribuidora de
+          productos de higiene. El cliente autorizado puede consultar su
+          catálogo, crear pedidos y hacer seguimiento, mientras el equipo
+          administra todo desde un solo panel.
+        </p>
+        <a
+          href="/projects/higinex"
+          class="inline-block mt-6 px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold hover:scale-105 transition-transform shadow-lg"
+        >
+          Ver proyecto →
+        </a>
+      </div>
+    </div>
+
+    <!-- Proyecto 2: Pleroma -->
+    <div
+      class="flex flex-col lg:flex-row-reverse items-center gap-12"
+      data-aos="fade-up"
+      data-aos-delay="120"
+    >
+      <div class="w-full lg:w-1/2" data-aos="fade-left" data-aos-delay="160">
+        <Card
+          img={pleromaPreview}
+          alt="Pleroma - Sistema de Gestión de Contratación Pública"
+          title="Pleroma"
+          description="Aplicación para gestionar contratación pública: terceros, CDP, contratos y generación automática de documentos."
+          techs={[
+            { name: "Angular 21", url: "https://angular.dev/" },
+            { name: "Node.js", url: "https://nodejs.org/" },
+            { name: "Prisma", url: "https://www.prisma.io/" },
+            { name: "Amazon S3", url: "https://aws.amazon.com/s3/" },
+          ]}
+          href="/projects/pleroma"
+        />
+      </div>
+      <div
+        class="w-full lg:w-1/2 text-left"
+        data-aos="fade-right"
+        data-aos-delay="200"
+      >
+        <h3 class="text-3xl font-bold text-zinc-900 dark:text-white mb-4">
+          Pleroma - Gestión de Contratación Pública
+        </h3>
+        <p class="text-zinc-600 dark:text-zinc-300 text-lg leading-relaxed">
+          Proyecto orientado a entidades de servicios públicos en Colombia.
+          Centraliza contratistas, CDP, contratos y resoluciones, y reduce
+          trabajo manual al generar documentos con información del sistema.
+        </p>
+        <a
+          href="/projects/pleroma"
+          class="inline-block mt-6 px-6 py-3 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-bold hover:scale-105 transition-transform shadow-lg"
+        >
+          Ver proyecto →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

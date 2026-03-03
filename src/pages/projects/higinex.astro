@@ -1,0 +1,593 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import "../../styles/global.css";
+import { Image } from "astro:assets";
+import loginImage from "../../assets/higinex/login.png";
+import catalogImage from "../../assets/higinex/catalog.png"
+import mobileImage from "../../assets/higinex/mobile.png"
+import cartImage from "../../assets/higinex/cart.png"
+import checkoutImage from "../../assets/higinex/checkout.png"
+import orderConfirmedImage from "../../assets/higinex/order-confirmed.png"
+import adminDashboardImage from "../../assets/higinex/admin-dashboard.png"
+import adminOrdersImage from "../../assets/higinex/admin-orders.png"
+import emailImage from "../../assets/higinex/email.png"
+import HiginexHero from "../../components/projects/higinex/HiginexHero.astro";
+import HiginexLearnings from "../../components/projects/higinex/HiginexLearnings.astro";
+import HiginexFooter from "../../components/projects/higinex/HiginexFooter.astro";
+
+const techStack = [
+  { name: "Angular 21", category: "Frontend", description: "Interfaz principal" },
+  { name: "TanStack Query", category: "Frontend", description: "Gestión de datos" },
+  { name: "TailwindCSS", category: "Frontend", description: "Estilos utilitarios" },
+  { name: "DaisyUI", category: "Frontend", description: "Componentes de interfaz" },
+  { name: "NestJS 10", category: "Backend", description: "Arquitectura modular" },
+  { name: "Prisma ORM", category: "Backend", description: "Acceso a base de datos" },
+  { name: "PostgreSQL", category: "Database", description: "Base de datos (Neon)" },
+  { name: "JWT + Refresh", category: "Auth", description: "HttpOnly cookies" },
+  { name: "SendGrid", category: "Email", description: "Notificaciones" },
+  { name: "Render + Netlify", category: "Deploy", description: "Backend + Frontend" },
+];
+
+const stackCategories = ["Todas", ...new Set(techStack.map((tech) => tech.category))];
+
+const valuePillars = [
+  {
+    title: "Venta B2B con reglas reales",
+    description: "Cada cliente entra con su catálogo y precios negociados, sin depender de hojas de cálculo externas.",
+  },
+  {
+    title: "Operación centralizada",
+    description: "Pedidos, inventario y seguimiento viven en una sola plataforma para cliente y administración.",
+  },
+  {
+    title: "Seguimiento claro del pedido",
+    description: "Cada orden avanza por estados visibles y notificaciones automáticas hasta la entrega.",
+  },
+];
+
+const problemFrictionPoints = [
+  "Pedidos entrando por múltiples canales sin trazabilidad unificada.",
+  "Precios por cliente gestionados fuera del sistema y propensos a error.",
+  "Inventario y estado de pedidos sin visibilidad en tiempo real para el equipo.",
+];
+
+const keyAutomations = [
+  "Precios por cliente",
+  "Validación de stock",
+  "Confirmación por correo",
+  "Estados del pedido",
+  "Panel administrativo",
+  "Modo demo",
+];
+
+const screenshots = [
+  { id: "login", title: "Landing / Login", description: "Página de inicio con branding corporativo", image: loginImage },
+  { id: "catalog", title: "Catálogo de Productos", description: "Vista del catálogo con filtros activos", image: catalogImage },
+  { id: "cart", title: "Carrito de Compras", description: "Carrito con productos y resumen",image: cartImage },
+  { id: "checkout", title: "Checkout", description: "Proceso de pago con dirección seleccionada", image:checkoutImage },
+  { id: "order-confirmed", title: "Pedido Confirmado", description: "Confirmación con timeline de estado", image: orderConfirmedImage },
+  { id: "admin-dashboard", title: "Panel de Admin", description: "Dashboard con métricas y resúmenes", image: adminDashboardImage },
+  { id: "admin-orders", title: "Gestión de Pedidos", description: "Tabla de pedidos con estados", image: adminOrdersImage },
+  { id: "mobile", title: "Vista Móvil", description: "Diseño responsive en móvil", image: mobileImage },
+  { id: "email", title: "Email de Confirmación", description: "Template de email transaccional", image: emailImage },
+];
+
+const skills = [
+  "Desarrollo frontend con Angular",
+  "Gestión de datos para interfaces con alto uso",
+  "Diseño de servicios backend con NestJS",
+  "Modelado y manejo de datos en PostgreSQL",
+  "Diseño de interfaces con TailwindCSS y DaisyUI",
+  "Implementación de notificaciones automáticas por correo",
+];
+
+const flowStages = [
+  { id: "browse", label: "Explorar Catálogo", iconPath: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z", description: "Cliente navega productos con precios personalizados, filtros y búsqueda en tiempo real", color: "teal" },
+  { id: "cart", label: "Armar Pedido", iconPath: "M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z", description: "Carrito persistente con cantidades, resumen de precios y verificación de stock", color: "emerald" },
+  { id: "checkout", label: "Confirmar Compra", iconPath: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4", description: "Selección de dirección de entrega, método de pago y confirmación del pedido", color: "cyan" },
+  { id: "process", label: "Procesamiento", iconPath: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z", description: "Admin recibe notificación, verifica stock, confirma y prepara el despacho", color: "teal" },
+  { id: "ship", label: "Despacho", iconPath: "M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0", description: "Pedido sale a ruta con actualización de estado en tiempo real", color: "emerald" },
+  { id: "deliver", label: "Entrega", iconPath: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z", description: "Cliente recibe, pedido se marca como completado y se actualiza inventario", color: "green" },
+];
+
+const opsSignals = [
+  { label: "Email automático", from: "checkout", to: "process", type: "notification" },
+  { label: "Actualización de estado", from: "process", to: "ship", type: "status" },
+  { label: "Stock descontado", from: "deliver", to: "browse", type: "inventory" },
+];
+
+const flowColors = {
+  teal:    { bg: "bg-teal-500/10", border: "border-teal-500/20", badge: "bg-teal-500", text: "text-teal-700 dark:text-teal-400" },
+  emerald: { bg: "bg-emerald-500/10", border: "border-emerald-500/20", badge: "bg-emerald-500", text: "text-emerald-700 dark:text-emerald-400" },
+  cyan:    { bg: "bg-cyan-500/10", border: "border-cyan-500/20", badge: "bg-cyan-500", text: "text-cyan-700 dark:text-cyan-400" },
+  green:   { bg: "bg-green-500/10", border: "border-green-500/20", badge: "bg-green-500", text: "text-green-700 dark:text-green-400" },
+} as const;
+
+const signalStyles = {
+  notification: { bg: "bg-amber-100 dark:bg-amber-900/30", text: "text-amber-700 dark:text-amber-400", dot: "bg-amber-500", label: "Notificación de sistema" },
+  status:       { bg: "bg-emerald-100 dark:bg-emerald-900/30", text: "text-emerald-700 dark:text-emerald-400", dot: "bg-emerald-500", label: "Cambio de estado" },
+  inventory:    { bg: "bg-blue-100 dark:bg-blue-900/30", text: "text-blue-700 dark:text-blue-400", dot: "bg-blue-500", label: "Sincronización de inventario" },
+} as const;
+---
+
+<Layout
+  title="Higinex - Plataforma B2B de E-commerce | CodeJairo"
+  description="Plataforma B2B para gestión comercial en distribuidora de productos de higiene. Angular, NestJS, PostgreSQL."
+>
+  <main class="relative overflow-hidden bg-gradient-to-b from-emerald-50 via-white to-teal-50/60 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950" x-data="{ 
+    openModal: false, 
+    currentImage: null,
+    currentTitle: '',
+    currentDesc: '',
+    openLightbox(img, title, desc) {
+      this.currentImage = img;
+      this.currentTitle = title;
+      this.currentDesc = desc;
+      this.openModal = true;
+      document.body.style.overflow = 'hidden';
+    },
+    closeLightbox() {
+      this.openModal = false;
+      document.body.style.overflow = '';
+    }
+  }">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+      <div class="absolute -top-28 -left-24 w-80 h-80 rounded-full bg-emerald-400/20 dark:bg-emerald-500/10 blur-3xl"></div>
+      <div class="absolute top-[28%] -right-20 w-72 h-72 rounded-full bg-teal-400/20 dark:bg-teal-500/10 blur-3xl"></div>
+      <div class="absolute bottom-[-6rem] left-1/3 w-96 h-96 rounded-full bg-cyan-400/20 dark:bg-cyan-500/10 blur-3xl"></div>
+    </div>
+    <HiginexHero />
+
+    <!-- El Problema -->
+    <section class="relative z-10 py-12 md:py-16 lg:py-20 px-6 sm:px-12 lg:px-24 bg-transparent" data-aos="fade-up" data-aos-duration="420">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="text-sm font-bold text-emerald-500 uppercase tracking-wider">Contexto</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-white mt-2">
+            El Problema
+          </h2>
+        </div>
+
+        <div class="rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/60 p-7 sm:p-10">
+          <p class="text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed">
+            En la operación diaria de distribución, el problema no era vender: era coordinar bien todo el proceso comercial.
+            El equipo trabajaba con información dispersa, validaciones manuales y poco contexto en cada pedido.
+          </p>
+
+          <div class="mt-8 pl-5 border-l-2 border-emerald-500/40 space-y-4">
+            {problemFrictionPoints.map((item) => (
+              <div class="flex items-start gap-3">
+                <span class="mt-1.5 h-2 w-2 rounded-full bg-emerald-500 shrink-0"></span>
+                <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">{item}</p>
+              </div>
+            ))}
+          </div>
+
+          <p class="mt-8 text-sm text-emerald-700 dark:text-emerald-400 font-medium">
+            Resultado de este contexto: tiempos de respuesta lentos y más riesgo operativo en la gestión de pedidos.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="relative z-10 px-6 sm:px-12 -mt-1 mb-1" aria-hidden="true">
+      <div class="md:hidden mobile-separator-motion mx-auto max-w-5xl opacity-75">
+        <svg viewBox="0 0 400 52" class="w-full h-12 text-emerald-500/45 dark:text-emerald-400/35" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 34L58 18L108 34L158 18L208 34L258 18L308 34L358 18L392 28" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+          <circle cx="58" cy="18" r="2.5" fill="currentColor" />
+          <circle cx="158" cy="18" r="2.5" fill="currentColor" />
+          <circle cx="258" cy="18" r="2.5" fill="currentColor" />
+          <circle cx="358" cy="18" r="2.5" fill="currentColor" />
+        </svg>
+      </div>
+      <div class="hidden md:block mx-auto max-w-6xl opacity-70">
+        <svg viewBox="0 0 800 36" class="w-full h-8 text-emerald-500/50 dark:text-emerald-400/40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 26L110 10L210 26L310 10L410 26L510 10L610 26L710 10L790 22" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- La Solución -->
+    <section class="relative z-10 py-12 md:py-16 lg:py-20 px-6 sm:px-12 lg:px-24 bg-transparent" data-aos="fade-up" data-aos-duration="420">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="text-sm font-bold text-emerald-500 uppercase tracking-wider">Propuesta</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-white mt-2">
+            La Solución
+          </h2>
+          <p class="text-xl text-zinc-600 dark:text-zinc-400 mt-4 max-w-3xl mx-auto">
+            El sistema cubre las tareas clave del proceso comercial con un flujo simple para cliente y administración.
+          </p>
+        </div>
+        
+        <div class="max-w-5xl mx-auto grid lg:grid-cols-[1.2fr_0.8fr] gap-10 lg:gap-14 items-start">
+          <div class="space-y-5">
+            {valuePillars.map((pillar, index) => (
+              <article class="relative pl-12 pb-5 border-b border-zinc-200 dark:border-zinc-800 last:border-b-0 last:pb-0">
+                <span class="absolute left-0 top-0 inline-flex items-center justify-center w-8 h-8 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 text-sm font-bold">
+                  {index + 1}
+                </span>
+                <h3 class="text-lg font-bold text-zinc-900 dark:text-white">{pillar.title}</h3>
+                <p class="text-zinc-600 dark:text-zinc-400 mt-1 leading-relaxed">{pillar.description}</p>
+              </article>
+            ))}
+          </div>
+
+          <aside class="lg:pt-1">
+            <p class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-4">Automatizaciones clave</p>
+            <div class="flex flex-wrap gap-2.5">
+              {keyAutomations.map((item) => (
+                <span class="px-3 py-1.5 rounded-full text-sm bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20">
+                  {item}
+                </span>
+              ))}
+            </div>
+            <p class="mt-5 text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+              Resultado: un flujo comercial más claro para cliente y administración, con menos reproceso en la operación diaria.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <div class="relative z-10 px-6 sm:px-12 -mt-1 mb-1" aria-hidden="true">
+      <div class="md:hidden mobile-separator-motion mx-auto max-w-5xl rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-3">
+        <div class="relative h-14">
+          <span class="absolute left-2 right-2 top-2 border-t-2 border-dashed border-emerald-500/40"></span>
+          <div class="absolute left-1/2 -translate-x-1/2 top-4 flex items-start gap-1.5">
+            {"CODEJAIRO".split("").map((letter) => (
+              <span class="inline-flex items-center justify-center w-6 h-7 rounded-b-lg bg-emerald-500/20 border border-emerald-500/35 text-[10px] font-bold text-emerald-700 dark:text-emerald-300 shadow-sm">
+                {letter}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div class="hidden md:block mx-auto max-w-6xl rounded-2xl border border-emerald-500/20 bg-emerald-500/5 px-4 py-2 opacity-80">
+        <div class="flex justify-center items-center gap-2">
+          {"CODEJAIRO".split("").map((letter) => (
+            <span class="inline-flex items-center justify-center w-7 h-8 rounded-md bg-emerald-500/20 border border-emerald-500/35 text-xs font-bold text-emerald-700 dark:text-emerald-300">
+              {letter}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Galería de Screenshots -->
+    <section class="relative z-10 py-12 md:py-16 lg:py-20 px-6 sm:px-12 lg:px-24 bg-transparent" data-aos="fade-up" data-aos-duration="420">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="text-sm font-bold text-emerald-500 uppercase tracking-wider">Capturas de Pantalla</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-white mt-2">
+            Galería del Proyecto
+          </h2>
+        </div>
+        
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {screenshots.map((screenshot) => (
+            <div 
+              class="group relative overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-800 aspect-video cursor-pointer"
+              @click={`openLightbox('${screenshot.image.src}', '${screenshot.title}', '${screenshot.description}')`}
+            >
+              <Image 
+                src={screenshot.image} 
+                alt={screenshot.title} 
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              
+              <!-- Hover overlay -->
+              <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <div class="text-center text-white p-4">
+                  <svg class="w-10 h-10 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                  </svg>
+                  <p class="text-sm font-medium">Click para ampliar</p>
+                </div>
+              </div>
+              
+              <!-- Caption -->
+              <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                <p class="text-white font-medium text-sm">{screenshot.title}</p>
+                <p class="text-white/70 text-xs">{screenshot.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <div class="relative z-10 px-6 sm:px-12 -mt-1 mb-1" aria-hidden="true">
+      <div class="md:hidden mobile-separator-motion mx-auto max-w-5xl opacity-80">
+        <svg viewBox="0 0 400 50" class="w-full h-11 text-cyan-500/45 dark:text-cyan-400/35" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 25H392" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="4 10"/>
+          <path d="M60 10v30M100 6v34M140 14v26M180 8v32M220 13v27M260 7v33M300 12v28M340 6v34" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="hidden md:block mx-auto max-w-6xl opacity-70">
+        <svg viewBox="0 0 800 34" class="w-full h-8 text-cyan-500/45 dark:text-cyan-400/35" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 17H790" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="6 12"/>
+          <path d="M120 6v22M220 4v26M320 8v18M420 3v28M520 7v20M620 5v24M720 8v18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Stack Técnico -->
+    <section class="relative z-10 py-12 md:py-16 lg:py-20 px-6 sm:px-12 lg:px-24 bg-transparent" data-aos="fade-up" data-aos-duration="420">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="text-sm font-bold text-emerald-500 uppercase tracking-wider">Tecnologías</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-white mt-2">
+            Stack Técnico
+          </h2>
+        </div>
+        
+        <div class="max-w-5xl mx-auto" x-data="{ activeCategory: 'Todas' }">
+          <div class="flex gap-2 overflow-x-auto pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            {stackCategories.map((category) => (
+              <button
+                type="button"
+                @click={`activeCategory = '${category}'`}
+                :class={`activeCategory === '${category}' ? 'bg-emerald-600 border-emerald-600' : 'bg-white dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 hover:border-emerald-400'`}
+                class="px-4 py-2 rounded-full border text-sm font-medium whitespace-nowrap transition-colors text-zinc-700 dark:text-zinc-200"
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
+          <div class="mt-6 p-5 sm:p-6 rounded-3xl border border-zinc-200 dark:border-zinc-700 bg-white/70 dark:bg-zinc-800/50">
+            <div class="flex flex-wrap gap-2.5">
+              {techStack.map((tech) => (
+                <div
+                  x-show={`activeCategory === 'Todas' || activeCategory === '${tech.category}'`}
+                  x-transition.opacity.duration.200ms
+                  title={tech.description}
+                  class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20"
+                >
+                  <span class="text-sm font-semibold text-zinc-900 dark:text-white">{tech.name}</span>
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded-md">
+                    {tech.category}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <p class="mt-4 text-xs text-zinc-500 dark:text-zinc-400">
+              Vista compacta: toca una categoría para filtrar y ver solo el bloque de tecnologías relacionado.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="relative z-10 px-6 sm:px-12 -mt-1 mb-1" aria-hidden="true">
+      <div class="md:hidden mobile-separator-motion mx-auto max-w-5xl opacity-75">
+        <svg viewBox="0 0 400 56" class="w-full h-12 text-teal-500/45 dark:text-teal-400/35" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 38C48 38 64 18 104 18C144 18 160 38 200 38C240 38 256 18 296 18C336 18 352 38 392 38" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M104 18v9M200 38v9M296 18v9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M102 31c4-4 8-4 12 0M198 47c4-4 8-4 12 0M294 31c4-4 8-4 12 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="hidden md:block mx-auto max-w-6xl opacity-70">
+        <svg viewBox="0 0 800 40" class="w-full h-8 text-teal-500/45 dark:text-teal-400/35" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 28C92 28 124 8 204 8C284 8 316 28 396 28C476 28 508 8 588 8C668 8 700 28 788 28" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Flujo Operativo -->
+    <section class="relative z-10 py-12 md:py-16 lg:py-20 px-6 sm:px-12 lg:px-24 bg-transparent" data-aos="fade-up" data-aos-duration="420">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="text-sm font-bold text-emerald-500 uppercase tracking-wider">Flujo Operativo</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-white mt-2">
+            Flujo de Pedido a Entrega
+          </h2>
+          <p class="mt-4 text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
+            Ciclo completo de un pedido: desde que el cliente explora el catálogo hasta que recibe su entrega y el inventario se actualiza automáticamente.
+          </p>
+        </div>
+
+        <div
+          role="img"
+          aria-label="Diagrama del flujo operativo de pedido a entrega de Higinex: seis etapas desde explorar catálogo hasta entrega con señales de sistema automatizadas"
+          class="bg-zinc-50 dark:bg-zinc-800 rounded-3xl p-8 lg:p-12"
+        >
+          <p class="sr-only">
+            Flujo operativo de Higinex en seis etapas: 1. Explorar Catálogo, 2. Armar Pedido, 3. Confirmar Compra (dispara email automático hacia Procesamiento), 4. Procesamiento (actualiza estado hacia Despacho), 5. Despacho, 6. Entrega (descuenta stock y reinicia ciclo).
+          </p>
+
+          <div class="hidden lg:flex items-start gap-0 overflow-x-auto pb-2">
+            {flowStages.map((stage, index) => {
+              const signal = opsSignals.find(s => s.from === stage.id);
+              const c = flowColors[stage.color as keyof typeof flowColors];
+              const isLast = index === flowStages.length - 1;
+              return (
+                <div class="flex items-start shrink-0">
+                  <div class={`w-36 xl:w-40 flex flex-col items-center text-center p-4 rounded-2xl border ${c.bg} ${c.border}`}>
+                    <div class={`w-11 h-11 rounded-xl ${c.badge} flex items-center justify-center mb-3 shadow-md`}>
+                      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={stage.iconPath} />
+                      </svg>
+                    </div>
+                    <h3 class={`text-xs font-bold ${c.text} mb-1 leading-tight`}>{stage.label}</h3>
+                    <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-tight">{stage.description}</p>
+                  </div>
+
+                  {!isLast && (
+                    <div class="flex flex-col items-center justify-start pt-5 px-1 min-w-[64px]">
+                      {signal ? (
+                        <span class={`text-xs font-semibold px-2 py-0.5 rounded-full mb-1 whitespace-nowrap ${signalStyles[signal.type as keyof typeof signalStyles].bg} ${signalStyles[signal.type as keyof typeof signalStyles].text}`}>
+                          {signal.label}
+                        </span>
+                      ) : (
+                        <span class="mb-1 h-5 block" aria-hidden="true" />
+                      )}
+                      <div class="flex items-center w-full">
+                        <div class={`flex-1 h-0.5 ${signal ? signalStyles[signal.type as keyof typeof signalStyles].dot : 'bg-zinc-300 dark:bg-zinc-600'}`}></div>
+                        <svg class={`w-3.5 h-3.5 shrink-0 -ml-1 ${signal ? signalStyles[signal.type as keyof typeof signalStyles].text : 'text-zinc-400'}`} fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          <div class="lg:hidden flex flex-col items-center gap-0">
+            {flowStages.map((stage, index) => {
+              const signal = opsSignals.find(s => s.from === stage.id);
+              const c = flowColors[stage.color as keyof typeof flowColors];
+              const isLast = index === flowStages.length - 1;
+              return (
+                <div class="w-full max-w-sm">
+                  <div class={`flex gap-3 p-4 rounded-2xl border ${c.bg} ${c.border}`}>
+                    <div class={`w-10 h-10 shrink-0 rounded-xl ${c.badge} flex items-center justify-center shadow-md`}>
+                      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={stage.iconPath} />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 class={`text-sm font-bold ${c.text} mb-0.5`}>{stage.label}</h3>
+                      <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-snug">{stage.description}</p>
+                    </div>
+                  </div>
+
+                  {!isLast && (
+                    <div class="flex flex-col items-center py-1.5 gap-0.5">
+                      <div class="w-0.5 h-3 bg-zinc-300 dark:bg-zinc-600"></div>
+                      {signal && (
+                        <span class={`text-xs font-semibold px-2 py-0.5 rounded-full ${signalStyles[signal.type as keyof typeof signalStyles].bg} ${signalStyles[signal.type as keyof typeof signalStyles].text}`}>
+                          {signal.label}
+                        </span>
+                      )}
+                      <svg class="w-4 h-4 text-zinc-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                      </svg>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-zinc-200 dark:border-zinc-700 flex items-center justify-center gap-2">
+            <svg class="w-4 h-4 text-blue-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            <p class="text-xs text-zinc-500 dark:text-zinc-400">
+              Al completar la entrega, el inventario se descuenta automáticamente y el catálogo se actualiza en tiempo real.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-6 flex flex-wrap justify-center gap-x-8 gap-y-3">
+          {(Object.entries(signalStyles) as [keyof typeof signalStyles, typeof signalStyles[keyof typeof signalStyles]][]).map(([, s]) => (
+            <div class="flex items-center gap-2">
+              <span class={`w-2.5 h-2.5 rounded-full shrink-0 ${s.dot}`}></span>
+              <span class="text-sm text-zinc-600 dark:text-zinc-400">{s.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <HiginexLearnings skills={skills} />
+
+    <HiginexFooter />
+
+    <!-- Modal/Lightbox Global -->
+    <div 
+      x-show="openModal"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="opacity-0"
+      x-transition:enter-end="opacity-100"
+      x-transition:leave="transition ease-in duration-200"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      @click="closeLightbox()"
+      @keydown.escape.window="closeLightbox()"
+      class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 p-4"
+      style="display: none;"
+    >
+      <div class="relative max-w-5xl w-full max-h-[90vh]" @click.stop>
+        <button 
+          @click="closeLightbox()"
+          class="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors z-10"
+        >
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <div class="bg-zinc-800 rounded-2xl overflow-hidden flex items-center justify-center relative">
+          <template x-if="currentImage">
+            <div class="w-full">
+              <img 
+                :src="currentImage" 
+                :alt="currentTitle" 
+                class="w-full h-auto max-h-[70vh] object-contain"
+              />
+              <div class="p-6 bg-gradient-to-t from-black/90 via-black/50 to-transparent absolute bottom-0 left-0 right-0">
+                <p class="text-xl font-bold text-white mb-2" x-text="currentTitle"></p>
+                <p class="text-white/80" x-text="currentDesc"></p>
+              </div>
+            </div>
+          </template>
+          <template x-if="!currentImage">
+            <div class="text-center p-8">
+              <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-white/10 flex items-center justify-center">
+                <svg class="w-12 h-12 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <p class="text-xl font-bold text-white mb-2" x-text="currentTitle"></p>
+              <p class="text-white/70" x-text="currentDesc"></p>
+              <p class="text-white/50 text-sm mt-4">Imagen no disponible</p>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  /* Fade-in animation on scroll */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  section {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  @keyframes separatorFloat {
+    0%, 100% {
+      transform: translateY(0px);
+      opacity: 0.78;
+    }
+    50% {
+      transform: translateY(-3px);
+      opacity: 1;
+    }
+  }
+
+  .mobile-separator-motion {
+    animation: separatorFloat 5.8s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-separator-motion {
+      animation: none;
+    }
+  }
+</style>

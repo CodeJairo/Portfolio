@@ -1,0 +1,180 @@
+<input type="checkbox" id="theme-toggle" class="l" aria-label="Toggle theme" />
+
+<script>
+  // @ts-nocheck
+  const THEME_KEY = "theme";
+  const ANIMATING_ATTR = "data-is-animating";
+
+  const getSavedTheme = () => localStorage.getItem(THEME_KEY) || "dark";
+
+  const updateThemeInDOM = () => {
+    const isDark = document.documentElement.classList.contains("dark");
+    const newTheme = isDark ? "light" : "dark";
+
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+    localStorage.setItem(THEME_KEY, newTheme);
+    return newTheme;
+  };
+
+  const syncUI = (checkbox, theme) => {
+    if (checkbox) checkbox.checked = theme === "light";
+  };
+
+  const handleToggle = (event) => {
+    const checkbox = event.currentTarget;
+    const { clientX: x, clientY: y } = event;
+
+    // Bloqueamos transiciones de CSS para que el círculo sea fluido
+    document.documentElement.setAttribute(ANIMATING_ATTR, "true");
+
+    // Fallback para navegadores antiguos (Safari < 18, Firefox antiguo)
+    if (!document.startViewTransition) {
+      syncUI(checkbox, updateThemeInDOM());
+      document.documentElement.removeAttribute(ANIMATING_ATTR);
+      return;
+    }
+
+    // Iniciamos la transición de vista
+    const transition = document.startViewTransition(() => {
+      syncUI(checkbox, updateThemeInDOM());
+    });
+
+    // Animación del círculo
+    transition.ready.then(() => {
+      const endRadius = Math.hypot(
+        Math.max(x, innerWidth - x),
+        Math.max(y, innerHeight - y),
+      );
+
+      document.documentElement.animate(
+        {
+          clipPath: [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${endRadius}px at ${x}px ${y}px)`,
+          ],
+        },
+        {
+          duration: 450,
+          easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+          pseudoElement: "::view-transition-new(root)",
+        },
+      );
+    });
+
+    // Limpieza al finalizar
+    transition.finished.finally(() => {
+      document.documentElement.removeAttribute(ANIMATING_ATTR);
+    });
+  };
+
+  const setup = () => {
+    const toggle = document.querySelector("#theme-toggle");
+    if (!toggle) return;
+
+    // Sincronizar el checkbox al cargar la página
+    syncUI(toggle, getSavedTheme());
+
+    // Usamos 'click' para obtener las coordenadas exactas del cursor
+    toggle.addEventListener("click", handleToggle);
+  };
+
+  // Astro soporta navegación SPA, esto asegura que funcione siempre
+  setup();
+  document.addEventListener("astro:page-load", setup);
+</script>
+
+<style>
+  /* CONFIGURACIÓN TÉCNICA DEL EFECTO */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  ::view-transition-new(root) {
+    z-index: 9999;
+  }
+
+  /* TU ESTILO ORIGINAL (BOMBILLA/SWITCH) */
+  .l {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    width: 3em;
+    height: 1.5em;
+    padding: 0.15em;
+    margin: auto;
+    font-size: 1em;
+    border-radius: 0.75em;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0.125em 0.125em 0 0.125em rgba(0, 0, 0, 0.3) inset;
+    color: #fdea7b;
+    appearance: none;
+    -webkit-appearance: none;
+    transition:
+      background-color 0.1s 0.3s ease-out,
+      box-shadow 0.1s 0.3s ease-out;
+  }
+
+  .l:before,
+  .l:after {
+    content: "";
+    display: block;
+  }
+
+  .l:before {
+    background-color: #d7d7d7;
+    border-radius: 50%;
+    width: 1.2em;
+    height: 1.2em;
+    transition:
+      background-color 0.1s 0.3s ease-out,
+      transform 0.3s ease-out;
+    z-index: 1;
+  }
+
+  .l:after {
+    background:
+      linear-gradient(transparent 50%, rgba(0, 0, 0, 0.15) 0) 0 50% / 50% 100%,
+      repeating-linear-gradient(
+          90deg,
+          #bbb 0,
+          #bbb,
+          #bbb 20%,
+          #999 20%,
+          #999 40%
+        )
+        0 50% / 50% 100%,
+      radial-gradient(circle at 50% 50%, #888 25%, transparent 26%);
+    background-repeat: no-repeat;
+    border: 0.25em solid transparent;
+    border-left: 0.4em solid #d8d8d8;
+    transform: translateX(-22.5%);
+    transform-origin: 25% 50%;
+    width: 1.2em;
+    height: 1em;
+    box-sizing: border-box;
+    transition:
+      border-left-color 0.1s 0.3s ease-out,
+      transform 0.3s ease-out;
+  }
+
+  .l:checked {
+    background-color: rgba(0, 0, 0, 0.45);
+    box-shadow: 0.125em 0.125em 0 0.125em rgba(0, 0, 0, 0.1) inset;
+  }
+
+  .l:checked:before {
+    background-color: currentColor;
+    transform: translateX(125%);
+  }
+
+  .l:checked:after {
+    border-left-color: currentColor;
+    transform: translateX(-2.5%) rotateY(180deg);
+  }
+
+  .l:focus {
+    outline: 0;
+  }
+</style>

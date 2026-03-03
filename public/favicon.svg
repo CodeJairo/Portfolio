@@ -1,20 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="CJ">
     <title>CJ</title>
-    <text class="mono" x="64" y="78" text-anchor="middle">CJ</text>
+
+    <g class="mark" fill="none" stroke-width="15" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M64 28C56 20 44 20 34 28C24 36 24 52 34 60C44 68 56 68 64 60" />
+        <path d="M104 24v58c0 12-8 22-20 22-10 0-18-6-21-15" />
+    </g>
 
     <style>
-        .mono {
-            fill: #0f172a;
-            font-family: "Satoshi", "Inter", "Segoe UI", "Arial", sans-serif;
-            font-size: 70px;
-            font-weight: 800;
-            letter-spacing: -2px;
-            dominant-baseline: middle;
+        .mark {
+            stroke: #0f172a;
         }
 
         @media (prefers-color-scheme: dark) {
-            .mono {
-                fill: #e2e8f0;
+            .mark {
+                stroke: #e2e8f0;
             }
         }
     </style>
