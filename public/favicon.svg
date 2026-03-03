@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="CJ">
+    <title>CJ</title>
+    <text class="mono" x="64" y="78" text-anchor="middle">CJ</text>
+
+    <style>
+        .mono {
+            fill: #0f172a;
+            font-family: "Satoshi", "Inter", "Segoe UI", "Arial", sans-serif;
+            font-size: 70px;
+            font-weight: 800;
+            letter-spacing: -2px;
+            dominant-baseline: middle;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .mono {
+                fill: #e2e8f0;
+            }
+        }
+    </style>
+</svg>
