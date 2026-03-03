@@ -27,6 +27,13 @@ html {
   scroll-behavior: smooth;
 }
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
@@ -151,4 +158,15 @@ html {
   transform: none !important;
   transition: none !important;
   animation: none !important;
+}
+
+@media (max-width: 767px) {
+  [data-aos="fade-left"],
+  [data-aos="fade-right"],
+  [data-aos="fade-up-left"],
+  [data-aos="fade-up-right"],
+  [data-aos="fade-down-left"],
+  [data-aos="fade-down-right"] {
+    transform: translate3d(0, 20px, 0) !important;
+  }
 }
