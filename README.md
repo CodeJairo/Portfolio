@@ -1,12 +1,14 @@
-# Portfolio personal
+# Portafolio Técnico - Jairo Esteban Herrera Rentería
 
-Este es mi portafolio web, hecho con Astro.
-Aquí muestro mis proyectos principales (Higinex y Pleroma), un resumen sobre mí y formas de contacto.
+Ingeniero de software con enfoque en desarrollo backend, arquitectura de sistemas y seguridad. Este repositorio documenta mis proyectos principales, destacando soluciones de aislamiento de datos multi-tenant, control de acceso basado en roles (RBAC) y procesamiento de datos asíncrono.
 
-## Stack
+## Áreas de Especialidad
+* **Desarrollo Backend:** Construcción de APIs REST escalables y modulares.
+* **Seguridad y Gobernanza:** Implementación de estándares OWASP, autenticación JWT y sistemas de auditoría.
+* **Bases de Datos y ORMs:** Modelado relacional y optimización de consultas.
+* **Infraestructura:** Contenerización de entornos y pipelines de integración continua.
 
-- Astro
-- Tailwind CSS
+**Stack Principal:** Node.js (NestJS, Express), Python (FastAPI), PostgreSQL, Prisma, Docker, AWS S3/MinIO.
 
 ## Ejecutar en local
 
