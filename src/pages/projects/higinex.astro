@@ -231,26 +231,8 @@ const signalStyles = {
     </section>
 
     <div class="relative z-10 px-6 sm:px-12 -mt-1 mb-1" aria-hidden="true">
-      <div class="md:hidden mobile-separator-motion mx-auto max-w-5xl rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-3">
-        <div class="relative h-14">
-          <span class="absolute left-2 right-2 top-2 border-t-2 border-dashed border-emerald-500/40"></span>
-          <div class="absolute left-1/2 -translate-x-1/2 top-4 flex items-start gap-1.5">
-            {"CODEJAIRO".split("").map((letter) => (
-              <span class="inline-flex items-center justify-center w-6 h-7 rounded-b-lg bg-emerald-500/20 border border-emerald-500/35 text-[10px] font-bold text-emerald-700 dark:text-emerald-300 shadow-sm">
-                {letter}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-      <div class="hidden md:block mx-auto max-w-6xl rounded-2xl border border-emerald-500/20 bg-emerald-500/5 px-4 py-2 opacity-80">
-        <div class="flex justify-center items-center gap-2">
-          {"CODEJAIRO".split("").map((letter) => (
-            <span class="inline-flex items-center justify-center w-7 h-8 rounded-md bg-emerald-500/20 border border-emerald-500/35 text-xs font-bold text-emerald-700 dark:text-emerald-300">
-              {letter}
-            </span>
-          ))}
-        </div>
+      <div class="mx-auto max-w-5xl opacity-60">
+        <div class="h-px w-full bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent"></div>
       </div>
     </div>
 
@@ -500,6 +482,7 @@ const signalStyles = {
 
     <!-- Modal/Lightbox Global -->
     <div 
+      x-cloak
       x-show="openModal"
       x-transition:enter="transition ease-out duration-300"
       x-transition:enter-start="opacity-0"
