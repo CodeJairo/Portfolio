@@ -1,5 +1,6 @@
 ---
 import Card from "../components/card.astro";
+import fraudPreview from "../assets/fraud-detection/fraud-preview.png";
 import higinexPreview from "../assets/higinex/higinex-preview.png";
 import pleromaPreview from "../assets/pleroma/pleroma-preview.png";
 ---
@@ -10,13 +11,70 @@ import pleromaPreview from "../assets/pleroma/pleroma-preview.png";
   class="bg-gradient-to-b from-white to-gray-100 dark:from-black dark:to-zinc-900 py-20 px-4 sm:px-6 lg:px-16 border-t not-lg:border-b border-dashed"
 >
   <div class="max-w-7xl mx-auto space-y-24">
-    <!-- Proyecto 1: Higinex -->
+    <!-- Proyecto 1: Fintech Fraud Detection -->
     <div
       class="flex flex-col lg:flex-row items-center gap-12"
       data-aos="fade-up"
       data-aos-delay="60"
     >
       <div class="w-full lg:w-1/2" data-aos="fade-right" data-aos-delay="100">
+        <Card
+          img={fraudPreview}
+          alt="Fintech Fraud Detection Platform - Streaming y Lakehouse ML"
+          title="Fintech Fraud Detection"
+          description="Plataforma de detección de fraude en streaming con arquitectura Medallion, reconciliación con Polars, motor de scoring híbrido y microservicio REST <5ms."
+          techs={[
+            { name: "Python 3.14", url: "https://www.python.org/" },
+            { name: "FastAPI", url: "https://fastapi.tiangolo.com/" },
+            { name: "Polars", url: "https://pola.rs/" },
+            { name: "Redpanda", url: "https://redpanda.com/" },
+            { name: "LightGBM", url: "https://lightgbm.readthedocs.io/" },
+          ]}
+          href="/projects/fraud-detection"
+        />
+      </div>
+      <div
+        class="w-full lg:w-1/2 text-left"
+        data-aos="fade-left"
+        data-aos-delay="140"
+      >
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 mb-3">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          Streaming · Lakehouse · ML en Vivo
+        </div>
+        <h3 class="text-3xl font-bold text-zinc-900 dark:text-white mb-4">
+          Fintech Fraud Detection Platform
+        </h3>
+        <p class="text-zinc-600 dark:text-zinc-300 text-lg leading-relaxed">
+          Plataforma de detección de fraude financiero en tiempo real sobre más de 6M de eventos. Integra ingesta continua con Redpanda (Kafka), ingeniería de datos de alto rendimiento con Polars, clasificador supervisado LightGBM y servicio REST con evaluación en menos de 5ms.
+        </p>
+        <div class="flex flex-wrap items-center gap-4 mt-6">
+          <a
+            href="/projects/fraud-detection"
+            class="px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 text-black font-bold hover:scale-105 transition-transform shadow-lg shadow-emerald-500/20"
+          >
+            Ver caso de estudio →
+          </a>
+          <a
+            href="https://determined-benevolence-production-da1a.up.railway.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 rounded-full border border-black/80 dark:border-white/80 text-black dark:text-white hover:scale-105 font-bold transition-transform hover:bg-black/5 dark:hover:bg-white/10 inline-flex items-center gap-2"
+          >
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            Probar Demo
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Proyecto 2: Higinex -->
+    <div
+      class="flex flex-col lg:flex-row-reverse items-center gap-12"
+      data-aos="fade-up"
+      data-aos-delay="80"
+    >
+      <div class="w-full lg:w-1/2" data-aos="fade-left" data-aos-delay="120">
         <Card
           img={higinexPreview}
           alt="Higinex - Plataforma B2B de comercio electrónico"
@@ -33,8 +91,8 @@ import pleromaPreview from "../assets/pleroma/pleroma-preview.png";
       </div>
       <div
         class="w-full lg:w-1/2 text-left"
-        data-aos="fade-left"
-        data-aos-delay="140"
+        data-aos="fade-right"
+        data-aos-delay="160"
       >
         <h3 class="text-3xl font-bold text-zinc-900 dark:text-white mb-4">
           Higinex - Plataforma B2B de E-commerce
@@ -54,13 +112,13 @@ import pleromaPreview from "../assets/pleroma/pleroma-preview.png";
       </div>
     </div>
 
-    <!-- Proyecto 2: Pleroma -->
+    <!-- Proyecto 3: Pleroma -->
     <div
-      class="flex flex-col lg:flex-row-reverse items-center gap-12"
+      class="flex flex-col lg:flex-row items-center gap-12"
       data-aos="fade-up"
-      data-aos-delay="120"
+      data-aos-delay="100"
     >
-      <div class="w-full lg:w-1/2" data-aos="fade-left" data-aos-delay="160">
+      <div class="w-full lg:w-1/2" data-aos="fade-right" data-aos-delay="140">
         <Card
           img={pleromaPreview}
           alt="Pleroma - Sistema de Gestión de Contratación Pública"
@@ -77,8 +135,8 @@ import pleromaPreview from "../assets/pleroma/pleroma-preview.png";
       </div>
       <div
         class="w-full lg:w-1/2 text-left"
-        data-aos="fade-right"
-        data-aos-delay="200"
+        data-aos="fade-left"
+        data-aos-delay="180"
       >
         <h3 class="text-3xl font-bold text-zinc-900 dark:text-white mb-4">
           Pleroma - Gestión de Contratación Pública

@@ -39,6 +39,7 @@ Portfolio/
 │   └── fonts/               # Fuentes Satoshi-Regular y Satoshi-Bold (.woff2)
 ├── src/
 │   ├── assets/              # Imágenes y SVGs optimizados por Astro (Sharp)
+│   │   ├── fraud-detection/ # Gráficos y capturas del proyecto Fintech Fraud Detection
 │   │   ├── higinex/         # Capturas del proyecto Higinex B2B
 │   │   ├── pleroma/         # Capturas del proyecto Pleroma
 │   │   ├── profile.png      # Foto de perfil del hero
@@ -57,11 +58,12 @@ Portfolio/
 │   ├── pages/
 │   │   ├── index.astro      # Página principal (Home)
 │   │   └── projects/
+│   │       ├── fraud-detection.astro # Caso de estudio de Fintech Fraud Detection (Streaming & Lakehouse ML)
 │   │       ├── higinex.astro # Caso de estudio detallado de Higinex (E-commerce B2B)
 │   │       └── pleroma.astro # Caso de estudio detallado de Pleroma (Contratación Pública)
 │   ├── sections/            # Secciones principales del Home
 │   │   ├── section1.astro   # Hero: Presentación, máquina de escribir, CTA
-│   │   ├── section2.astro   # Proyectos destacados (Higinex, Pleroma)
+│   │   ├── section2.astro   # Proyectos destacados (Fintech Fraud Detection, Higinex, Pleroma)
 │   │   └── section3.astro   # Sobre mí (Tarjetas: Quién soy, Stack, Metas, etc.)
 │   ├── styles/
 │   │   └── global.css       # Configuración Tailwind v4, animaciones, scrollbar y tema
@@ -97,6 +99,7 @@ Portfolio/
 - Control y anulación de animaciones mediante `:root[data-is-animating]` y `data-reduced-motion`.
 
 ### 4.3. Páginas de Detalle de Proyectos (`src/pages/projects/`)
+- **Fintech Fraud Detection (`fraud-detection.astro`):** Caso de estudio sobre plataforma de detección de fraude en streaming. Detalla arquitectura Medallion (Bronze/Silver/Gold), ingesta Kafka/Redpanda con semántica at-least-once, motor de feature engineering en Polars, clasificación supervisada con LightGBM, motor híbrido de reglas contables y microservicio FastAPI con latencia <5ms.
 - **Higinex (`higinex.astro`):** Caso de estudio sobre plataforma de e-commerce B2B. Presenta stack, pilares de valor, puntos de fricción, capturas (`Image` de Astro con Sharp), flujo de pedidos en etapas y aprendizajes técnicos.
 - **Pleroma (`pleroma.astro`):** Caso de estudio sobre sistema de contratación pública colombiana (gestión de terceros, CDP, generación de documentos `.docx` con `DocxTemplater`, logs de auditoría multi-tenant).
 
