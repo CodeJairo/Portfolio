@@ -1,24 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import profileImg from "../assets/profile.png";
-
-const impactSignals = [
-  {
-    value: "Higinex",
-    label: "Proyecto vendido",
-    detail: "Ecommerce B2B para distribución de productos de aseo",
-  },
-  {
-    value: "Pleroma",
-    label: "Construcción activa",
-    detail: "Plataforma contractual con trazabilidad y automatización documental",
-  },
-  {
-    value: "<5ms",
-    label: "Latencia lograda",
-    detail: "Inferencia REST en el proyecto de fraude financiero",
-  },
-];
 ---
 
 <section
@@ -28,6 +10,7 @@ const impactSignals = [
   <div
     class="max-w-7xl mx-auto flex flex-col xl:flex-row-reverse items-center justify-between gap-16"
   >
+    <!-- Imagen primero en móviles -->
     <div class="w-full xl:w-1/2 flex justify-center animate-fade-in delay-100">
       <div
         class="w-full max-w-[280px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-[450px] xl:max-w-[500px] aspect-square overflow-hidden rounded-xl shadow-xl hover:scale-105 transition-transform duration-500"
@@ -40,6 +23,7 @@ const impactSignals = [
       </div>
     </div>
 
+    <!-- Texto -->
     <div
       class="w-full xl:w-1/2 text-center xl:text-left space-y-6 xl:min-w-xl animate-fade-up"
       data-aos="fade-up"
@@ -60,17 +44,12 @@ const impactSignals = [
           <span class="blinking-cursor text-indigo-500">|</span>
         </div>
       </h1>
-
       <h2
         class="text-base sm:text-xl text-gray-700 dark:text-gray-300 text-balance delay-100 animate-fade-up fill-mode-both"
       >
-        Construyo productos reales end-to-end: frontend interactivo, backend escalable y arquitectura orientada a impacto.
+        Ingeniero de Software. Interfaces rápidas. Sistemas robustos. Código
+        limpio.
       </h2>
-
-      <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto xl:mx-0 leading-relaxed">
-        Mi experiencia viene de diseñar, lanzar y evolucionar proyectos propios en producción. No presento experiencia corporativa formal: presento resultados técnicos y productos reales.
-      </p>
-
       <div
         class="flex flex-wrap justify-center xl:justify-start gap-4 delay-300 animate-fade-up fill-mode-both"
         data-aos="fade-up"
@@ -109,21 +88,6 @@ const impactSignals = [
           Contactar
         </a>
       </div>
-
-      <section aria-label="Experiencia en proyectos reales" class="pt-4" data-aos="fade-up" data-aos-delay="260">
-        <h3 class="text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400 mb-3">
-          Experiencia en proyectos reales
-        </h3>
-        <div class="grid sm:grid-cols-3 gap-3 text-left">
-          {impactSignals.map((signal) => (
-            <article class="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-900/70 p-4 shadow-sm hover:border-violet-400/50 transition-colors">
-              <p class="text-lg font-bold text-zinc-900 dark:text-white">{signal.value}</p>
-              <p class="text-xs font-semibold uppercase tracking-wide text-violet-600 dark:text-violet-400 mt-1">{signal.label}</p>
-              <p class="text-xs text-zinc-600 dark:text-zinc-400 mt-1.5 leading-relaxed">{signal.detail}</p>
-            </article>
-          ))}
-        </div>
-      </section>
     </div>
   </div>
 </section>
@@ -133,11 +97,11 @@ const impactSignals = [
     "Desarrollador Fullstack.",
     "Arquitecto Backend.",
     "UI Developer.",
-    "Security-Focused Builder.",
+    "Cloud Ready.",
   ];
   const typingDelay = 100;
   const erasingDelay = 50;
-  const newTextDelay = 1500;
+  const newTextDelay = 1500; // tiempo antes de empezar a borrar
   let textIndex = 0;
   let charIndex = 0;
   const typedTextSpan = document.getElementById("typed-text");
