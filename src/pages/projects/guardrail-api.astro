@@ -1,0 +1,188 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import "../../styles/global.css";
+
+const REPO_URL = "https://github.com/CodeJairo/guardrail-api";
+
+const highlights = [
+  {
+    value: "OpenAPI",
+    label: "Entrada principal",
+    detail: "Audita especificaciones Swagger/OpenAPI antes de desplegar",
+  },
+  {
+    value: "SAST + DAST",
+    label: "Cobertura",
+    detail: "Reglas estáticas y dinámicas enfocadas en APIs",
+  },
+  {
+    value: "CLI",
+    label: "Integración",
+    detail: "Flujo simple para uso local o automatización en pipelines",
+  },
+];
+
+const riskDomains = [
+  {
+    title: "Autenticación y autorización",
+    checks: [
+      "Endpoints críticos sin controles de acceso claros",
+      "Esquemas inseguros en operaciones sensibles",
+      "Permisos inconsistentes entre rutas",
+    ],
+  },
+  {
+    title: "Validación y exposición de datos",
+    checks: [
+      "Payloads sin restricciones suficientes",
+      "Campos de respuesta con sobreexposición",
+      "Contratos ambiguos que aumentan riesgo de abuso",
+    ],
+  },
+  {
+    title: "Higiene operativa de API",
+    checks: [
+      "Configuraciones débiles en endpoints públicos",
+      "Señales de hardening incompleto",
+      "Buenas prácticas de seguridad sin cumplimiento explícito",
+    ],
+  },
+];
+
+const workflowSteps = [
+  {
+    title: "1. Ingesta de especificación",
+    description: "Carga del archivo OpenAPI/Swagger y normalización del contrato para inspección automática.",
+  },
+  {
+    title: "2. Ejecución de reglas",
+    description: "Aplicación de reglas SAST + DAST orientadas a seguridad de APIs y prácticas OWASP.",
+  },
+  {
+    title: "3. Reporte de hallazgos",
+    description: "Salida estructurada para priorizar ajustes técnicos antes de pasar a entornos productivos.",
+  },
+];
+
+const stack = [
+  "TypeScript",
+  "Node.js",
+  "OpenAPI/Swagger",
+  "CLI",
+  "AppSec",
+  "DevSecOps",
+];
+---
+
+<Layout
+  title="Guardrail API | Seguridad para APIs OpenAPI"
+  description="Guardrail API: herramienta CLI para auditoría de seguridad de APIs OpenAPI/Swagger con reglas SAST y DAST."
+>
+  <main class="relative overflow-hidden bg-gradient-to-b from-rose-50 via-white to-amber-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
+      <div class="absolute -top-20 -left-16 w-80 h-80 rounded-full bg-rose-400/20 dark:bg-rose-500/10 blur-3xl"></div>
+      <div class="absolute top-1/3 -right-20 w-72 h-72 rounded-full bg-amber-400/20 dark:bg-amber-500/10 blur-3xl"></div>
+      <div class="absolute bottom-[-8rem] left-1/3 w-96 h-96 rounded-full bg-red-400/20 dark:bg-red-500/10 blur-3xl"></div>
+    </div>
+
+    <section class="relative z-10 pt-28 pb-16 px-6 sm:px-10 lg:px-20" data-aos="fade-up">
+      <div class="max-w-6xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-rose-500/30 bg-rose-500/10 text-rose-700 dark:text-rose-300 text-xs font-bold uppercase tracking-wide">
+          Caso técnico
+          <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+          API Security
+        </div>
+
+        <h1 class="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold text-zinc-900 dark:text-white tracking-tight">
+          Guardrail API
+          <span class="block bg-gradient-to-r from-rose-600 via-red-500 to-amber-500 bg-clip-text text-transparent">
+            Auditoría de seguridad para OpenAPI
+          </span>
+        </h1>
+
+        <p class="mt-6 text-lg text-zinc-600 dark:text-zinc-300 max-w-3xl leading-relaxed">
+          Proyecto orientado a equipos backend y AppSec que necesitan detectar riesgos de seguridad desde el contrato de la API. Está diseñado para revisar especificaciones OpenAPI/Swagger y reportar hallazgos accionables antes del despliegue.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a
+            href={REPO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-rose-500 to-amber-500 text-white font-bold hover:scale-105 transition-transform"
+          >
+            Ver repositorio
+          </a>
+          <a
+            href="/#proyectos"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-200 font-semibold hover:border-zinc-900 dark:hover:border-white transition-colors"
+          >
+            Volver a proyectos
+          </a>
+        </div>
+
+        <div class="mt-12 grid sm:grid-cols-3 gap-3">
+          {highlights.map((item) => (
+            <article class="rounded-2xl border border-zinc-200 dark:border-zinc-700 bg-white/90 dark:bg-zinc-900/70 p-4">
+              <p class="text-xl font-extrabold text-zinc-900 dark:text-white">{item.value}</p>
+              <p class="text-xs uppercase tracking-wide font-semibold text-rose-600 dark:text-rose-300 mt-1">{item.label}</p>
+              <p class="text-xs text-zinc-600 dark:text-zinc-400 mt-2">{item.detail}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="relative z-10 py-12 px-6 sm:px-10 lg:px-20" data-aos="fade-up" data-aos-delay="80">
+      <div class="max-w-6xl mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-6">
+        <article class="rounded-3xl border border-zinc-200 dark:border-zinc-700 bg-white/90 dark:bg-zinc-900/70 p-7">
+          <h2 class="text-2xl font-bold text-zinc-900 dark:text-white">Qué problema resuelve</h2>
+          <p class="mt-4 text-zinc-600 dark:text-zinc-300 leading-relaxed">
+            En muchos equipos, la seguridad de APIs se revisa tarde, cuando los servicios ya están implementados. Guardrail API adelanta esa validación al contrato para reducir retrabajo y detectar riesgos antes de llegar a producción.
+          </p>
+          <div class="mt-6 grid gap-3">
+            {workflowSteps.map((step) => (
+              <div class="rounded-2xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900/80 p-4">
+                <p class="font-bold text-zinc-900 dark:text-white">{step.title}</p>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1">{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </article>
+
+        <aside class="rounded-3xl border border-zinc-200 dark:border-zinc-700 bg-white/90 dark:bg-zinc-900/70 p-7">
+          <h2 class="text-xl font-bold text-zinc-900 dark:text-white">Stack principal</h2>
+          <div class="mt-4 flex flex-wrap gap-2">
+            {stack.map((tech) => (
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-full border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-200">{tech}</span>
+            ))}
+          </div>
+          <p class="mt-5 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
+            El diseño del proyecto prioriza uso directo por desarrolladores y adopción sencilla en flujos de calidad técnica.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="relative z-10 py-12 pb-20 px-6 sm:px-10 lg:px-20" data-aos="fade-up" data-aos-delay="120">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white mb-6">Dominios de hallazgos</h2>
+        <div class="grid md:grid-cols-3 gap-4">
+          {riskDomains.map((domain) => (
+            <article class="rounded-2xl border border-rose-500/20 bg-white/90 dark:bg-zinc-900/70 p-5">
+              <h3 class="font-bold text-zinc-900 dark:text-white">{domain.title}</h3>
+              <ul class="mt-3 space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
+                {domain.checks.map((check) => (
+                  <li class="flex items-start gap-2">
+                    <span class="mt-2 w-1.5 h-1.5 rounded-full bg-rose-500 shrink-0"></span>
+                    <span>{check}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

@@ -1,158 +1,249 @@
 ---
-import Card from "../components/card.astro";
+import { Image } from "astro:assets";
 import fraudPreview from "../assets/fraud-detection/fraud-preview.png";
 import higinexPreview from "../assets/higinex/higinex-preview.png";
 import pleromaPreview from "../assets/pleroma/pleroma-preview.png";
+
+const projects = [
+  {
+    id: "fraud",
+    title: "Fintech Fraud Detection",
+    subtitle: "Streaming + Lakehouse + ML",
+    description:
+      "Plataforma en tiempo real para evaluación de riesgo transaccional con arquitectura Medallion, scoring híbrido y API de baja latencia.",
+    href: "/projects/fraud-detection",
+    external: "https://determined-benevolence-production-da1a.up.railway.app/",
+    stacks: ["Backend", "Data", "Security"],
+    roles: ["tech", "cliente"],
+    badge: "Latencia <5ms",
+    gradient: "from-emerald-500 to-cyan-500",
+    image: fraudPreview,
+  },
+  {
+    id: "higinex",
+    title: "Higinex",
+    subtitle: "Ecommerce B2B de productos de aseo",
+    description:
+      "Producto comercial vendido, diseñado para catálogo por cliente, pedidos por estado y operación centralizada de distribución.",
+    href: "/projects/higinex",
+    stacks: ["Frontend", "Backend"],
+    roles: ["recruiter", "tech", "cliente"],
+    badge: "Proyecto vendido",
+    gradient: "from-teal-500 to-emerald-500",
+    image: higinexPreview,
+  },
+  {
+    id: "pleroma",
+    title: "Pleroma",
+    subtitle: "Plataforma contractual multi-tenant",
+    description:
+      "Desarrollo activo enfocado en contratación pública: terceros, CDP, expedientes, auditoría y documentos automatizados.",
+    href: "/projects/pleroma",
+    stacks: ["Backend", "Security"],
+    roles: ["tech", "cliente"],
+    badge: "En construcción activa",
+    gradient: "from-indigo-500 to-purple-500",
+    image: pleromaPreview,
+  },
+  {
+    id: "guardrail",
+    title: "Guardrail API",
+    subtitle: "CLI npm para seguridad de APIs",
+    description:
+      "Herramienta para auditar especificaciones OpenAPI/Swagger con reglas SAST y DAST orientadas a equipos backend y AppSec.",
+    href: "/projects/guardrail-api",
+    external: "https://github.com/CodeJairo/guardrail-api",
+    stacks: ["Backend", "Security"],
+    roles: ["tech", "recruiter"],
+    badge: "Nuevo caso técnico",
+    gradient: "from-rose-500 to-amber-500",
+  },
+];
+
+const roleFilters = [
+  { key: "all", label: "Todos" },
+  { key: "recruiter", label: "Reclutador" },
+  { key: "tech", label: "Tech Lead" },
+  { key: "cliente", label: "Cliente" },
+];
+
+const stackFilters = ["Todas", "Frontend", "Backend", "Data", "Security"];
 ---
 
-<!-- bg-white dark:bg-zinc-900 -->
 <section
   id="proyectos"
-  class="bg-gradient-to-b from-white to-gray-100 dark:from-black dark:to-zinc-900 py-20 px-4 sm:px-6 lg:px-16 border-t not-lg:border-b border-dashed"
+  class="bg-gradient-to-b from-white to-gray-100 dark:from-black dark:to-zinc-900 py-20 px-4 sm:px-6 lg:px-16 border-t border-dashed"
 >
-  <div class="max-w-7xl mx-auto space-y-24">
-    <!-- Proyecto 1: Fintech Fraud Detection -->
-    <div
-      class="flex flex-col lg:flex-row items-center gap-12"
-      data-aos="fade-up"
-      data-aos-delay="60"
-    >
-      <div class="w-full lg:w-1/2" data-aos="fade-right" data-aos-delay="100">
-        <Card
-          img={fraudPreview}
-          alt="Fintech Fraud Detection Platform - Streaming y Lakehouse ML"
-          title="Fintech Fraud Detection"
-          description="Plataforma de detección de fraude en streaming con arquitectura Medallion, reconciliación con Polars, motor de scoring híbrido y microservicio REST <5ms."
-          techs={[
-            { name: "Python 3.14", url: "https://www.python.org/" },
-            { name: "FastAPI", url: "https://fastapi.tiangolo.com/" },
-            { name: "Polars", url: "https://pola.rs/" },
-            { name: "Redpanda", url: "https://redpanda.com/" },
-            { name: "LightGBM", url: "https://lightgbm.readthedocs.io/" },
-          ]}
-          href="/projects/fraud-detection"
-        />
-      </div>
-      <div
-        class="w-full lg:w-1/2 text-left"
-        data-aos="fade-left"
-        data-aos-delay="140"
-      >
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 mb-3">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          Streaming · Lakehouse · ML en Vivo
+  <div class="max-w-7xl mx-auto" data-project-filter-root>
+    <div class="text-center max-w-4xl mx-auto" data-aos="fade-up">
+      <p class="text-xs uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400 font-semibold">Portfolio de proyectos reales</p>
+      <h2 class="text-4xl font-extrabold text-zinc-900 dark:text-white mt-3">Proyectos con impacto técnico y de producto</h2>
+      <p class="text-zinc-600 dark:text-zinc-300 text-lg mt-4 leading-relaxed">
+        Explora por perfil y stack. Cada proyecto está presentado como caso real, sin ruido y con foco en decisiones técnicas.
+      </p>
+    </div>
+
+    <div class="mt-10 grid lg:grid-cols-2 gap-6 items-start" data-aos="fade-up" data-aos-delay="80">
+      <div>
+        <p class="text-xs uppercase tracking-wide text-zinc-500 dark:text-zinc-400 mb-3">Filtrar por audiencia</p>
+        <div class="flex flex-wrap gap-2">
+          {roleFilters.map((filter, index) => (
+            <button
+              type="button"
+              data-role-filter={filter.key}
+              class={`px-4 py-2 rounded-full border text-sm font-semibold transition-colors ${index === 0 ? "bg-zinc-900 text-white border-zinc-900 dark:bg-white dark:text-zinc-900 dark:border-white" : "bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-200 border-zinc-200 dark:border-zinc-700 hover:border-violet-400"}`}
+            >
+              {filter.label}
+            </button>
+          ))}
         </div>
-        <h3 class="text-3xl font-bold text-zinc-900 dark:text-white mb-4">
-          Fintech Fraud Detection Platform
-        </h3>
-        <p class="text-zinc-600 dark:text-zinc-300 text-lg leading-relaxed">
-          Plataforma de detección de fraude financiero en tiempo real sobre más de 6M de eventos. Integra ingesta continua con Redpanda (Kafka), ingeniería de datos de alto rendimiento con Polars, clasificador supervisado LightGBM y servicio REST con evaluación en menos de 5ms.
-        </p>
-        <div class="flex flex-wrap items-center gap-4 mt-6">
-          <a
-            href="/projects/fraud-detection"
-            class="px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 text-black font-bold hover:scale-105 transition-transform shadow-lg shadow-emerald-500/20"
-          >
-            Ver caso de estudio →
-          </a>
-          <a
-            href="https://determined-benevolence-production-da1a.up.railway.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="px-6 py-3 rounded-full border border-black/80 dark:border-white/80 text-black dark:text-white hover:scale-105 font-bold transition-transform hover:bg-black/5 dark:hover:bg-white/10 inline-flex items-center gap-2"
-          >
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            Probar Demo
-          </a>
+      </div>
+      <div>
+        <p class="text-xs uppercase tracking-wide text-zinc-500 dark:text-zinc-400 mb-3">Filtrar por stack principal</p>
+        <div class="flex flex-wrap gap-2">
+          {stackFilters.map((filter, index) => (
+            <button
+              type="button"
+              data-stack-filter={filter}
+              class={`px-4 py-2 rounded-full border text-sm font-semibold transition-colors ${index === 0 ? "bg-zinc-900 text-white border-zinc-900 dark:bg-white dark:text-zinc-900 dark:border-white" : "bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-200 border-zinc-200 dark:border-zinc-700 hover:border-cyan-400"}`}
+            >
+              {filter}
+            </button>
+          ))}
         </div>
       </div>
     </div>
 
-    <!-- Proyecto 2: Higinex -->
-    <div
-      class="flex flex-col lg:flex-row-reverse items-center gap-12"
-      data-aos="fade-up"
-      data-aos-delay="80"
-    >
-      <div class="w-full lg:w-1/2" data-aos="fade-left" data-aos-delay="120">
-        <Card
-          img={higinexPreview}
-          alt="Higinex - Plataforma B2B de comercio electrónico"
-          title="Higinex"
-          description="Plataforma B2B para gestionar catálogo, precios por cliente, carrito, checkout y pedidos desde un panel administrativo."
-          techs={[
-            { name: "Angular 21", url: "https://angular.dev/" },
-            { name: "NestJS", url: "https://nestjs.com/" },
-            { name: "PostgreSQL", url: "https://www.postgresql.org/" },
-            { name: "TailwindCSS", url: "https://tailwindcss.com/" },
-          ]}
-          href="/projects/higinex"
-        />
-      </div>
-      <div
-        class="w-full lg:w-1/2 text-left"
-        data-aos="fade-right"
-        data-aos-delay="160"
-      >
-        <h3 class="text-3xl font-bold text-zinc-900 dark:text-white mb-4">
-          Higinex - Plataforma B2B de E-commerce
-        </h3>
-        <p class="text-zinc-600 dark:text-zinc-300 text-lg leading-relaxed">
-          Proyecto para ordenar el proceso comercial de una distribuidora de
-          productos de higiene. El cliente autorizado puede consultar su
-          catálogo, crear pedidos y hacer seguimiento, mientras el equipo
-          administra todo desde un solo panel.
-        </p>
-        <a
-          href="/projects/higinex"
-          class="inline-block mt-6 px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold hover:scale-105 transition-transform shadow-lg"
+    <div class="mt-10 grid md:grid-cols-2 gap-6" data-project-grid>
+      {projects.map((project) => (
+        <article
+          class="group rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-900/75 shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300"
+          data-project-card
+          data-roles={project.roles.join(",")}
+          data-stacks={project.stacks.join(",")}
         >
-          Ver proyecto →
-        </a>
-      </div>
-    </div>
+          {
+            project.image ? (
+              <div class="relative h-52 overflow-hidden">
+                <Image src={project.image} alt={project.title} class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+                <div class={`absolute inset-0 bg-gradient-to-t ${project.gradient} opacity-25`}></div>
+              </div>
+            ) : (
+              <div class={`relative h-52 bg-gradient-to-br ${project.gradient} flex items-center justify-center p-6`}>
+                <div class="rounded-2xl border border-white/30 bg-black/20 backdrop-blur-sm p-5 w-full max-w-xs">
+                  <p class="text-xs uppercase tracking-[0.2em] text-white/80">API Security</p>
+                  <p class="text-lg font-bold text-white mt-1">OpenAPI / Swagger</p>
+                  <p class="text-sm text-white/80 mt-2 leading-relaxed">Auditoría automatizada para detectar fallos de seguridad antes de producción.</p>
+                </div>
+              </div>
+            )
+          }
 
-    <!-- Proyecto 3: Pleroma -->
-    <div
-      class="flex flex-col lg:flex-row items-center gap-12"
-      data-aos="fade-up"
-      data-aos-delay="100"
-    >
-      <div class="w-full lg:w-1/2" data-aos="fade-right" data-aos-delay="140">
-        <Card
-          img={pleromaPreview}
-          alt="Pleroma - Sistema de Gestión de Contratación Pública"
-          title="Pleroma"
-          description="Aplicación para gestionar contratación pública: terceros, CDP, contratos y generación automática de documentos."
-          techs={[
-            { name: "Angular 21", url: "https://angular.dev/" },
-            { name: "Node.js", url: "https://nodejs.org/" },
-            { name: "Prisma", url: "https://www.prisma.io/" },
-            { name: "Amazon S3", url: "https://aws.amazon.com/s3/" },
-          ]}
-          href="/projects/pleroma"
-        />
-      </div>
-      <div
-        class="w-full lg:w-1/2 text-left"
-        data-aos="fade-left"
-        data-aos-delay="180"
-      >
-        <h3 class="text-3xl font-bold text-zinc-900 dark:text-white mb-4">
-          Pleroma - Gestión de Contratación Pública
-        </h3>
-        <p class="text-zinc-600 dark:text-zinc-300 text-lg leading-relaxed">
-          Proyecto orientado a entidades de servicios públicos en Colombia.
-          Centraliza contratistas, CDP, contratos y resoluciones, y reduce
-          trabajo manual al generar documentos con información del sistema.
-        </p>
-        <a
-          href="/projects/pleroma"
-          class="inline-block mt-6 px-6 py-3 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-bold hover:scale-105 transition-transform shadow-lg"
-        >
-          Ver proyecto →
-        </a>
-      </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between gap-3">
+              <h3 class="text-2xl font-bold text-zinc-900 dark:text-white">{project.title}</h3>
+              <span class="text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300">{project.badge}</span>
+            </div>
+            <p class="text-sm font-semibold text-zinc-500 dark:text-zinc-400 mt-1">{project.subtitle}</p>
+            <p class="text-zinc-600 dark:text-zinc-300 mt-4 leading-relaxed">{project.description}</p>
+
+            <div class="mt-5 flex flex-wrap gap-2">
+              {project.stacks.map((stack) => (
+                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">
+                  {stack}
+                </span>
+              ))}
+            </div>
+
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a href={project.href} class={`inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-bold bg-gradient-to-r ${project.gradient} text-white hover:scale-105 transition-transform`}>
+                Ver caso
+              </a>
+              {
+                project.external && (
+                  <a
+                    href={project.external}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-semibold border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-200 hover:border-zinc-900 dark:hover:border-white transition-colors"
+                  >
+                    Abrir recurso
+                  </a>
+                )
+              }
+            </div>
+          </div>
+        </article>
+      ))}
     </div>
   </div>
 </section>
+
+<script>
+  const setupProjectFilters = () => {
+    const root = document.querySelector("[data-project-filter-root]");
+    if (!root) return;
+
+    const roleButtons = Array.from(root.querySelectorAll("[data-role-filter]"));
+    const stackButtons = Array.from(root.querySelectorAll("[data-stack-filter]"));
+    const cards = Array.from(root.querySelectorAll("[data-project-card]"));
+
+    let activeRole = "all";
+    let activeStack = "Todas";
+
+    const activeClasses = ["bg-zinc-900", "text-white", "border-zinc-900", "dark:bg-white", "dark:text-zinc-900", "dark:border-white"];
+
+    const setButtonState = (buttons, activeValue, attrName) => {
+      buttons.forEach((button) => {
+        const value = button.getAttribute(attrName);
+        const isActive = value === activeValue;
+
+        button.classList.toggle("bg-zinc-900", isActive);
+        button.classList.toggle("text-white", isActive);
+        button.classList.toggle("border-zinc-900", isActive);
+        button.classList.toggle("dark:bg-white", isActive);
+        button.classList.toggle("dark:text-zinc-900", isActive);
+        button.classList.toggle("dark:border-white", isActive);
+
+        if (!isActive) {
+          activeClasses.forEach((className) => button.classList.remove(className));
+        }
+      });
+    };
+
+    const filterCards = () => {
+      cards.forEach((card) => {
+        const roles = (card.getAttribute("data-roles") || "").split(",");
+        const stacks = (card.getAttribute("data-stacks") || "").split(",");
+
+        const roleMatch = activeRole === "all" || roles.includes(activeRole);
+        const stackMatch = activeStack === "Todas" || stacks.includes(activeStack);
+        const visible = roleMatch && stackMatch;
+
+        card.classList.toggle("hidden", !visible);
+      });
+
+      setButtonState(roleButtons, activeRole, "data-role-filter");
+      setButtonState(stackButtons, activeStack, "data-stack-filter");
+    };
+
+    roleButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        activeRole = button.getAttribute("data-role-filter") || "all";
+        filterCards();
+      });
+    });
+
+    stackButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        activeStack = button.getAttribute("data-stack-filter") || "Todas";
+        filterCards();
+      });
+    });
+
+    filterCards();
+  };
+
+  setupProjectFilters();
+  document.addEventListener("astro:page-load", setupProjectFilters);
+</script>

@@ -1,103 +1,197 @@
+---
+const skillDomains = [
+  {
+    id: "frontend",
+    name: "Frontend",
+    accent: "violet",
+    overview:
+      "Interfaces modulares, rápidas y orientadas a experiencia de uso real en productos web.",
+    highlights: [
+      "Arquitectura de componentes en Astro y Angular",
+      "Diseño visual escalable con Tailwind CSS",
+      "Interacciones y estados complejos con foco en UX",
+    ],
+    projects: [
+      { name: "Higinex", href: "/projects/higinex" },
+      { name: "Pleroma", href: "/projects/pleroma" },
+    ],
+  },
+  {
+    id: "backend",
+    name: "Backend",
+    accent: "emerald",
+    overview:
+      "Servicios robustos, modelado de datos y APIs orientadas a confiabilidad operativa.",
+    highlights: [
+      "Diseño de APIs con NestJS y FastAPI",
+      "Modelado relacional con Prisma y PostgreSQL",
+      "Lógica de negocio con validaciones y flujos de estado",
+    ],
+    projects: [
+      { name: "Higinex", href: "/projects/higinex" },
+      { name: "Fraud Detection", href: "/projects/fraud-detection" },
+      { name: "Pleroma", href: "/projects/pleroma" },
+    ],
+  },
+  {
+    id: "data",
+    name: "Data",
+    accent: "cyan",
+    overview:
+      "Procesamiento de eventos y analítica aplicada a decisiones automáticas de riesgo.",
+    highlights: [
+      "Pipelines de streaming con Redpanda/Kafka",
+      "Procesamiento columnar de alto rendimiento con Polars",
+      "Modelos de clasificación con LightGBM",
+    ],
+    projects: [{ name: "Fraud Detection", href: "/projects/fraud-detection" }],
+  },
+  {
+    id: "security",
+    name: "Security",
+    accent: "rose",
+    overview:
+      "Seguridad aplicada al ciclo completo: arquitectura, acceso, auditoría y calidad de APIs.",
+    highlights: [
+      "Autenticación y autorización con JWT/RBAC",
+      "Auditoría y trazabilidad de cambios sensibles",
+      "Análisis de riesgos en especificaciones OpenAPI",
+    ],
+    projects: [
+      { name: "Pleroma", href: "/projects/pleroma" },
+      { name: "Fraud Detection", href: "/projects/fraud-detection" },
+      { name: "Guardrail API", href: "/projects/guardrail-api" },
+    ],
+  },
+  {
+    id: "devops",
+    name: "DevOps",
+    accent: "amber",
+    overview:
+      "Entornos reproducibles y despliegues orientados a estabilidad y evolución continua.",
+    highlights: [
+      "Contenerización con Docker y Docker Compose",
+      "Pipelines de validación automatizada",
+      "Despliegues web y APIs en entornos cloud",
+    ],
+    projects: [
+      { name: "Higinex", href: "/projects/higinex" },
+      { name: "Fraud Detection", href: "/projects/fraud-detection" },
+    ],
+  },
+];
+
+const accentClasses = {
+  violet: {
+    pill: "bg-violet-500/10 text-violet-700 dark:text-violet-300 border-violet-500/20",
+    marker: "bg-violet-500",
+    panel: "border-violet-500/30",
+  },
+  emerald: {
+    pill: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-500/20",
+    marker: "bg-emerald-500",
+    panel: "border-emerald-500/30",
+  },
+  cyan: {
+    pill: "bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border-cyan-500/20",
+    marker: "bg-cyan-500",
+    panel: "border-cyan-500/30",
+  },
+  rose: {
+    pill: "bg-rose-500/10 text-rose-700 dark:text-rose-300 border-rose-500/20",
+    marker: "bg-rose-500",
+    panel: "border-rose-500/30",
+  },
+  amber: {
+    pill: "bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/20",
+    marker: "bg-amber-500",
+    panel: "border-amber-500/30",
+  },
+};
+---
+
 <section
   id="sobre-mi"
-  class="relative py-24 px-6 sm:px-10 lg:px-32 overflow-hidden bg-gray-100 dark:bg-zinc-900 transition-colors"
+  class="relative py-24 px-6 sm:px-10 lg:px-20 overflow-hidden bg-gray-100 dark:bg-zinc-900 transition-colors"
 >
-  <div class="text-center mb-12" data-aos="fade-up" data-aos-delay="80">
-    <h2 class="text-4xl font-extrabold text-zinc-900 dark:text-white mb-4">
-      Sobre mí
-    </h2>
-    <p class="text-zinc-700 dark:text-zinc-400 text-lg max-w-3xl mx-auto">
-      Ingeniería de software con visión integral: construyo interfaces de usuario interactivas y reactivas, sustentadas sobre arquitecturas backend escalables, seguras y de alto rendimiento.
-    </p>
-  </div>
-
-  <div
-    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
-    data-aos="fade-up"
-    data-aos-delay="120"
-  >
-    <!-- Card 1: Perfil Integral -->
-    <div
-      class="rounded-2xl p-6 border shadow-md not-dark:shadow-xl bg-white text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 dark:border-zinc-700 hover:shadow-pink-400/30 transition duration-300"
-      data-aos="zoom-in-up"
-      data-aos-delay="80"
-    >
-      <h3 class="text-xl font-bold text-pink-500 dark:text-pink-400 mb-3">
-        Perfil Full-Stack
-      </h3>
-      <p class="leading-relaxed">
-        Combino diseño y reactividad en el cliente con arquitectura robusta en el servidor. Creo soluciones completas: desde la experiencia de usuario y componentes visuales hasta modelos de datos y despliegue continuo.
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-10" data-aos="fade-up">
+      <h2 class="text-4xl font-extrabold text-zinc-900 dark:text-white mb-4">Habilidades aplicadas en proyectos reales</h2>
+      <p class="text-zinc-700 dark:text-zinc-400 text-lg max-w-3xl mx-auto">
+        Selecciona un dominio y revisa cómo lo aplico en productos concretos, desde interfaz hasta arquitectura backend y seguridad.
       </p>
     </div>
 
-    <!-- Card 2: Frontend Moderno -->
-    <div
-      class="rounded-2xl p-6 border shadow-md not-dark:shadow-xl bg-white text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 dark:border-zinc-700 hover:shadow-purple-400/30 transition duration-300"
-      data-aos="zoom-in-up"
-      data-aos-delay="140"
-    >
-      <h3 class="text-xl font-bold text-purple-600 dark:text-purple-400 mb-3">
-        Frontend Reactivo & UI
-      </h3>
-      <p class="leading-relaxed">
-        Especializado en <strong>Astro</strong>, <strong>Angular</strong> y <strong>React</strong> con <strong>TypeScript</strong> y <strong>Tailwind CSS</strong>. Diseño interfaces modulares, accesibles, fluidas y con especial atención al detalle visual e interacción.
-      </p>
-    </div>
+    <div x-data={`{ active: '${skillDomains[0].id}' }`} data-aos="fade-up" data-aos-delay="80">
+      <div class="flex flex-wrap justify-center gap-2.5 mb-8">
+        {skillDomains.map((domain, index) => {
+          const styles = accentClasses[domain.accent as keyof typeof accentClasses];
+          return (
+            <button
+              type="button"
+              @click={`active='${domain.id}'`}
+              :class={`active === '${domain.id}' ? '${styles.pill} ${styles.panel}' : 'bg-white dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 border-zinc-200 dark:border-zinc-700'`}
+              class="px-4 py-2 rounded-full border text-sm font-semibold transition-colors"
+            >
+              {domain.name}
+            </button>
+          );
+        })}
+      </div>
 
-    <!-- Card 3: Backend & Datos -->
-    <div
-      class="rounded-2xl p-6 border shadow-md not-dark:shadow-xl bg-white text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 dark:border-zinc-700 hover:shadow-blue-400/30 transition duration-300"
-      data-aos="zoom-in-up"
-      data-aos-delay="200"
-    >
-      <h3 class="text-xl font-bold text-blue-600 dark:text-blue-400 mb-3">
-        Backend & Bases de Datos
-      </h3>
-      <p class="leading-relaxed">
-        Construcción de APIs REST y servicios escalables con <strong>Python (FastAPI, Polars)</strong> y <strong>Node.js (NestJS, Express)</strong>, con persistencia en <strong>PostgreSQL</strong>, <strong>Prisma ORM</strong> y almacenamiento en caché con <strong>Redis</strong>.
-      </p>
-    </div>
+      <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-6">
+        {skillDomains.map((domain) => {
+          const styles = accentClasses[domain.accent as keyof typeof accentClasses];
+          return (
+            <article
+              x-show={`active === '${domain.id}'`}
+              x-transition
+              class={`rounded-3xl border ${styles.panel} bg-white/90 dark:bg-zinc-800/70 p-7 shadow-sm`}
+            >
+              <div class="flex items-center gap-3 mb-4">
+                <span class={`w-2.5 h-2.5 rounded-full ${styles.marker}`}></span>
+                <h3 class="text-2xl font-bold text-zinc-900 dark:text-white">{domain.name}</h3>
+              </div>
+              <p class="text-zinc-600 dark:text-zinc-300 leading-relaxed">{domain.overview}</p>
 
-    <!-- Card 4: Seguridad & Gobernanza -->
-    <div
-      class="rounded-2xl p-6 border shadow-md not-dark:shadow-xl bg-white text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 dark:border-zinc-700 hover:shadow-yellow-400/30 transition duration-300"
-      data-aos="zoom-in-up"
-      data-aos-delay="260"
-    >
-      <h3 class="text-xl font-bold text-amber-700 dark:text-yellow-400 mb-3">
-        Seguridad & Gobernanza
-      </h3>
-      <p class="leading-relaxed">
-        Implementación de esquemas de autenticación <strong>JWT/RBAC</strong>, aislamiento de datos <strong>multi-tenant</strong>, trazabilidad con logs de auditoría y sanitización de datos alineada a buenas prácticas <strong>OWASP</strong>.
-      </p>
-    </div>
+              <ul class="mt-6 space-y-3">
+                {domain.highlights.map((highlight) => (
+                  <li class="flex items-start gap-3 text-zinc-700 dark:text-zinc-300">
+                    <span class={`mt-2 w-1.5 h-1.5 rounded-full ${styles.marker} shrink-0`}></span>
+                    <span>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          );
+        })}
 
-    <!-- Card 5: Streaming & Eventos -->
-    <div
-      class="rounded-2xl p-6 border shadow-md not-dark:shadow-xl bg-white text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 dark:border-zinc-700 hover:shadow-green-400/30 transition duration-300"
-      data-aos="zoom-in-up"
-      data-aos-delay="320"
-    >
-      <h3 class="text-xl font-bold text-green-600 dark:text-green-400 mb-3">
-        Streaming & Datos
-      </h3>
-      <p class="leading-relaxed">
-        Pipelines de eventos distribuidos con <strong>Redpanda / Kafka</strong> y procesamiento analítico de alto rendimiento. Arquitectura orientada a eventos para sistemas desacoplados, consistentes y reactivos.
-      </p>
-    </div>
+        <div class="rounded-3xl border border-zinc-200 dark:border-zinc-700 bg-white/90 dark:bg-zinc-800/60 p-7 shadow-sm">
+          <h3 class="text-xl font-bold text-zinc-900 dark:text-white">Proyectos relacionados</h3>
+          <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Navega por casos donde cada dominio fue clave.</p>
 
-    <!-- Card 6: Calidad & DevOps -->
-    <div
-      class="rounded-2xl p-6 border shadow-md not-dark:shadow-xl bg-white text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 dark:border-zinc-700 hover:shadow-cyan-400/30 transition duration-300"
-      data-aos="zoom-in-up"
-      data-aos-delay="380"
-    >
-      <h3 class="text-xl font-bold text-cyan-600 dark:text-cyan-400 mb-3">
-        Calidad & DevOps
-      </h3>
-      <p class="leading-relaxed">
-        Enfoque de ingeniería orientado a pruebas (<strong>TDD</strong>), diseño guiado por el dominio (<strong>DDD</strong>), contenerización con <strong>Docker</strong> y automatización de despliegues continuos con <strong>GitHub Actions</strong>.
-      </p>
+          <div class="mt-5 space-y-3">
+            {skillDomains.map((domain) => (
+              <div x-show={`active === '${domain.id}'`} x-transition class="space-y-2.5">
+                {domain.projects.map((project) => (
+                  <a
+                    href={project.href}
+                    class="block rounded-2xl border border-zinc-200 dark:border-zinc-700 px-4 py-3 text-sm font-semibold text-zinc-700 dark:text-zinc-200 hover:border-zinc-900 dark:hover:border-white transition-colors"
+                  >
+                    {project.name}
+                  </a>
+                ))}
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-6 rounded-2xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900/60 p-4">
+            <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
+              Mi enfoque combina diseño de producto, arquitectura y ejecución técnica. Cada habilidad se valida en proyectos desplegados o en evolución activa.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
