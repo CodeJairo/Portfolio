@@ -2,17 +2,28 @@
 import Navbar from "../components/navbar.astro";
 import Footer from "../components/footer.astro";
 import ModalButton from "../components/modal-button.astro";
+import { ClientRouter } from "astro:transitions";
 import "aos/dist/aos.css";
 
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
+  ogType?: string;
 }
 
 const {
   title = "Codejairo - Portfolio",
   description = "Portafolio profesional de Jairo Herrera, ingeniero de software full-stack especializado en interfaces web reactivas, arquitecturas backend escalables, sistemas distribuidos y seguridad.",
+  ogImage = "/profile.png",
+  ogType = "website",
 } = Astro.props;
+
+const siteUrl = Astro.site ? Astro.site.toString() : "https://codejairo.netlify.app";
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+const socialImageUrl = ogImage.startsWith("http")
+  ? ogImage
+  : new URL(ogImage, siteUrl).href;
 ---
 
 <!doctype html>
@@ -24,6 +35,7 @@ const {
     <meta name="generator" content={Astro.generator} />
     <meta name="robots" content="index, follow" />
     <title>{title}</title>
+
     <meta
       name="google-site-verification"
       content="Gin_eIJSFyOSLv5TZp5qdr5fdvFeuFHK86kMImsSkOY"
@@ -31,12 +43,37 @@ const {
     <meta name="description" content={description} />
     <meta
       name="keywords"
-      content="Jairo Herrera, codejairo, ingeniero de software, desarrollador full stack, Astro, Angular, React, FastAPI, NestJS, PostgreSQL, Medellín"
+      content="Jairo Herrera, codejairo, ingeniero de software, desarrollador full stack, Astro, Angular, React, FastAPI, NestJS, PostgreSQL, Medellín, Guardrail API, Fintech Fraud Detection, ESP Contrata, Higinex"
     />
     <meta name="author" content="Jairo Herrera" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph / Redes Sociales (LinkedIn, Facebook, WhatsApp) -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="CodeJairo" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImageUrl} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@codejairo" />
+    <meta name="twitter:creator" content="@codejairo" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl} />
+
+    <!-- Astro 5 Client Router (Navegación Fluida SPA) -->
+    <ClientRouter />
+
     <script
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
       defer></script>
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -51,17 +88,30 @@ const {
         "description": "Portafolio de Jairo Herrera, ingeniero de software full-stack especializado en interfaces web reactivas, arquitecturas backend escalables, sistemas distribuidos y seguridad."
       }
     </script>
+
+    <!-- Script Anti-FOUC para Tema y Soporte de Transiciones SPA -->
     <script is:inline>
-      const theme = (() => {
-        if (
-          typeof localStorage !== "undefined" &&
-          localStorage.getItem("theme")
-        ) {
-          return localStorage.getItem("theme");
+      const syncTheme = () => {
+        const theme = (() => {
+          if (
+            typeof localStorage !== "undefined" &&
+            localStorage.getItem("theme")
+          ) {
+            return localStorage.getItem("theme");
+          }
+          return "dark";
+        })();
+        document.documentElement.classList.toggle("dark", theme === "dark");
+      };
+
+      syncTheme();
+
+      document.addEventListener("astro:after-swap", () => {
+        syncTheme();
+        if (window.Alpine) {
+          window.Alpine.initTree(document.body);
         }
-        return "dark";
-      })();
-      document.documentElement.classList.toggle("dark", theme === "dark");
+      });
     </script>
   </head>
   <body
@@ -90,6 +140,7 @@ const {
     </main>
     <ModalButton />
     <Footer />
+
     <script>
       import AOS from "aos";
 

@@ -83,8 +83,9 @@ Portfolio/
 ## 4. Detalles de Arquitectura e Implementación
 
 ### 4.1. Layout Base (`src/layouts/Layout.astro`)
+- **Navegación SPA & Transiciones:** Astro `<ClientRouter />` para navegación fluida e instantánea entre rutas, con resincronización de tema y reactivación del árbol Alpine (`Alpine.initTree(document.body)`) en `astro:after-swap`.
 - **Gestión de Tema (Dark/Light):** Script inline en el `<head>` para evitar FOUC (Flash of Unstyled Content), leyendo de `localStorage` con fallback a `'dark'`.
-- **SEO & Metadatos:** Metas de OpenGraph / Twitter implícitos, verificación de Google Search Console, Schema.org en formato `application/ld+json` con tipo `Person`.
+- **SEO & Metadatos Dinámicos:** Soporte configurable de OpenGraph y Twitter Cards por proyecto (`ogImage`, `ogType`, `canonical`), verificación de Google Search Console, Schema.org en formato `application/ld+json` con tipo `Person`.
 - **Fondo Atmosférico:** Gradientes radiales con desenfoque (`blur-[120px]`) y una capa de ruido procedimental SVG con baja opacidad.
 - **Configuración de AOS:**
   - Desactiva animaciones si el usuario tiene `prefers-reduced-motion`.
