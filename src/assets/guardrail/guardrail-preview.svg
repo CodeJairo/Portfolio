@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16"/>
+      <stop offset="50%" stop-color="#0b1329"/>
+      <stop offset="100%" stop-color="#05070d"/>
+    </linearGradient>
+    <linearGradient id="terminalBar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#141c2e"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="accentGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="50%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" rx="16" fill="url(#bg)"/>
+  
+  <!-- Subtle Grid -->
+  <g stroke="#ffffff" stroke-opacity="0.04" stroke-width="1">
+    <line x1="0" y1="50" x2="800" y2="50"/>
+    <line x1="0" y1="100" x2="800" y2="100"/>
+    <line x1="0" y1="150" x2="800" y2="150"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="250" x2="800" y2="250"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="0" y1="350" x2="800" y2="350"/>
+    <line x1="0" y1="400" x2="800" y2="400"/>
+    <line x1="0" y1="450" x2="800" y2="450"/>
+    <line x1="100" y1="0" x2="100" y2="500"/>
+    <line x1="200" y1="0" x2="200" y2="500"/>
+    <line x1="300" y1="0" x2="300" y2="500"/>
+    <line x1="400" y1="0" x2="400" y2="500"/>
+    <line x1="500" y1="0" x2="500" y2="500"/>
+    <line x1="600" y1="0" x2="600" y2="500"/>
+    <line x1="700" y1="0" x2="700" y2="500"/>
+  </g>
+
+  <!-- Terminal Window Container -->
+  <rect x="40" y="40" width="720" height="420" rx="12" fill="#030712" stroke="#1f2937" stroke-width="1.5"/>
+
+  <!-- Terminal Title Bar -->
+  <rect x="40" y="40" width="720" height="40" rx="12" fill="url(#terminalBar)"/>
+  <rect x="40" y="68" width="720" height="12" fill="url(#terminalBar)"/>
+  <line x1="40" y1="80" x2="760" y2="80" stroke="#334155" stroke-width="1"/>
+
+  <!-- Window Dots -->
+  <circle cx="65" cy="60" r="5" fill="#ef4444"/>
+  <circle cx="82" cy="60" r="5" fill="#f59e0b"/>
+  <circle cx="99" cy="60" r="5" fill="#10b981"/>
+
+  <!-- Title Text -->
+  <text x="400" y="64" font-family="'Satoshi', monospace, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle" font-weight="600">
+    guardrail-api — API Security Linter &amp; DAST Engine
+  </text>
+
+  <!-- CLI Prompt -->
+  <text x="65" y="115" font-family="monospace" font-size="13" fill="#64748b">$</text>
+  <text x="80" y="115" font-family="monospace" font-size="13" fill="#38bdf8" font-weight="600">guardrail-api</text>
+  <text x="195" y="115" font-family="monospace" font-size="13" fill="#f8fafc">audit --spec ./openapi.yaml --target https://api.prod.local --fail-on high</text>
+
+  <!-- Output log -->
+  <text x="65" y="145" font-family="monospace" font-size="12" fill="#10b981">✔ OpenAPI 3.0 Contract Parsed successfully (42 endpoints, 18 schemas)</text>
+  <text x="65" y="170" font-family="monospace" font-size="12" fill="#06b6d4">ℹ Running Static Analysis [SAST Engine] ...</text>
+  <text x="65" y="195" font-family="monospace" font-size="12" fill="#06b6d4">ℹ Running Contract-Driven Dynamic Probes [DAST Engine] ...</text>
+
+  <!-- Security Audit Table -->
+  <rect x="65" y="215" width="670" height="155" rx="6" fill="#0b1120" stroke="#1e293b" stroke-width="1"/>
+  
+  <!-- Table Header -->
+  <rect x="65" y="215" width="670" height="28" rx="6" fill="#1e293b"/>
+  <rect x="65" y="235" width="670" height="8" fill="#1e293b"/>
+  <text x="80" y="234" font-family="monospace" font-size="11" fill="#94a3b8" font-weight="bold">SEVERITY</text>
+  <text x="170" y="234" font-family="monospace" font-size="11" fill="#94a3b8" font-weight="bold">RULE ID</text>
+  <text x="280" y="234" font-family="monospace" font-size="11" fill="#94a3b8" font-weight="bold">ENDPOINT / PATH</text>
+  <text x="490" y="234" font-family="monospace" font-size="11" fill="#94a3b8" font-weight="bold">FINDING / RECOMMENDATION</text>
+
+  <!-- Row 1: High -->
+  <rect x="80" y="252" width="58" height="18" rx="4" fill="#ef4444" fill-opacity="0.2"/>
+  <text x="109" y="265" font-family="monospace" font-size="10" fill="#f87171" font-weight="bold" text-anchor="middle">HIGH</text>
+  <text x="170" y="265" font-family="monospace" font-size="11" fill="#e2e8f0">SEC-AUTH-01</text>
+  <text x="280" y="265" font-family="monospace" font-size="11" fill="#38bdf8">POST /api/v1/users/role</text>
+  <text x="490" y="265" font-family="monospace" font-size="11" fill="#cbd5e1">Missing Security Scheme / Unprotected Route</text>
+
+  <!-- Row 2: Medium -->
+  <rect x="80" y="278" width="58" height="18" rx="4" fill="#f59e0b" fill-opacity="0.2"/>
+  <text x="109" y="291" font-family="monospace" font-size="10" fill="#fbbf24" font-weight="bold" text-anchor="middle">MEDIUM</text>
+  <text x="170" y="291" font-family="monospace" font-size="11" fill="#e2e8f0">SEC-HDR-03</text>
+  <text x="280" y="291" font-family="monospace" font-size="11" fill="#38bdf8">* (Global Headers)</text>
+  <text x="490" y="291" font-family="monospace" font-size="11" fill="#cbd5e1">Missing Strict-Transport-Security &amp; CSP</text>
+
+  <!-- Row 3: Medium -->
+  <rect x="80" y="304" width="58" height="18" rx="4" fill="#f59e0b" fill-opacity="0.2"/>
+  <text x="109" y="317" font-family="monospace" font-size="10" fill="#fbbf24" font-weight="bold" text-anchor="middle">MEDIUM</text>
+  <text x="170" y="317" font-family="monospace" font-size="11" fill="#e2e8f0">SEC-CORS-01</text>
+  <text x="280" y="317" font-family="monospace" font-size="11" fill="#38bdf8">OPTIONS /api/v1/*</text>
+  <text x="490" y="317" font-family="monospace" font-size="11" fill="#cbd5e1">Access-Control-Allow-Origin: * with credentials</text>
+
+  <!-- Row 4: Low / Passed -->
+  <rect x="80" y="330" width="58" height="18" rx="4" fill="#10b981" fill-opacity="0.2"/>
+  <text x="109" y="343" font-family="monospace" font-size="10" fill="#34d399" font-weight="bold" text-anchor="middle">PASS</text>
+  <text x="170" y="343" font-family="monospace" font-size="11" fill="#e2e8f0">SEC-FUZZ-01</text>
+  <text x="280" y="343" font-family="monospace" font-size="11" fill="#38bdf8">POST /api/v1/checkout</text>
+  <text x="490" y="343" font-family="monospace" font-size="11" fill="#34d399">Type Fuzzing properly rejected with 400 Bad Request</text>
+
+  <!-- Summary Line -->
+  <text x="65" y="398" font-family="monospace" font-size="12" fill="#ef4444" font-weight="bold">✖ Audit failed: 1 High severity finding exceeded threshold (--fail-on high)</text>
+  <text x="65" y="420" font-family="monospace" font-size="11" fill="#94a3b8">Report exported to sarif/results.sarif (SARIF 2.1.0 compatible with GitHub Code Scanning)</text>
+  <text x="65" y="442" font-family="monospace" font-size="11" fill="#64748b">Process finished with exit code 1 (CI pipeline halted).</text>
+
+  <!-- Floating Glow Accent -->
+  <rect x="680" y="95" width="55" height="24" rx="12" fill="#10b981" fill-opacity="0.15" stroke="#10b981" stroke-opacity="0.4"/>
+  <text x="707" y="111" font-family="monospace" font-size="10" fill="#34d399" font-weight="bold" text-anchor="middle">v1.0.0</text>
+</svg>

@@ -58,12 +58,13 @@ Portfolio/
 │   ├── pages/
 │   │   ├── index.astro      # Página principal (Home)
 │   │   └── projects/
+│   │       ├── esp-contrata.astro # Caso de estudio detallado de ESP Contrata (Contratación Pública)
 │   │       ├── fraud-detection.astro # Caso de estudio de Fintech Fraud Detection (Streaming & Lakehouse ML)
-│   │       ├── higinex.astro # Caso de estudio detallado de Higinex (E-commerce B2B)
-│   │       └── pleroma.astro # Caso de estudio detallado de Pleroma (Contratación Pública)
+│   │       ├── guardrail-api.astro # Caso de estudio de Guardrail API (Auditoría DAST/SAST y SARIF)
+│   │       └── higinex.astro # Caso de estudio detallado de Higinex (E-commerce B2B)
 │   ├── sections/            # Secciones principales del Home
 │   │   ├── section1.astro   # Hero: Presentación, máquina de escribir, CTA
-│   │   ├── section2.astro   # Proyectos destacados (Fintech Fraud Detection, Higinex, Pleroma)
+│   │   ├── section2.astro   # Proyectos destacados (Fintech Fraud Detection, Higinex, ESP Contrata, Guardrail API)
 │   │   └── section3.astro   # Sobre mí (Tarjetas: Quién soy, Stack, Metas, etc.)
 │   ├── styles/
 │   │   └── global.css       # Configuración Tailwind v4, animaciones, scrollbar y tema
@@ -100,8 +101,9 @@ Portfolio/
 
 ### 4.3. Páginas de Detalle de Proyectos (`src/pages/projects/`)
 - **Fintech Fraud Detection (`fraud-detection.astro`):** Caso de estudio sobre plataforma de detección de fraude en streaming. Detalla arquitectura Medallion (Bronze/Silver/Gold), ingesta Kafka/Redpanda con semántica at-least-once, motor de feature engineering en Polars, clasificación supervisada con LightGBM, motor híbrido de reglas contables y microservicio FastAPI con latencia <5ms.
-- **Higinex (`higinex.astro`):** Caso de estudio sobre plataforma de e-commerce B2B. Presenta stack, pilares de valor, puntos de fricción, capturas (`Image` de Astro con Sharp), flujo de pedidos en etapas y aprendizajes técnicos.
-- **Pleroma (`pleroma.astro`):** Caso de estudio sobre sistema de contratación pública colombiana (gestión de terceros, CDP, generación de documentos `.docx` con `DocxTemplater`, logs de auditoría multi-tenant).
+- **Higinex (`higinex.astro`):** Caso de estudio sobre plataforma de e-commerce B2B de productos de aseo e higiene. Presenta stack, pilares comerciales, flujo de despacho y catálogo con precios negociados.
+- **ESP Contrata (`esp-contrata.astro`):** Caso de estudio sobre sistema institucional de contratación pública colombiana (gestión de terceros, CDP presupuestal, expedientes contractuales, resguardo en AWS S3 y logs de auditoría multi-tenant).
+- **Guardrail API (`guardrail-api.astro`):** Caso de estudio sobre herramienta CLI y paquete npm para auditoría de seguridad en APIs modernas mediante análisis estático de contratos OpenAPI y probes dinámicos (DAST) con reportes SARIF 2.1.0 para CI/CD.
 
 ### 4.4. Componentes y UI
 - **`theme-toggle.astro`:** Switch estilizado que desencadena `document.startViewTransition()` calculando el radio del círculo con `Math.hypot` desde la posición del clic del cursor.

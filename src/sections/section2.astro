@@ -3,6 +3,7 @@ import Card from "../components/card.astro";
 import fraudPreview from "../assets/fraud-detection/fraud-preview.png";
 import higinexPreview from "../assets/higinex/higinex-preview.png";
 import pleromaPreview from "../assets/pleroma/pleroma-preview.png";
+import guardrailPreview from "../assets/guardrail/guardrail-preview.svg";
 ---
 
 <!-- bg-white dark:bg-zinc-900 -->
@@ -77,9 +78,9 @@ import pleromaPreview from "../assets/pleroma/pleroma-preview.png";
       <div class="w-full lg:w-1/2" data-aos="fade-left" data-aos-delay="120">
         <Card
           img={higinexPreview}
-          alt="Higinex - Plataforma B2B de comercio electrónico"
+          alt="Higinex - Plataforma B2B de comercio electrónico de productos de aseo"
           title="Higinex"
-          description="Plataforma B2B para gestionar catálogo, precios por cliente, carrito, checkout y pedidos desde un panel administrativo."
+          description="Plataforma B2B comercializada para gestionar catálogo, precios por cliente, carrito, checkout y pedidos de productos de aseo."
           techs={[
             { name: "Angular 21", url: "https://angular.dev/" },
             { name: "NestJS", url: "https://nestjs.com/" },
@@ -94,14 +95,15 @@ import pleromaPreview from "../assets/pleroma/pleroma-preview.png";
         data-aos="fade-right"
         data-aos-delay="160"
       >
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-teal-500/10 text-teal-600 dark:text-teal-400 border border-teal-500/20 mb-3">
+          <span class="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
+          E-commerce B2B · Proyecto Comercializado
+        </div>
         <h3 class="text-3xl font-bold text-zinc-900 dark:text-white mb-4">
-          Higinex - Plataforma B2B de E-commerce
+          Higinex - E-commerce B2B de Aseo e Higiene
         </h3>
         <p class="text-zinc-600 dark:text-zinc-300 text-lg leading-relaxed">
-          Proyecto para ordenar el proceso comercial de una distribuidora de
-          productos de higiene. El cliente autorizado puede consultar su
-          catálogo, crear pedidos y hacer seguimiento, mientras el equipo
-          administra todo desde un solo panel.
+          Plataforma comercial desarrollada y vendida a una distribuidora de productos de aseo y limpieza. Los clientes autorizados consultan su catálogo con tarifas negociadas, crean pedidos y hacen seguimiento, mientras el equipo administra despachos e inventario centralizado.
         </p>
         <a
           href="/projects/higinex"
@@ -112,7 +114,7 @@ import pleromaPreview from "../assets/pleroma/pleroma-preview.png";
       </div>
     </div>
 
-    <!-- Proyecto 3: Pleroma -->
+    <!-- Proyecto 3: ESP Contrata (antes Pleroma) -->
     <div
       class="flex flex-col lg:flex-row items-center gap-12"
       data-aos="fade-up"
@@ -121,16 +123,16 @@ import pleromaPreview from "../assets/pleroma/pleroma-preview.png";
       <div class="w-full lg:w-1/2" data-aos="fade-right" data-aos-delay="140">
         <Card
           img={pleromaPreview}
-          alt="Pleroma - Sistema de Gestión de Contratación Pública"
-          title="Pleroma"
-          description="Aplicación para gestionar contratación pública: terceros, CDP, contratos y generación automática de documentos."
+          alt="ESP Contrata - Sistema de Gestión de Contratación Pública"
+          title="ESP Contrata"
+          description="Sistema institucional para gestionar contratación pública: terceros, CDP presupuestal, contratos y auditoría inmutable."
           techs={[
             { name: "Angular 21", url: "https://angular.dev/" },
             { name: "Node.js", url: "https://nodejs.org/" },
             { name: "Prisma", url: "https://www.prisma.io/" },
             { name: "Amazon S3", url: "https://aws.amazon.com/s3/" },
           ]}
-          href="/projects/pleroma"
+          href="/projects/esp-contrata"
         />
       </div>
       <div
@@ -138,20 +140,77 @@ import pleromaPreview from "../assets/pleroma/pleroma-preview.png";
         data-aos="fade-left"
         data-aos-delay="180"
       >
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 mb-3">
+          <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+          Sector Público · En Desarrollo Activo
+        </div>
         <h3 class="text-3xl font-bold text-zinc-900 dark:text-white mb-4">
-          Pleroma - Gestión de Contratación Pública
+          ESP Contrata - Gestión de Contratación Pública
         </h3>
         <p class="text-zinc-600 dark:text-zinc-300 text-lg leading-relaxed">
-          Proyecto orientado a entidades de servicios públicos en Colombia.
-          Centraliza contratistas, CDP, contratos y resoluciones, y reduce
-          trabajo manual al generar documentos con información del sistema.
+          Plataforma orientada a entidades de servicios públicos en Colombia. Centraliza expedientes de contratistas, disponibilidad presupuestal (CDP), contratos y resoluciones, asegurando estricto cumplimiento legal y trazabilidad de auditoría.
         </p>
         <a
-          href="/projects/pleroma"
+          href="/projects/esp-contrata"
           class="inline-block mt-6 px-6 py-3 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-bold hover:scale-105 transition-transform shadow-lg"
         >
           Ver proyecto →
         </a>
+      </div>
+    </div>
+
+    <!-- Proyecto 4: Guardrail API -->
+    <div
+      class="flex flex-col lg:flex-row-reverse items-center gap-12"
+      data-aos="fade-up"
+      data-aos-delay="120"
+    >
+      <div class="w-full lg:w-1/2" data-aos="fade-left" data-aos-delay="140">
+        <Card
+          img={guardrailPreview}
+          alt="Guardrail API - CLI & Auditoría de Seguridad de APIs"
+          title="Guardrail API"
+          description="Herramienta CLI y paquete npm para auditar seguridad en APIs: validación estática OpenAPI, probes dinámicos (DAST) y reporte SARIF para CI/CD."
+          techs={[
+            { name: "TypeScript", url: "https://www.typescriptlang.org/" },
+            { name: "Node.js", url: "https://nodejs.org/" },
+            { name: "OpenAPI 3.0", url: "https://spec.openapis.org/" },
+            { name: "Vitest", url: "https://vitest.dev/" },
+          ]}
+          href="/projects/guardrail-api"
+        />
+      </div>
+      <div
+        class="w-full lg:w-1/2 text-left"
+        data-aos="fade-right"
+        data-aos-delay="180"
+      >
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 mb-3">
+          <span class="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></span>
+          Open Source · CLI &amp; npm · DevSecOps
+        </div>
+        <h3 class="text-3xl font-bold text-zinc-900 dark:text-white mb-4">
+          Guardrail API - Auditoría de Seguridad en APIs
+        </h3>
+        <p class="text-zinc-600 dark:text-zinc-300 text-lg leading-relaxed">
+          Herramienta CLI para desarrolladores backend y pipelines de CI/CD. Combina análisis estático de contratos OpenAPI (OWASP API Security Top 10) con probes activos no destructivos para validar autenticación, cabeceras HTTP y CORS, exportando reportes estándar SARIF 2.1.0.
+        </p>
+        <div class="flex flex-wrap items-center gap-4 mt-6">
+          <a
+            href="/projects/guardrail-api"
+            class="px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold hover:scale-105 transition-transform shadow-lg"
+          >
+            Ver caso de estudio →
+          </a>
+          <a
+            href="https://github.com/CodeJairo/guardrail-api"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 rounded-full border border-black/80 dark:border-white/80 text-black dark:text-white hover:scale-105 font-bold transition-transform hover:bg-black/5 dark:hover:bg-white/10 inline-flex items-center gap-2"
+          >
+            GitHub Repo
+          </a>
+        </div>
       </div>
     </div>
   </div>
