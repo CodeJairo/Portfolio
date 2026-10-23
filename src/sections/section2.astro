@@ -6,212 +6,97 @@ import pleromaPreview from "../assets/pleroma/pleroma-preview.png";
 import guardrailPreview from "../assets/guardrail/guardrail-preview.svg";
 ---
 
-<!-- bg-white dark:bg-zinc-900 -->
-<section
-  id="proyectos"
-  class="bg-gradient-to-b from-white to-gray-100 dark:from-black dark:to-zinc-900 py-20 px-4 sm:px-6 lg:px-16 border-t not-lg:border-b border-dashed"
->
-  <div class="max-w-7xl mx-auto space-y-24">
-    <!-- Proyecto 1: Fintech Fraud Detection -->
-    <div
-      class="flex flex-col lg:flex-row items-center gap-12"
-      data-aos="fade-up"
-      data-aos-delay="60"
-    >
-      <div class="w-full lg:w-1/2" data-aos="fade-right" data-aos-delay="100">
-        <Card
-          img={fraudPreview}
-          alt="Fintech Fraud Detection Platform - Streaming y Lakehouse ML"
-          title="Fintech Fraud Detection"
-          description="Plataforma de detección de fraude en streaming con arquitectura Medallion, reconciliación con Polars, motor de scoring híbrido y microservicio REST <5ms."
-          techs={[
-            { name: "Python 3.14", url: "https://www.python.org/" },
-            { name: "FastAPI", url: "https://fastapi.tiangolo.com/" },
-            { name: "Polars", url: "https://pola.rs/" },
-            { name: "Redpanda", url: "https://redpanda.com/" },
-            { name: "LightGBM", url: "https://lightgbm.readthedocs.io/" },
-          ]}
-          href="/projects/fraud-detection"
-        />
-      </div>
-      <div
-        class="w-full lg:w-1/2 text-left"
-        data-aos="fade-left"
-        data-aos-delay="140"
-      >
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 mb-3">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          Streaming · Lakehouse · ML en Vivo
-        </div>
-        <h3 class="text-3xl font-bold text-zinc-900 dark:text-white mb-4">
-          Fintech Fraud Detection Platform
-        </h3>
-        <p class="text-zinc-600 dark:text-zinc-300 text-lg leading-relaxed">
-          Plataforma de detección de fraude financiero en tiempo real sobre más de 6M de eventos. Integra ingesta continua con Redpanda (Kafka), ingeniería de datos de alto rendimiento con Polars, clasificador supervisado LightGBM y servicio REST con evaluación en menos de 5ms.
-        </p>
-        <div class="flex flex-wrap items-center gap-4 mt-6">
-          <a
-            href="/projects/fraud-detection"
-            class="px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 text-black font-bold hover:scale-105 transition-transform shadow-lg shadow-emerald-500/20"
-          >
-            Ver caso de estudio →
-          </a>
-          <a
-            href="https://determined-benevolence-production-da1a.up.railway.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="px-6 py-3 rounded-full border border-black/80 dark:border-white/80 text-black dark:text-white hover:scale-105 font-bold transition-transform hover:bg-black/5 dark:hover:bg-white/10 inline-flex items-center gap-2"
-          >
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            Probar Demo
-          </a>
-        </div>
-      </div>
-    </div>
+<section id="experiencia" aria-labelledby="experiencia-title" class="bg-white dark:bg-black py-20 px-4 sm:px-6 lg:px-16 border-t border-dashed">
+  <div class="max-w-7xl mx-auto space-y-16">
+    <header class="max-w-3xl" data-aos="fade-up" data-aos-delay="60">
+      <p class="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-3">Trayectoria profesional</p>
+      <h2 id="experiencia-title" class="text-4xl font-bold text-zinc-900 dark:text-white text-balance">Experiencia freelance</h2>
+      <p class="mt-4 text-lg text-zinc-600 dark:text-zinc-300 text-pretty">Más de 2 años diseñando y construyendo productos web completos para clientes, desde la arquitectura y la seguridad hasta la interfaz y el despliegue.</p>
+    </header>
 
-    <!-- Proyecto 2: Higinex -->
-    <div
-      class="flex flex-col lg:flex-row-reverse items-center gap-12"
-      data-aos="fade-up"
-      data-aos-delay="80"
-    >
-      <div class="w-full lg:w-1/2" data-aos="fade-left" data-aos-delay="120">
-        <Card
-          img={higinexPreview}
-          alt="Higinex - Plataforma B2B de comercio electrónico de productos de aseo"
-          title="Higinex"
-          description="Plataforma B2B comercializada para gestionar catálogo, precios por cliente, carrito, checkout y pedidos de productos de aseo."
-          techs={[
-            { name: "Angular 21", url: "https://angular.dev/" },
-            { name: "NestJS", url: "https://nestjs.com/" },
-            { name: "PostgreSQL", url: "https://www.postgresql.org/" },
-            { name: "TailwindCSS", url: "https://tailwindcss.com/" },
-          ]}
-          href="/projects/higinex"
-        />
+    <article class="flex flex-col lg:flex-row items-center gap-12" data-aos="fade-up" data-aos-delay="80">
+      <div class="w-full lg:w-1/2" data-aos="fade-right" data-aos-delay="120">
+        <Card img={pleromaPreview} alt="ESP Contrata, sistema de gestión de contratación pública" title="ESP Contrata" description="Sistema multi tenant para gestionar terceros, presupuestos, contratos y auditoría en entidades de servicios públicos." techs={[
+          { name: "Angular 21", url: "https://angular.dev/" },
+          { name: "NestJS", url: "https://nestjs.com/" },
+          { name: "PostgreSQL", url: "https://www.postgresql.org/" },
+          { name: "AWS S3", url: "https://aws.amazon.com/s3/" },
+        ]} href="/projects/esp-contrata" />
       </div>
-      <div
-        class="w-full lg:w-1/2 text-left"
-        data-aos="fade-right"
-        data-aos-delay="160"
-      >
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-teal-500/10 text-teal-600 dark:text-teal-400 border border-teal-500/20 mb-3">
-          <span class="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
-          E-commerce B2B · Proyecto Comercializado
-        </div>
-        <h3 class="text-3xl font-bold text-zinc-900 dark:text-white mb-4">
-          Higinex - E-commerce B2B de Aseo e Higiene
-        </h3>
-        <p class="text-zinc-600 dark:text-zinc-300 text-lg leading-relaxed">
-          Plataforma comercial desarrollada y vendida a una distribuidora de productos de aseo y limpieza. Los clientes autorizados consultan su catálogo con tarifas negociadas, crean pedidos y hacen seguimiento, mientras el equipo administra despachos e inventario centralizado.
-        </p>
-        <a
-          href="/projects/higinex"
-          class="inline-block mt-6 px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold hover:scale-105 transition-transform shadow-lg"
-        >
-          Ver proyecto →
-        </a>
+      <div class="w-full lg:w-1/2 text-left" data-aos="fade-left" data-aos-delay="160">
+        <p class="text-sm font-semibold text-indigo-600 dark:text-indigo-400 mb-3">Desarrollador Full Stack Freelance · dic. 2024 a mar. 2026</p>
+        <h3 class="text-3xl font-bold text-zinc-900 dark:text-white mb-4">ESP Contrata</h3>
+        <p class="text-zinc-600 dark:text-zinc-300 text-lg leading-relaxed text-pretty">Diseñé la arquitectura multi tenant y los controles de acceso de una plataforma de contratación pública. La solución mantiene aislada la información de cada empresa, registra operaciones críticas y centraliza expedientes, CDP y contratos.</p>
+        <a href="/projects/esp-contrata" class="inline-block mt-6 px-6 py-3 rounded-full bg-indigo-600 text-white font-semibold hover:scale-105 active:scale-[0.98] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] shadow-lg shadow-indigo-500/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Ver caso de estudio →</a>
       </div>
-    </div>
+    </article>
 
-    <!-- Proyecto 3: ESP Contrata (antes Pleroma) -->
-    <div
-      class="flex flex-col lg:flex-row items-center gap-12"
-      data-aos="fade-up"
-      data-aos-delay="100"
-    >
-      <div class="w-full lg:w-1/2" data-aos="fade-right" data-aos-delay="140">
-        <Card
-          img={pleromaPreview}
-          alt="ESP Contrata - Sistema de Gestión de Contratación Pública"
-          title="ESP Contrata"
-          description="Sistema institucional para gestionar contratación pública: terceros, CDP presupuestal, contratos y auditoría inmutable."
-          techs={[
-            { name: "Angular 21", url: "https://angular.dev/" },
-            { name: "Node.js", url: "https://nodejs.org/" },
-            { name: "Prisma", url: "https://www.prisma.io/" },
-            { name: "Amazon S3", url: "https://aws.amazon.com/s3/" },
-          ]}
-          href="/projects/esp-contrata"
-        />
-      </div>
-      <div
-        class="w-full lg:w-1/2 text-left"
-        data-aos="fade-left"
-        data-aos-delay="180"
-      >
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 mb-3">
-          <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
-          Sector Público · En Desarrollo Activo
-        </div>
-        <h3 class="text-3xl font-bold text-zinc-900 dark:text-white mb-4">
-          ESP Contrata - Gestión de Contratación Pública
-        </h3>
-        <p class="text-zinc-600 dark:text-zinc-300 text-lg leading-relaxed">
-          Plataforma orientada a entidades de servicios públicos en Colombia. Centraliza expedientes de contratistas, disponibilidad presupuestal (CDP), contratos y resoluciones, asegurando estricto cumplimiento legal y trazabilidad de auditoría.
-        </p>
-        <a
-          href="/projects/esp-contrata"
-          class="inline-block mt-6 px-6 py-3 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-bold hover:scale-105 transition-transform shadow-lg"
-        >
-          Ver proyecto →
-        </a>
-      </div>
-    </div>
-
-    <!-- Proyecto 4: Guardrail API -->
-    <div
-      class="flex flex-col lg:flex-row-reverse items-center gap-12"
-      data-aos="fade-up"
-      data-aos-delay="120"
-    >
+    <article class="flex flex-col lg:flex-row-reverse items-center gap-12" data-aos="fade-up" data-aos-delay="100">
       <div class="w-full lg:w-1/2" data-aos="fade-left" data-aos-delay="140">
-        <Card
-          img={guardrailPreview}
-          alt="Guardrail API - CLI & Auditoría de Seguridad de APIs"
-          title="Guardrail API"
-          description="Herramienta CLI y paquete npm para auditar seguridad en APIs: validación estática OpenAPI, probes dinámicos (DAST) y reporte SARIF para CI/CD."
-          techs={[
-            { name: "TypeScript", url: "https://www.typescriptlang.org/" },
-            { name: "Node.js", url: "https://nodejs.org/" },
-            { name: "OpenAPI 3.0", url: "https://spec.openapis.org/" },
-            { name: "Vitest", url: "https://vitest.dev/" },
-          ]}
-          href="/projects/guardrail-api"
-        />
+        <Card img={higinexPreview} alt="Higinex, plataforma B2B de comercio electrónico de productos de aseo" title="Higinex S.A.S." description="Plataforma de comercio electrónico B2B para catálogo, precios negociados, pedidos e inventario de productos de aseo." techs={[
+          { name: "Angular 21", url: "https://angular.dev/" },
+          { name: "NestJS", url: "https://nestjs.com/" },
+          { name: "PostgreSQL", url: "https://www.postgresql.org/" },
+          { name: "Docker", url: "https://www.docker.com/" },
+        ]} href="/projects/higinex" />
       </div>
-      <div
-        class="w-full lg:w-1/2 text-left"
-        data-aos="fade-right"
-        data-aos-delay="180"
-      >
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 mb-3">
-          <span class="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></span>
-          Open Source · CLI &amp; npm · DevSecOps
-        </div>
-        <h3 class="text-3xl font-bold text-zinc-900 dark:text-white mb-4">
-          Guardrail API - Auditoría de Seguridad en APIs
-        </h3>
-        <p class="text-zinc-600 dark:text-zinc-300 text-lg leading-relaxed">
-          Herramienta CLI para desarrolladores backend y pipelines de CI/CD. Combina análisis estático de contratos OpenAPI (OWASP API Security Top 10) con probes activos no destructivos para validar autenticación, cabeceras HTTP y CORS, exportando reportes estándar SARIF 2.1.0.
-        </p>
+      <div class="w-full lg:w-1/2 text-left" data-aos="fade-right" data-aos-delay="180">
+        <p class="text-sm font-semibold text-teal-600 dark:text-teal-400 mb-3">Desarrollador Full Stack Freelance · ene. 2024 a nov. 2024</p>
+        <h3 class="text-3xl font-bold text-zinc-900 dark:text-white mb-4">Higinex S.A.S.</h3>
+        <p class="text-zinc-600 dark:text-zinc-300 text-lg leading-relaxed text-pretty">Lideré el desarrollo integral de un comercio electrónico B2B para automatizar inventario y ventas a clientes corporativos. Construí una API REST con diseño orientado al dominio, seguridad alineada con OWASP y despliegues reproducibles con Docker.</p>
+        <a href="/projects/higinex" class="inline-block mt-6 px-6 py-3 rounded-full bg-emerald-600 text-white font-semibold hover:scale-105 active:scale-[0.98] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] shadow-lg shadow-emerald-500/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500">Ver caso de estudio →</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="proyectos" aria-labelledby="proyectos-title" class="bg-gray-100 dark:bg-black py-20 px-4 sm:px-6 lg:px-16 border-t border-black/10 dark:border-white/10">
+  <div class="max-w-7xl mx-auto space-y-16">
+    <header class="max-w-3xl" data-aos="fade-up" data-aos-delay="60">
+      <p class="text-sm font-semibold text-cyan-700 dark:text-cyan-400 mb-3">Trabajo técnico independiente</p>
+      <h2 id="proyectos-title" class="text-4xl font-bold text-zinc-900 dark:text-white text-balance">Proyectos destacados</h2>
+      <p class="mt-4 text-lg text-zinc-600 dark:text-zinc-300 text-pretty">Sistemas construidos para explorar arquitectura backend, datos en tiempo real y seguridad de APIs.</p>
+    </header>
+
+    <article class="flex flex-col lg:flex-row items-center gap-12" data-aos="fade-up" data-aos-delay="80">
+      <div class="w-full lg:w-1/2" data-aos="fade-right" data-aos-delay="120">
+        <Card img={fraudPreview} alt="Fintech Fraud Detection Platform, streaming y aprendizaje automático" title="Fintech Fraud Detection" description="Plataforma de detección de fraude en streaming con arquitectura Medallion, Polars, LightGBM y un microservicio REST de menos de 5 ms." techs={[
+          { name: "Python 3.14", url: "https://www.python.org/" },
+          { name: "FastAPI", url: "https://fastapi.tiangolo.com/" },
+          { name: "Polars", url: "https://pola.rs/" },
+          { name: "Redpanda", url: "https://redpanda.com/" },
+          { name: "LightGBM", url: "https://lightgbm.readthedocs.io/" },
+        ]} href="/projects/fraud-detection" />
+      </div>
+      <div class="w-full lg:w-1/2 text-left" data-aos="fade-left" data-aos-delay="160">
+        <p class="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-3">Streaming · Lakehouse · ML en vivo</p>
+        <h3 class="text-3xl font-bold text-zinc-900 dark:text-white mb-4">Fintech Fraud Detection Platform</h3>
+        <p class="text-zinc-600 dark:text-zinc-300 text-lg leading-relaxed text-pretty">Plataforma de detección de fraude financiero en tiempo real sobre más de 6M de eventos. Integra Redpanda, Polars, LightGBM y un servicio REST con evaluación en menos de 5 ms.</p>
         <div class="flex flex-wrap items-center gap-4 mt-6">
-          <a
-            href="/projects/guardrail-api"
-            class="px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold hover:scale-105 transition-transform shadow-lg"
-          >
-            Ver caso de estudio →
-          </a>
-          <a
-            href="https://github.com/CodeJairo/guardrail-api"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="px-6 py-3 rounded-full border border-black/80 dark:border-white/80 text-black dark:text-white hover:scale-105 font-bold transition-transform hover:bg-black/5 dark:hover:bg-white/10 inline-flex items-center gap-2"
-          >
-            GitHub Repo
-          </a>
+          <a href="/projects/fraud-detection" class="px-6 py-3 rounded-full bg-emerald-600 text-white font-semibold hover:scale-105 active:scale-[0.98] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] shadow-lg shadow-emerald-500/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500">Ver caso de estudio →</a>
+          <a href="https://determined-benevolence-production-da1a.up.railway.app/" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-full border border-black/80 dark:border-white/80 text-black dark:text-white hover:scale-105 active:scale-[0.98] font-semibold transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-black/5 dark:hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500 inline-flex items-center gap-2">Probar demo</a>
         </div>
       </div>
-    </div>
+    </article>
+
+    <article class="flex flex-col lg:flex-row-reverse items-center gap-12" data-aos="fade-up" data-aos-delay="100">
+      <div class="w-full lg:w-1/2" data-aos="fade-left" data-aos-delay="140">
+        <Card img={guardrailPreview} alt="Guardrail API, CLI de auditoría de seguridad de APIs" title="Guardrail API" description="Herramienta CLI y paquete npm para auditar APIs mediante análisis OpenAPI, pruebas dinámicas y reportes SARIF para CI/CD." techs={[
+          { name: "TypeScript", url: "https://www.typescriptlang.org/" },
+          { name: "Node.js", url: "https://nodejs.org/" },
+          { name: "OpenAPI 3.0", url: "https://spec.openapis.org/" },
+          { name: "Vitest", url: "https://vitest.dev/" },
+        ]} href="/projects/guardrail-api" />
+      </div>
+      <div class="w-full lg:w-1/2 text-left" data-aos="fade-right" data-aos-delay="180">
+        <p class="text-sm font-semibold text-cyan-700 dark:text-cyan-400 mb-3">Open source · CLI y npm · DevSecOps</p>
+        <h3 class="text-3xl font-bold text-zinc-900 dark:text-white mb-4">Guardrail API</h3>
+        <p class="text-zinc-600 dark:text-zinc-300 text-lg leading-relaxed text-pretty">Herramienta CLI para desarrolladores backend y pipelines de CI/CD. Combina análisis de contratos OpenAPI con pruebas activas no destructivas y exporta reportes SARIF 2.1.0.</p>
+        <div class="flex flex-wrap items-center gap-4 mt-6">
+          <a href="/projects/guardrail-api" class="px-6 py-3 rounded-full bg-cyan-700 text-white font-semibold hover:scale-105 active:scale-[0.98] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] shadow-lg shadow-cyan-500/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600">Ver caso de estudio →</a>
+          <a href="https://github.com/CodeJairo/guardrail-api" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-full border border-black/80 dark:border-white/80 text-black dark:text-white hover:scale-105 active:scale-[0.98] font-semibold transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-black/5 dark:hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600 inline-flex items-center gap-2">GitHub repo</a>
+        </div>
+      </div>
+    </article>
   </div>
 </section>
